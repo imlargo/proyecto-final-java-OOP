@@ -5,12 +5,19 @@ public class Boleto {
     private String tipo;
     private Usuario propietario;
 
+    private String origen;
+    private String destino;
+
     private int valor;
     private int init_valor;
     private Maleta[] equipaje;
     private Asiento asiento;
         
-    public Boleto(String id, String tipo, Usuario propietario, Maleta[] equipaje, Asiento asiento, int init_valor) {
+    public Boleto(String id, String tipo, Usuario propietario, Maleta[] equipaje, Asiento asiento, int init_valor, String origen, String destino) {
+        
+        this.origen = origen;
+        this.destino = destino;
+
         this.id = id;
         this.tipo = tipo;
         this.propietario = propietario;
@@ -36,4 +43,5 @@ public class Boleto {
     public String getOrigenDestino() {
         return this.origen + " - " + this.destino;
     }
+
 }
