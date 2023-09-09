@@ -19,9 +19,9 @@ public class Asiento {
     }
 
     public void resetAsiento() {
-        self.tipo = null;
-        self.pasajero = null;
-        self.n_asiento = null;
-        self.boleto = null;
+        this.tipo = null;
+        this.pasajero = null;
+        this.n_asiento = null;
+        this.boleto = null;
     }
 }

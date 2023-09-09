@@ -1,4 +1,3 @@
-
 public class Boleto {
     
     private String id;

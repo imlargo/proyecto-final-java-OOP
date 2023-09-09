@@ -6,7 +6,7 @@ public class App {
     public static void main(String[] args) {
 
 
-        System.out.println("Bienvenido")
+        System.out.println("Bienvenido");
 
         //haganme los mensajes para q diga las opciones disponibles
         Scanner scanner = new Scanner(System.in);
@@ -31,7 +31,7 @@ public class App {
                     de boleto, y al final se asigna todo, se puede usar boleto para ir calculando el precio y etc
                     */
 
-                    System.out.println("Ha seleccionado la Comprar vuelo");
+                    System.out.println("Ha seleccionado la opción Comprar vuelo");
                     System.out.println('Por favor ingrese el orgien');
 
                     System.out.println('Por favor ingrese el destino');
@@ -72,17 +72,17 @@ public class App {
 
 
                 case 2:
-                    System.out.println("Ha seleccionado la Reasignar vuelo");
+                    System.out.println("Ha seleccionado la opción Reasignar vuelo");
                     // Aquí puedes poner el código que deseas ejecutar para la Reasignar vuelo.
                     break;
 
                 case 3:
-                    System.out.println("Ha seleccionado la Cancelar vuelo");
+                    System.out.println("Ha seleccionado la opción Cancelar vuelo");
                     // Aquí puedes poner el código que deseas ejecutar para la Cancelar vuelo.
                     break;
                     
                 case 4:
-                    System.out.println("Ha seleccionado la Ver cuenta");
+                    System.out.println("Ha seleccionado la opción Ver cuenta");
                     // Aquí puedes poner el código que deseas ejecutar para la Ver cuenta.
                     break;
 
