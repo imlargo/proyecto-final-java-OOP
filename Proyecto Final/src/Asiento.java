@@ -7,7 +7,7 @@ public class Asiento {
     private Pasajero pasajero;
     private Boleto boleto;
 
-    
+    //Constructor asiento
     public Asiento(int n_asiento, String tipo) {
         this.n_asiento = n_asiento;
         this.tipo = tipo;
