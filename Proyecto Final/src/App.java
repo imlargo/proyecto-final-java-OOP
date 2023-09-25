@@ -6,6 +6,9 @@ public class App {
     public static void main(String[] args) {
 
 
+        //Crear las instancias de las clases
+        //Se crea una cuenta, y un usuario, etc
+
         System.out.println("Bienvenido");
 
         //haganme los mensajes para q diga las opciones disponibles
@@ -32,10 +35,9 @@ public class App {
                     */
 
                     System.out.println("Ha seleccionado la opción Comprar vuelo");
-                    System.out.println('Por favor ingrese el orgien');
-
+                    System.out.println('Por favor ingrese el orgien'); 
                     System.out.println('Por favor ingrese el destino');
-
+                    //Despues de haber creado el orgien y el destino necesito generar los vuelos
                     //Mostrar vuelos
                     //Necesitamos generar vuelos
                     
