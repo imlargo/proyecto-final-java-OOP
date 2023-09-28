@@ -55,7 +55,7 @@ public class App {
         } while (opcion != 5);
 
         scanner.close();
-        System.out.println("Bye")
+        System.out.println("Bye");
 
     }
 
