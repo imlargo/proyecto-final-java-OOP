@@ -8,7 +8,7 @@ public class App {
 
         //Crear las instancias de las clases
         //Se crea una cuenta, y un usuario, etc
-
+     
         System.out.println("Bienvenido");
 
         //haganme los mensajes para q diga las opciones disponibles
@@ -16,7 +16,7 @@ public class App {
         int opcion;
 
         do {
-            System.out.println("Menú:");
+            System.out.println("   Menú:");
             System.out.println("1. Comprar vuelo");
             System.out.println("2. Reasignar vuelo");
             System.out.println("3. Cancelar vuelo");
@@ -44,9 +44,10 @@ public class App {
 
                     System.out.println('Selecciona por favor el vuelo');
 
-                    System.out.println('Los asiento disponibles son los siguientes:');
+                    System.out.println('Los tipos de asientos disponibles son los siguientes:');
                     //Primero muestra los precios de cada tipo de asiento, luego
                     //Muestra los asientos disponibles y su tipo:
+                    System.out.println('Los asientos disponibles son los siguientes:');
 
                     System.out.println('Seleccione el numero de asiento disponible');
                     //Si se selecciona y es valido se prosigue...
@@ -54,7 +55,7 @@ public class App {
 
                     System.out.println('Desea continuar?');
 
-                    //Si si, sigue, sino, selecciona otro asiento
+                    //Si sí, sigue, sino, selecciona otro asiento
 
                     System.out.println('Selecciona si va a añadir equipaje o no');
 

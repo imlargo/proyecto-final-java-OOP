@@ -1,5 +1,13 @@
-public class Boleto {
-    
+package Aerolinea 
+
+import java.io.Serializable;
+import Usuario;
+import maleta;
+import Asiento;
+
+
+public class Boleto implements Serializable {
+    private static final long serialVersionUID;
     private String id;
     private String tipo;
     private Usuario propietario;

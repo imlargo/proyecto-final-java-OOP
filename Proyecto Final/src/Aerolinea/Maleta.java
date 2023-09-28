@@ -1,12 +1,18 @@
+package Aerolinea;
 
-public class Maleta {
+import Boleto;
+import java.io.Serializable;
+
+public class Maleta implements Serializable {
+    
+    private final static long serialVersionUID;
     
     private int id;
 
     private int peso;
     private int largo;
     private int ancho;
-    //private int alto;		//Al fin y al cabo es un volumen
+    private int alto;		//Al fin y al cabo es un volumen //True shit
 
     private Pasajero propietario;
     private Boleto boleto;

@@ -1,3 +1,8 @@
+package Aerolinea;
+
+import java.io.Serializable;
+import Boleto;
+
 public class Usuario {
 
 	private int dinero;

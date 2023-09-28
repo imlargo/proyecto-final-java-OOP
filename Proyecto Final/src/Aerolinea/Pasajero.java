@@ -1,5 +1,11 @@
+package Aerolinea;
+
+import java.io.Serializable;
+import Maleta;
+import Usuario;
 
 public class Pasajero {
+    private static final long serialVersionUID; 
 
     private String nombre;
     private boolean trabajador;
