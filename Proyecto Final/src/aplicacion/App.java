@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class App {
 
     public static void main(String[] args) {
@@ -28,7 +27,39 @@ public class App {
 
             switch (opcion) {
                 case 1:
+                    this.comprarVuelo();
+                    break;
 
+                case 2:
+                    this.reasignarVuelo();
+                    break;
+
+                case 3:
+                   this.cancelarVuelo();
+                    break;
+                    
+                case 4:
+                    this.verCuenta();
+                    break;
+
+                case 5:
+                    System.out.println("Saliendo del programa. ¡Adiós!");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida. Por favor, seleccione una opción válida (1-5).");
+                    break;
+
+            }
+
+        } while (opcion != 5);
+
+        scanner.close();
+        System.out.println("Bye")
+
+    }
+
+    private void comprarVuelo(){
                     /*
                     Podemos ir dejando una variable local q vaya llevando los valores, puede ser una instancia
                     de boleto, y al final se asigna todo, se puede usar boleto para ir calculando el precio y etc
@@ -68,67 +99,39 @@ public class App {
 
                     //Si se confirma se efectua el pago y se asigna todo.
                     //--- nota, no se asigna nada hasta q se haya pagado y verificado ---
-                    break;
-
-
-
-
-
-                case 2:
-                    System.out.println("Ha seleccionado la opción Reasignar vuelo");
-                    // Aquí puedes poner el código que deseas ejecutar para la Reasignar vuelo.
-                    break;
-
-                case 3:
-                    System.out.println("Ha seleccionado la opción Cancelar vuelo");
-                    // Aquí puedes poner el código que deseas ejecutar para la Cancelar vuelo.
-                    break;
-                    
-                case 4:
-                    System.out.println("Ha seleccionado la opción Ver cuenta");
-                    // Aquí puedes poner el código que deseas ejecutar para la Ver cuenta.
-                    break;
-
-                case 5:
-                    System.out.println("Saliendo del programa. ¡Adiós!");
-                    break;
-
-                default:
-                    System.out.println("Opción no válida. Por favor, seleccione una opción válida (1-5).");
-                    break;
-
-            }
-
-        } while (opcion != 5);
-
-        scanner.close();
-
     }
 
+    private void reasignarVuelo() {
+        System.out.println("Ha seleccionado la opción Reasignar vuelo");
+        // Aquí puedes poner el código que deseas ejecutar para la Reasignar vuelo.
+    }
+
+    private void cancelarVuelo() {
+        System.out.println("Ha seleccionado la opción Cancelar vuelo");
+        // Aquí puedes poner el código que deseas ejecutar para la Cancelar vuelo.
+    }
+
+    private void verCuenta() {
+        System.out.println("Ha seleccionado la opción Ver cuenta");
+        // Aquí puedes poner el código que deseas ejecutar para la Ver cuenta.
+    }
 
     public void generarVuelos(int cantidad) {
 
         /*
-        this.vuels = array
-        Imprime y muestra los vuelos
-
-        - Vuelos debe tener un metodo q sea para imprimir el vuelo
-
-        */
+         * this.vuels = array
+         * Imprime y muestra los vuelos
+         * 
+         * - Vuelos debe tener un metodo q sea para imprimir el vuelo
+         * 
+         */
         Vuelo vuelos[] = new Vuelos();
 
-
-
         for (int i = 0; i < cantidad; i++) {
-            //Generar vuelos y meterlos al array, devueve al array y puede mostrarse
-            
+            // Generar vuelos y meterlos al array, devueve al array y puede mostrarse
+
         }
 
-
-
     }
-
-    
-
 
 }
