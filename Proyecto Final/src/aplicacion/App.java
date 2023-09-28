@@ -27,19 +27,19 @@ public class App {
 
             switch (opcion) {
                 case 1:
-                    this.comprarVuelo();
+                    comprarVuelo();
                     break;
 
                 case 2:
-                    this.reasignarVuelo();
+                    reasignarVuelo();
                     break;
 
                 case 3:
-                   this.cancelarVuelo();
+                   cancelarVuelo();
                     break;
                     
                 case 4:
-                    this.verCuenta();
+                    verCuenta();
                     break;
 
                 case 5:
@@ -60,45 +60,45 @@ public class App {
     }
 
     private void comprarVuelo(){
-                    /*
-                    Podemos ir dejando una variable local q vaya llevando los valores, puede ser una instancia
-                    de boleto, y al final se asigna todo, se puede usar boleto para ir calculando el precio y etc
-                    */
+        /*
+        Podemos ir dejando una variable local q vaya llevando los valores, puede ser una instancia
+        de boleto, y al final se asigna todo, se puede usar boleto para ir calculando el precio y etc
+        */
 
-                    System.out.println("Ha seleccionado la opción Comprar vuelo");
-                    System.out.println('Por favor ingrese el orgien'); 
-                    System.out.println('Por favor ingrese el destino');
-                    //Despues de haber creado el orgien y el destino necesito generar los vuelos
-                    //Mostrar vuelos
-                    //Necesitamos generar vuelos
-                    
+        System.out.println("Ha seleccionado la opción Comprar vuelo");
+        System.out.println('Por favor ingrese el orgien'); 
+        System.out.println('Por favor ingrese el destino');
+        //Despues de haber creado el orgien y el destino necesito generar los vuelos
+        //Mostrar vuelos
+        //Necesitamos generar vuelos
+        
 
-                    System.out.println('Selecciona por favor el vuelo');
+        System.out.println('Selecciona por favor el vuelo');
 
-                    System.out.println('Los tipos de asientos disponibles son los siguientes:');
-                    //Primero muestra los precios de cada tipo de asiento, luego
-                    //Muestra los asientos disponibles y su tipo:
-                    System.out.println('Los asientos disponibles son los siguientes:');
+        System.out.println('Los tipos de asientos disponibles son los siguientes:');
+        //Primero muestra los precios de cada tipo de asiento, luego
+        //Muestra los asientos disponibles y su tipo:
+        System.out.println('Los asientos disponibles son los siguientes:');
 
-                    System.out.println('Seleccione el numero de asiento disponible');
-                    //Si se selecciona y es valido se prosigue...
-                    //Se muestra una previsualizacion del precio
+        System.out.println('Seleccione el numero de asiento disponible');
+        //Si se selecciona y es valido se prosigue...
+        //Se muestra una previsualizacion del precio
 
-                    System.out.println('Desea continuar?');
+        System.out.println('Desea continuar?');
 
-                    //Si sí, sigue, sino, selecciona otro asiento
+        //Si sí, sigue, sino, selecciona otro asiento
 
-                    System.out.println('Selecciona si va a añadir equipaje o no');
+        System.out.println('Selecciona si va a añadir equipaje o no');
 
-                    // SI la respuesta es si, entonces agrega varios equipajes, sino, no
-                    //Cada vez q se agrega un equipaje se va mostrando una previsualizacion del precio..
-                    //Segun la cantidad de equipaje y los precios de cada uni
+        // SI la respuesta es si, entonces agrega varios equipajes, sino, no
+        //Cada vez q se agrega un equipaje se va mostrando una previsualizacion del precio..
+        //Segun la cantidad de equipaje y los precios de cada uni
 
-                    System.out.println('Desea finalizar la compra? los detalles serian:');
-                    //Se muestran todos los detalles de la compra y se pide la confirmacion para pagar
+        System.out.println('Desea finalizar la compra? los detalles serian:');
+        //Se muestran todos los detalles de la compra y se pide la confirmacion para pagar
 
-                    //Si se confirma se efectua el pago y se asigna todo.
-                    //--- nota, no se asigna nada hasta q se haya pagado y verificado ---
+        //Si se confirma se efectua el pago y se asigna todo.
+        //--- nota, no se asigna nada hasta q se haya pagado y verificado ---
     }
 
     private void reasignarVuelo() {
@@ -117,9 +117,8 @@ public class App {
     }
 
     public void generarVuelos(int cantidad) {
-
         /*
-         * this.vuels = array
+         * vuels = array
          * Imprime y muestra los vuelos
          * 
          * - Vuelos debe tener un metodo q sea para imprimir el vuelo
