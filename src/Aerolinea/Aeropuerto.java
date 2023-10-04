@@ -5,8 +5,9 @@ import Aerolinea.*;
 
 public class Aeropuerto {
 
-    public static ArrayList<Vuelo> generarVuelos(int cantidad) {
+    public static ArrayList<Vuelo> generarVuelos(int cantidad, String origen, String destino) {
 
+        
         ArrayList<Vuelo> vuelos = new ArrayList<>();
         /*
          * Regresa un array de vuelos
@@ -15,13 +16,11 @@ public class Aeropuerto {
         for (int i = 0; i < cantidad; i++) {
             // Generar vuelos y meterlos al array, devueve al array y puede mostrarse
             // Generar aleatoriamente
-            String aerolinea = "";
-            String id = "";
-            String hSalida = "";
-            String hLlegada = "";
-            String destino = "";
-            String origen = "";
-            vuelos.add(new Vuelo(aerolinea, id, hSalida, hLlegada, destino, origen));
+            String aerolinea = "Latam";
+            String id = Integer.toString(i);
+            String hSalida = "69:69";
+            String hLlegada = "";    
+            vuelos.add(new Vuelo(origen, destino, aerolinea, id, hSalida, hLlegada));
         }
         return vuelos;
     }
