@@ -151,7 +151,6 @@ public class App {
 
             do {
                 c += 1;
-                
                 separador();
                 System.out.print("> Ingrese el peso de la maleta: ");
                 int peso = scanner.nextInt();
