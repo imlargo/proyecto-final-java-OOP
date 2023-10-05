@@ -30,7 +30,7 @@ public class Maleta implements Serializable {
     }
 
     public int calcularPrecio() {
-        return (1/2) * (this.peso + ((this.alto * this.ancho * this.largo) / 10)) + 5; // Crear formula para calcular el valor total con respecto al peso, largo y alto
+        return ((this.peso + ((this.alto * this.ancho * this.largo)/5))/2)  + 5; // Crear formula para calcular el valor total con respecto al peso, largo y alto
     }
 
 

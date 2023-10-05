@@ -24,16 +24,11 @@ public class Usuario {
 
 	public void cancelarBoleto(Boleto boleto) {
 		boleto.setStatus("Cancelado");
-
 	}
 
-	public void reasignarAsiento() {
-
-	}
-
+	public void reasignarAsiento() {}
 
 	// ...get and set
-
 	public int getDinero() {
 		return this.dinero;
 	}

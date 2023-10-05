@@ -42,7 +42,7 @@ public class Boleto implements Serializable {
             temp += maleta.calcularPrecio();
         }
         this.valorEquipaje = temp;
-        this.valor = this.valorInicial + this.valorEquipaje;
+        this.valor = this.valorInicial + temp;
     }
 
 
@@ -51,6 +51,7 @@ public class Boleto implements Serializable {
         asiento.asignarBoleto(this);
         this.valorInicial = asiento.getValor();
         this.tipo = asiento.getTipo();
+        this.valor = asiento.getValor();
     }
 
     public void resetEquipaje() {
