@@ -208,11 +208,16 @@ public class App {
     }
 
     private static void reasignarVuelo(Usuario user) {
-        //Aquí puedes poner el código que deseas ejecutar para la Reasignar vuelo.
-    
+        ArrayList<Boleto> historial = user.getHistorial();
+
+        separador();
+        System.out.println("Historial de vuelos: ");
+        for (Boleto boleto : historial) {
+            System.out.println(boleto.getInfo());
+        }
 
 
-        
+
     }
 
     private static void cancelarVuelo(Usuario user) {

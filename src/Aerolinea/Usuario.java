@@ -26,6 +26,7 @@ public class Usuario {
 		boleto.setStatus("Cancelado");
 	}
 
+
 	public void reasignarAsiento() {}
 
 	// ...get and set
