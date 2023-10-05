@@ -22,14 +22,14 @@ public class App {
         Usuario user = new Usuario(1);
 
         do {
-            System.out.println("+ - - - - - - - - - - - - - +");
+            separadorGrande();
             System.out.println("Menú:");
             System.out.println("1. Comprar vuelo");
             System.out.println("2. Reasignar vuelo");
             System.out.println("3. Cancelar vuelo");
             System.out.println("4. Ver cuenta");
             System.out.println("5. Salir");
-            System.out.println("+ - - - - - - - - - - - - - +");
+            separadorGrande();
 
             System.out.print("> Seleccione una opción (1-5): ");
             opcion = scanner.nextInt();
@@ -39,28 +39,28 @@ public class App {
                     System.out.println(" - - - > Ha seleccionado la opción Comprar vuelo < - - -");
                     System.out.println("");
                     comprarVuelo(user);
-                    System.out.println("+ - - - - - - - - - - - - - +");
+                    separadorGrande();
                     break;
 
                 case 2:
                     System.out.println(" - - - > Ha seleccionado la opción Reasignar vuelo < - - -");
                      System.out.println("");
                      reasignarVuelo(user);
-                    System.out.println("+ - - - - - - - - - - - - - +");
+                    separadorGrande();
                     break;
 
                 case 3:
                     System.out.println(" - - - > Ha seleccionado la opción Cancelar vuelo < - - -");
                      System.out.println("");
                     cancelarVuelo(user);
-                    System.out.println("+ - - - - - - - - - - - - - +");
+                    separadorGrande();
                     break;
 
                 case 4:
                     System.out.println(" - - - > Ha seleccionado la opción Ver cuenta < - - -");
 
                     verCuenta(user);
-                    System.out.println("+ - - - - - - - - - - - - - +");
+                    separadorGrande();
                     break;
 
                 case 5:
@@ -203,6 +203,10 @@ public class App {
         System.out.println(". . . . . . . . . . . . .");
     }
 
+    private static void separadorGrande() {
+        System.out.println("+ - - - - - - - - - - - - - - - - - +");
+    }
+    
     private static void reasignarVuelo(Usuario user) {
         // Aquí puedes poner el código que deseas ejecutar para la Reasignar vuelo.
     }
