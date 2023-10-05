@@ -38,19 +38,21 @@ public class App {
             switch (opcion) {
                 case 1:
                     System.out.println(" - - - > Ha seleccionado la opción Comprar vuelo < - - -");
+                    System.out.println("");
                     comprarVuelo(user);
                     System.out.println("+ - - - - - - - - - - - - - +");
                     break;
 
                 case 2:
                     System.out.println(" - - - > Ha seleccionado la opción Reasignar vuelo < - - -");
-                    reasignarVuelo(user);
+                     System.out.println("");
+                     reasignarVuelo(user);
                     System.out.println("+ - - - - - - - - - - - - - +");
                     break;
 
                 case 3:
                     System.out.println(" - - - > Ha seleccionado la opción Cancelar vuelo < - - -");
-
+                     System.out.println("");
                     cancelarVuelo(user);
                     System.out.println("+ - - - - - - - - - - - - - +");
                     break;
@@ -80,12 +82,6 @@ public class App {
     }
 
     private static void comprarVuelo(Usuario user) {
-        /*
-         * Podemos ir dejando una variable local q vaya llevando los valores, puede ser
-         * una instancia
-         * de boleto, y al final se asigna todo, se puede usar boleto para ir calculando
-         * el precio y etc
-         */
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Por favor ingrese el origen: ");
@@ -96,27 +92,28 @@ public class App {
 
         // Ingrese la cantidad de vuelos a generar?
 
-        // Despues de haber creado el orgien y el destino necesito generar los vuelos y
-        // mostrarlos vuelo/precio por tipo de asiento
-        // Generar - Mostrar vuelos
+        //Al recibir el origen y destino se generan n vuelos y se muestran.
         ArrayList<Vuelo> vuelos = Aeropuerto.generarVuelos(5, origen, destino); // Cantidad de vuelos
 
+        separador();
+        System.out.println("#Vuelo - Origen - Destino");
         for (int i = 0; i < vuelos.size(); i++) {
             Vuelo vuelo = vuelos.get(i);
-            // Mostrar y enumerar (En proceso)
-            System.out.println(". . . . .");
-            System.out.println(i);
             System.out.println(vuelo.getInfo());
         }
 
+        separador();
         System.out.println("Selecciona por favor el vuelo: ");
         int indexVuelo = scanner.nextInt();
 
-        // Lee y genera los asientos
+        //Selecciona el vuelo y genera m asientos vip y n asientos economicos
         Vuelo vuelo = vuelos.get(indexVuelo);
         vuelo.generarAsientos(3, 5);
-
+        //Se genera el boleto que al final se confirmara
         Boleto boleto = new Boleto(origen, destino, user, vuelo);
+        
+        
+        separador();
         System.out.println("Los tipos de asientos disponibles son los siguientes:");
 
         // Primero muestra los precios de cada tipo de asiento, luego
@@ -129,6 +126,7 @@ public class App {
             System.out.println(asiento.getInfo());
         }
 
+        separador();
         System.out.println("Seleccione el numero de asiento disponible");
         int indexAsiento = scanner.nextInt();
         Asiento asiento = asientos.get(indexAsiento - 1);
@@ -136,14 +134,15 @@ public class App {
         // Si se selecciona y es valido se prosigue...
         // Se muestra una previsualizacion del precio
 
+        separador();
         System.out.println("Desea continuar?");
-        // Si sí, sigue, sino, selecciona otro asiento
+        // Si sí, sigue, sino, selecciona otro asiento??
 
+        separador();
         System.out.println("Selecciona si va a añadir equipaje o no");
         int opcion = scanner.nextInt();
         // SI la respuesta es si, entonces agrega varios equipajes, sino, no
 
-        System.out.println("...............");
         if (opcion == 1) {
             // Cada vez q se agrega un equipaje se va mostrando una previsualizacion del
             // precio..
@@ -153,39 +152,42 @@ public class App {
 
             do {
                 c += 1;
-                System.out.println(c);
-                System.out.println("...");
-                System.out.println("> Ingrese el peso de la maleta");
+                
+                separador();
+                System.out.print("> Ingrese el peso de la maleta: ");
                 int peso = scanner.nextInt();
 
-                System.out.println("> Ingrese el valor del ancho de la maleta");
+                System.out.print("> Ingrese el valor del ancho de la maleta: ");
                 int ancho = scanner.nextInt();
 
-                System.out.println("> Ingrese el valor del largo de la maleta");
+                System.out.print("> Ingrese el valor del largo de la maleta: ");
                 int largo = scanner.nextInt();
 
-                System.out.println("> Ingrese el valor del alto de la maleta");
+                System.out.print("> Ingrese el valor del alto de la maleta: ");
                 int alto = scanner.nextInt();
 
                 boleto.addEquipaje(new Maleta(c, peso, largo, ancho, alto, boleto));
                 System.out.println("Valor nuevo del boleto: ");
                 System.out.println("-> $" + boleto.getValor());
 
+                separador();
                 System.out.println("Desea agregar un equipaje mas o continuar? 1/0");
                 exit = scanner.nextInt();
 
             } while (exit == 1);
         }
 
+        separador();
         System.out.println("Desea finalizar la compra? los detalles serian:");
         // Se muestran todos los detalles de la compra y se pide la confirmacion para
         // pagar
-        System.out.println("Mostrar el detalles");
         System.out.println(boleto.getInfo());
 
+        separador();
         System.out.println("Confirmar, escriba 1/0");
         int confirmacion = scanner.nextInt();
-
+        
+        separador();
         if (confirmacion == 1) {
             if (user.getDinero() - boleto.getValor() >= 0) {
                 user.comprarBoleto(boleto);
@@ -198,6 +200,10 @@ public class App {
         // Si se confirma se efectua el pago y se asigna todo.
         // --- nota, no se asigna nada hasta q se haya pagado y verificado ---
 
+    }
+
+    private static void separador() {
+        System.out.println(". . . . . . . . . . . . .");
     }
 
     private static void reasignarVuelo(Usuario user) {
