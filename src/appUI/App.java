@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class App {
 
-    private static Usuario user;
 
     public static void main(String[] args) {
 
@@ -20,7 +19,7 @@ public class App {
         int opcion;
 
         /* Espacio para iniciar sesion cargando cuenta o creando y guardando */
-        Usuario user = new Usuario();
+        Usuario user = new Usuario(1);
 
         do {
             System.out.println("+ - - - - - - - - - - - - - +");
@@ -193,13 +192,12 @@ public class App {
                 user.comprarBoleto(boleto);
                 boleto.asignarAsiento(asiento);
                 System.out.println("Boleto comprado con exito, detalles:");
+            } else {
+                System.out.println("Dinero insuficiente, compra cancelada.");
             }
         } else {
             System.out.println("cancelado ñao ñao");
         }
-        // Si se confirma se efectua el pago y se asigna todo.
-        // --- nota, no se asigna nada hasta q se haya pagado y verificado ---
-
     }
 
     private static void separador() {

@@ -12,7 +12,8 @@ public class Usuario {
 	private int millas;
 	private ArrayList<Boleto> historial = new ArrayList<Boleto>();
 
-	public Usuario() {
+	public Usuario(int dinero) {
+		this.dinero = dinero;
 	}
 
 	public void comprarBoleto(Boleto boleto) {
