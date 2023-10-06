@@ -15,6 +15,12 @@ public class Usuario {
 	public Usuario(int dinero) {
 		this.dinero = dinero;
 	}
+	
+	//No sería mejor este constructor?
+	public Usuario(String nombre, String id) {
+		this.nombre = nombre;
+		this.id = id;
+	}
 
 	public void comprarBoleto(Boleto boleto) {
 		this.dinero -= boleto.getValor();
