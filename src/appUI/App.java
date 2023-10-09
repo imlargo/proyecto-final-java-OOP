@@ -239,8 +239,7 @@ public class App {
         // Aquí puedes poner el código que deseas ejecutar para la Ver cuenta.
     	System.out.println("Estado de la cuenta");
     	separadorGrande();
-    	System.out.println(user.getNombre() + "     ID-" + user.getId());
-    	System.out.println("\nBalance: " + user.getDinero() + "     Millas: " + user.getMillas());
+    	System.out.println(user.getInfo());
     }
 
     private static void separador() {

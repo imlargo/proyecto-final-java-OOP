@@ -32,7 +32,10 @@ public class Usuario {
 		boleto.setStatus("Cancelado");
 	}
 
-
+	public String getInfo() {
+		return "Nombre: " + this.nombre + " / ID: " + this.id + "\nBalance: " + this.dinero + "\nMillas: " + this.millas;
+	}
+	
 	public void reasignarAsiento() {}
 
 	// ...get and set
