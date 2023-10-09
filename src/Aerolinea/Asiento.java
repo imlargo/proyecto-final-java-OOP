@@ -9,7 +9,7 @@ public class Asiento {
     private int n_silla;
     private boolean disponible = true;
     private Boleto boleto;
-    private int valor;
+    private float valor;
 
     public Asiento(String tipo, int n_silla, int valor) {
         this.tipo = tipo;
@@ -30,11 +30,10 @@ public class Asiento {
     }
 
     public String getInfo() {
-        return n_silla + " - " + tipo + ", $" + valor ; //Muestra la info del asiento
+        return n_silla + " - " + tipo + ", $" + valor; // Muestra la info del asiento
     }
 
-
-    //...Metodos get y set...
+    // ...Metodos get y set...
 
     public String getTipo() {
         return this.tipo;
@@ -80,13 +79,12 @@ public class Asiento {
         this.boleto = boleto;
     }
 
-    public int getValor() {
+    public float getValor() {
         return this.valor;
     }
 
     public void setValor(int valor) {
         this.valor = valor;
     }
-
 
 }

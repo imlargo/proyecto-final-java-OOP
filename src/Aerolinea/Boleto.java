@@ -15,15 +15,15 @@ public class Boleto implements Serializable {
     private String origen;
     private String destino;
 
-    private int valor;
+    private float valor;
 
     private ArrayList<Maleta> equipaje = new ArrayList<>();
     private Asiento asiento;
     private Pasajero pasajero;
 
     // ...precios
-    private int valorInicial;
-    private int valorEquipaje;
+    private float valorInicial;
+    private float valorEquipaje;
     // precios...
 
     private Vuelo vuelo;
@@ -46,11 +46,7 @@ public class Boleto implements Serializable {
     }
 
     public void asignarAsiento(Asiento asiento) {
-        this.asiento = asiento;
         asiento.asignarBoleto(this);
-        this.valorInicial = asiento.getValor();
-        this.tipo = asiento.getTipo();
-        this.valor = asiento.getValor();
     }
 
     public void setAsiento(Asiento asiento) {
@@ -60,9 +56,15 @@ public class Boleto implements Serializable {
         this.tipo = asiento.getTipo();
     }
 
+    public void reasignarAsiento(Asiento asiento) {
+        this.asiento = asiento;
+        this.valorInicial = asiento.getValor() * (float) (asiento.getValor() * 0.1);
+        this.valor = valorInicial;
+        this.tipo = asiento.getTipo();
+    }
+
     public void resetEquipaje() {
         this.equipaje = null;
-        this.valor = 0;
     }
 
     public String getOrigenDestino() {
@@ -129,7 +131,7 @@ public class Boleto implements Serializable {
         this.destino = destino;
     }
 
-    public int getValor() {
+    public float getValor() {
         return this.valor;
     }
 
@@ -157,7 +159,7 @@ public class Boleto implements Serializable {
         this.pasajero = pasajero;
     }
 
-    public int getValorInicial() {
+    public float getValorInicial() {
         return this.valorInicial;
     }
 
@@ -165,7 +167,7 @@ public class Boleto implements Serializable {
         this.valorInicial = valorInicial;
     }
 
-    public int getValorEquipaje() {
+    public float getValorEquipaje() {
         return this.valorEquipaje;
     }
 

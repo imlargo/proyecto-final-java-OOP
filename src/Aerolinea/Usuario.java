@@ -37,6 +37,11 @@ public class Usuario {
 		this.historial.add(boleto);
 	}
 
+	public void reasignarBoleto(Boleto boleto) {
+		this.dinero += (boleto.getValor() * 0.9);
+		this.millas -= (boleto.getValor() * 0.1);
+	}
+
 	public void cancelarBoleto(Boleto boleto) {
 		this.dinero += (boleto.getValor() * 0.5);
 		this.millas -= (boleto.getValor() * 0.1);
