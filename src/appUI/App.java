@@ -70,7 +70,7 @@ public class App {
                 case 4:
                     System.out.println(" - - - > Ha seleccionado la opción Ver cuenta < - - -");
 
-                    verCuenta(user);
+                    gestionCuenta(user);
                     separadorGrande();
                     break;
 
@@ -448,12 +448,36 @@ public class App {
 
     }
 
-    private static void verCuenta(Usuario user) {
+    private static void gestionCuenta(Usuario user) {
+        Scanner scanner = new Scanner(System.in);
+
         // Ver cuenta.
         System.out.println("Estado de la cuenta");
         separadorGrande();
         System.out.println(user.getInfo());
         // Agregar opcion para ver vuelos?
+
+        separador();
+        System.out.println("Que desea hacer?");
+        /*
+         * Exportar y guardar informacion de la cuenta
+         * Cerrar sesion e iniciar con una nueva
+         * volver al menu
+         * canjear millas
+         * 
+         */
+
+        System.out.print("> Seleccione una opción (1-4): ");
+        int opcion = scanner.nextInt();
+
+        switch (opcion) {
+            case 1:
+
+                break;
+
+            default:
+                break;
+        }
 
     }
 

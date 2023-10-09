@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionUsuario {
+
     Scanner scanner = new Scanner(System.in);
     private Usuario user;
     private ArrayList<Usuario> Usuarios = new ArrayList<Usuario>();
