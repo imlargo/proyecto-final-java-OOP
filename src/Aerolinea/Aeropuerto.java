@@ -7,7 +7,6 @@ public class Aeropuerto {
 
     public static ArrayList<Vuelo> generarVuelos(int cantidad, String origen, String destino) {
 
-        
         ArrayList<Vuelo> vuelos = new ArrayList<>();
         /*
          * Regresa un array de vuelos
@@ -19,7 +18,7 @@ public class Aeropuerto {
             String aerolinea = "Latam";
             String id = Integer.toString(i);
             String hSalida = "69:69";
-            String hLlegada = "";    
+            String hLlegada = "";
             vuelos.add(new Vuelo(origen, destino, aerolinea, id, hSalida, hLlegada));
         }
         return vuelos;

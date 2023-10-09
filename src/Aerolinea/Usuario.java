@@ -17,38 +17,39 @@ public class Usuario {
 	public Usuario(int dinero) {
 		this.dinero = dinero;
 	}
-	
-	//No sería mejor este constructor?
+
+	// No sería mejor este constructor?
 	public Usuario(String nombre, String id) {
 		this.nombre = nombre;
 		this.id = id;
 	}
-	public Usuario(String nombre, String id, String correo_electronico, String contrasena){
+
+	public Usuario(String nombre, String id, String correo_electronico, String contrasena) {
 		this.nombre = nombre;
 		this.id = id;
-		this.correo_electronico= correo_electronico;
+		this.correo_electronico = correo_electronico;
 		this.contrasena = contrasena;
 	}
-
 
 	public void comprarBoleto(Boleto boleto) {
 		this.dinero -= boleto.getValor();
 		this.millas += boleto.getValor() * 0.1;
-		this.historial.add(boleto);	
+		this.historial.add(boleto);
 	}
 
 	public void cancelarBoleto(Boleto boleto) {
 		this.dinero += (boleto.getValor() * 0.5);
 		this.millas -= (boleto.getValor() * 0.1);
-		}
-
+	}
 
 	public String getInfo() {
 		return "Nombre: " + this.nombre + " / ID: " + this.id +
-		"\nBalance: " + this.dinero + "\nMillas: " + this.millas +
-		"\nVuelos comprados: " + this.historial.size();
-	}	
-	public void reasignarAsiento() {}
+				"\nBalance: " + this.dinero + "\nMillas: " + this.millas +
+				"\nVuelos comprados: " + this.historial.size();
+	}
+
+	public void reasignarAsiento() {
+	}
 
 	// ...get and set
 	public int getDinero() {
@@ -106,6 +107,5 @@ public class Usuario {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-
 
 }

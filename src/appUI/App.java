@@ -26,14 +26,13 @@ public class App {
         nombre = scanner.nextLine();
         System.out.print("ID: ");
         id = scanner.nextLine();
-        
-        
+
         Usuario user = new Usuario(nombre, id);
         user.setDinero(1000);
         user.setMillas(120);
 
         do {
-            
+
             separadorGrande();
             System.out.println("Menú:");
             System.out.println("1. Comprar vuelo");
@@ -222,13 +221,12 @@ public class App {
 
     private static void reasignarVuelo(Usuario user) {
 
-    
     }
 
     private static void cancelarVuelo(Usuario user) {
-        //Mostrar la lista de vuelos
-        //Seleccionar el vuelo
-        //Cancelarlo (Se modifica el boleto y se cambian los valores)
+        // Mostrar la lista de vuelos
+        // Seleccionar el vuelo
+        // Cancelarlo (Se modifica el boleto y se cambian los valores)
 
         Scanner scanner = new Scanner(System.in);
 
@@ -237,16 +235,16 @@ public class App {
         System.out.println("#Vuelo - Origen - Destino");
         for (int i = 0; i < historial.size(); i++) {
             Boleto boleto = historial.get(i);
-            System.out.println(i + "- " + boleto.getInfo());
+            System.out.println(i + " - " + boleto.getInfo());
         }
-    
+
         separador();
 
         // Solicitar al usuario que seleccione un vuelo y se selecciona.
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
         int indexVuelo = scanner.nextInt();
         Boleto boleto = historial.get(indexVuelo);
-    
+
         // Mostrar los detalles de la compra y solicitar confirmación.
         System.out.println("Vuelo seleccionado, info:");
         System.out.println(boleto.getInfo());
@@ -257,21 +255,20 @@ public class App {
 
         separador();
         if (confirmacion == 1) {
-            //Des-asignar todo
+            // Des-asignar todo
             boleto.setStatus("Cancelado con exito");
             user.cancelarBoleto(boleto);
             Asiento asiento = boleto.getAsiento();
             asiento.desasignarBoleto();
         }
-       
 
     }
 
     private static void verCuenta(Usuario user) {
-        //Ver cuenta.
-    	System.out.println("Estado de la cuenta");
-    	separadorGrande();
-    	System.out.println(user.getInfo());
+        // Ver cuenta.
+        System.out.println("Estado de la cuenta");
+        separadorGrande();
+        System.out.println(user.getInfo());
     }
 
     private static void separador() {
