@@ -23,6 +23,12 @@ public class Asiento {
         this.disponible = false;
     }
 
+    public void desasignarBoleto() {
+        this.boleto = null;
+        this.pasajero = null;
+        this.disponible = false;
+    }
+
     public String getInfo() {
         return n_silla + " - " + tipo + ", $" + valor ; //Muestra la info del asiento
     }

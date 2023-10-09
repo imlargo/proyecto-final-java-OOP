@@ -28,9 +28,12 @@ public class App {
         id = scanner.nextLine();
         
         
-        Usuario user = /*new Usuario(1);*/ new Usuario(nombre, id);
+        Usuario user = new Usuario(nombre, id);
+        user.setDinero(1000);
+        user.setMillas(120);
 
         do {
+            
             separadorGrande();
             System.out.println("Menú:");
             System.out.println("1. Comprar vuelo");
@@ -83,8 +86,6 @@ public class App {
             }
 
         } while (opcion != 5 && (nombre != null && id != null));
-
-        scanner.close();
     }
 
     private static void comprarVuelo(Usuario user) {
@@ -193,6 +194,7 @@ public class App {
 
             } while (exit == 1);
         }
+
         // Mostrar los detalles de la compra y solicitar confirmación.
         System.out.println("¿Desea finalizar la compra? Los detalles son los siguientes:");
         System.out.println(boleto.getInfo());
@@ -215,28 +217,58 @@ public class App {
         } else {
             System.out.println("Compra cancelada.");
         }
+
     }
 
     private static void reasignarVuelo(Usuario user) {
-        ArrayList<Boleto> historial = user.getHistorial();
 
-        separador();
-        System.out.println("Historial de vuelos: ");
-        for (Boleto boleto : historial) {
-            System.out.println(boleto.getInfo());
-        }
-
-
-
+    
     }
 
     private static void cancelarVuelo(Usuario user) {
-        // Aquí puedes poner el código que deseas ejecutar para la Cancelar vuelo.
-    	
+        //Mostrar la lista de vuelos
+        //Seleccionar el vuelo
+        //Cancelarlo (Se modifica el boleto y se cambian los valores)
+
+        Scanner scanner = new Scanner(System.in);
+
+        ArrayList<Boleto> historial = user.getHistorial();
+
+        System.out.println("#Vuelo - Origen - Destino");
+        for (int i = 0; i < historial.size(); i++) {
+            Boleto boleto = historial.get(i);
+            System.out.println(i + "- " + boleto.getInfo());
+        }
+    
+        separador();
+
+        // Solicitar al usuario que seleccione un vuelo y se selecciona.
+        System.out.println("Por favor, seleccione el número del vuelo deseado: ");
+        int indexVuelo = scanner.nextInt();
+        Boleto boleto = historial.get(indexVuelo);
+    
+        // Mostrar los detalles de la compra y solicitar confirmación.
+        System.out.println("Vuelo seleccionado, info:");
+        System.out.println(boleto.getInfo());
+
+        separador();
+        System.out.println("Confirmar la cancelacion (Escriba 1 para Confirmar, 0 para Cancelar)");
+        int confirmacion = scanner.nextInt();
+
+        separador();
+        if (confirmacion == 1) {
+            //Des-asignar todo
+            boleto.setStatus("Cancelado con exito");
+            user.cancelarBoleto(boleto);
+            Asiento asiento = boleto.getAsiento();
+            asiento.desasignarBoleto();
+        }
+       
+
     }
 
     private static void verCuenta(Usuario user) {
-        // Aquí puedes poner el código que deseas ejecutar para la Ver cuenta.
+        //Ver cuenta.
     	System.out.println("Estado de la cuenta");
     	separadorGrande();
     	System.out.println(user.getInfo());

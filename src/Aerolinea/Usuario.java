@@ -30,6 +30,7 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 
+
 	public void comprarBoleto(Boleto boleto) {
 		this.dinero -= boleto.getValor();
 		this.millas += boleto.getValor() * 0.1;
@@ -37,13 +38,16 @@ public class Usuario {
 	}
 
 	public void cancelarBoleto(Boleto boleto) {
-		boleto.setStatus("Cancelado");
-	}
+		this.dinero += (boleto.getValor() * 0.5);
+		this.millas -= (boleto.getValor() * 0.1);
+		}
+
 
 	public String getInfo() {
-		return "Nombre: " + this.nombre + " / ID: " + this.id + "\nBalance: " + this.dinero + "\nMillas: " + this.millas;
-	}
-	
+		return "Nombre: " + this.nombre + " / ID: " + this.id +
+		"\nBalance: " + this.dinero + "\nMillas: " + this.millas +
+		"\nVuelos comprados: " + this.historial.size();
+	}	
 	public void reasignarAsiento() {}
 
 	// ...get and set

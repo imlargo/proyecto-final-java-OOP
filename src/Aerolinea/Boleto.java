@@ -54,6 +54,13 @@ public class Boleto implements Serializable {
         this.valor = asiento.getValor();
     }
 
+    public void setAsiento(Asiento asiento) {
+        this.asiento = asiento;
+        this.valorInicial = asiento.getValor();
+        this.valor = valorInicial;
+        this.tipo = asiento.getTipo();
+    }
+
     public void resetEquipaje() {
         this.equipaje = null;
         this.valor = 0;
@@ -143,11 +150,6 @@ public class Boleto implements Serializable {
         return this.asiento;
     }
 
-    public void setAsiento(Asiento asiento) {
-        this.asiento = asiento;
-        this.valorInicial = asiento.getValor();
-        this.tipo = asiento.getTipo();
-    }
 
     public Pasajero getPasajero() {
         return this.pasajero;
