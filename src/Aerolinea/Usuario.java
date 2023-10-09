@@ -11,6 +11,8 @@ public class Usuario {
 	private String nombre;
 	private int millas;
 	private ArrayList<Boleto> historial = new ArrayList<Boleto>();
+	private String correo_electronico;
+	private String contrasena;
 
 	public Usuario(int dinero) {
 		this.dinero = dinero;
@@ -20,6 +22,12 @@ public class Usuario {
 	public Usuario(String nombre, String id) {
 		this.nombre = nombre;
 		this.id = id;
+	}
+	public Usuario(String nombre, String id, String correo_electronico, String contrasena){
+		this.nombre = nombre;
+		this.id = id;
+		this.correo_electronico= correo_electronico;
+		this.contrasena = contrasena;
 	}
 
 	public void comprarBoleto(Boleto boleto) {
@@ -77,6 +85,22 @@ public class Usuario {
 
 	public void setHistorial(ArrayList<Boleto> historial) {
 		this.historial = historial;
+	}
+
+	public String getCorreo_electronico() {
+		return this.correo_electronico;
+	}
+
+	public void setCorreo_electronico(String correo_electronico) {
+		this.correo_electronico = correo_electronico;
+	}
+
+	public String getContrasena() {
+		return this.contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 
