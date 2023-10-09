@@ -230,38 +230,46 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
 
+        // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
 
-        System.out.println("#Vuelo - Origen - Destino");
+        System.out.println("Información de los vuelos:");
+
+        // Iterar a través del historial de boletos
         for (int i = 0; i < historial.size(); i++) {
             Boleto boleto = historial.get(i);
+            // Mostrar información de cada boleto en la lista
             System.out.println(i + " - " + boleto.getInfo());
         }
 
         separador();
 
-        // Solicitar al usuario que seleccione un vuelo y se selecciona.
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
         int indexVuelo = scanner.nextInt();
+
+        // Obtener el boleto seleccionado por el usuario
         Boleto boleto = historial.get(indexVuelo);
 
-        // Mostrar los detalles de la compra y solicitar confirmación.
-        System.out.println("Vuelo seleccionado, info:");
+        System.out.println("Vuelo seleccionado, información detallada:");
         System.out.println(boleto.getInfo());
 
         separador();
-        System.out.println("Confirmar la cancelacion (Escriba 1 para Confirmar, 0 para Cancelar)");
+
+        System.out.println("Confirmar la cancelación (Escriba 1 para Confirmar, 0 para Cancelar):");
         int confirmacion = scanner.nextInt();
 
         separador();
+
         if (confirmacion == 1) {
-            // Des-asignar todo
-            boleto.setStatus("Cancelado con exito");
+            // Realizar la cancelación del boleto
+            boleto.setStatus("Cancelado");
             user.cancelarBoleto(boleto);
             Asiento asiento = boleto.getAsiento();
             asiento.desasignarBoleto();
+            // Informar al usuario sobre la cancelación exitosa
+            System.out.println("La cancelación se ha realizado con éxito.");
         }
-
+    
     }
 
     private static void verCuenta(Usuario user) {
