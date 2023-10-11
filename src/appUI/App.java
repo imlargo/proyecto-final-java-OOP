@@ -16,7 +16,7 @@ public class App {
         Usuario user = null;
         int opcion = 0;
 
-        System.out.println("Bienvenido al programa.");
+        aviso("Bienvenido al programa.");
         separador();
         // El usuario se debe serializar?
 
@@ -534,6 +534,15 @@ public class App {
 
         int opcion;
         do {
+
+            System.out.println("Menu");
+            System.out.println("1. Guardar y exportar informacion de la cuenta");
+            System.out.println("2. Ver historial de vuelos");
+            System.out.println("3. Hacer check-in");
+            System.out.println("4. Canjear millas");
+            System.out.println("5. Cerrar sesion");
+            System.out.println("6. Volver al menu anterior");
+
             System.out.print("> Seleccione una opción (1-4): ");
             opcion = scanner.nextInt();
 
@@ -542,6 +551,7 @@ public class App {
             switch (opcion) {
                 case 1:
                     // Exportar y guardar informacion de la cuenta
+                    System.out.println("Exportar informacion de la cuenta");
                     break;
 
                 case 2:
@@ -558,7 +568,8 @@ public class App {
                     break;
 
                 case 3:
-                    // hacer cheking
+                    // hacer check-in
+                    System.out.println("Confirmando check-in");
                     System.out.println("Información de los vuelos:");
 
                     // Iterar a través del historial de boletos
@@ -630,5 +641,9 @@ public class App {
 
     private static void separadorGrande() {
         System.out.println("+ - - - - - - - - - - - - - - - - - +");
+    }
+
+    private static void aviso(String text) {
+        System.out.println("> > > " + text);
     }
 }
