@@ -2,7 +2,7 @@ package Aerolinea;
 
 import java.io.Serializable;
 import Aerolinea.Maleta;
-import Aerolinea.Usuario;
+import Cuenta.*;
 import java.util.ArrayList;
 
 public class Pasajero {
@@ -14,13 +14,12 @@ public class Pasajero {
 
     private boolean trabajador;
 
-
     public Pasajero(Usuario user, Boleto boleto) {
         this.nombre = user.getNombre();
         this.boleto = boleto;
     }
 
-    //...Metodos get y set...
+    // ...Metodos get y set...
 
     public String getNombre() {
         return this.nombre;
@@ -57,6 +56,5 @@ public class Pasajero {
     public void setTrabajador(boolean trabajador) {
         this.trabajador = trabajador;
     }
-
 
 }

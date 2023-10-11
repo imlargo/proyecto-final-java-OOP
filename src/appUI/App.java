@@ -1,35 +1,89 @@
 package appUI;
 
 import Aerolinea.*;
+import Cuenta.*;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class App {
 
+    public static GestionUsuario gestionUsuario = new GestionUsuario();
+
     public static void main(String[] args) {
 
-        // Crear las instancias de las clases
-        // Se crea una cuenta, y un usuario, etc
+        Scanner scanner = new Scanner(System.in);
+
+        String nombre;
+        String mail;
+        String contrasena;
+
+        Usuario user;
 
         System.out.println("Bienvenido");
 
-        // haganme los mensajes para q diga las opciones disponibles
-        Scanner scanner = new Scanner(System.in);
-        int opcion;
-        String nombre = null;
-        String id = null;
+        // Desea iniciar sesion o registrarse:
+        int opcion = scanner.nextInt();
+
+        separadorGrande();
+
+        switch (opcion) {
+            case 1:
+
+                // Iniciar sesion
+                do {
+                    System.out.println("Iniciar sesion");
+
+                    System.out.print("Mail: ");
+                    mail = scanner.nextLine();
+
+                    System.out.print("Contraseña: ");
+                    contrasena = scanner.nextLine();
+
+                    user = gestionUsuario.iniciarSesion(mail, contrasena);
+                    if (user == null) {
+                        System.out.println("Usuario invalido, intente nuevamente");
+                    }
+                } while (user == null);
+
+                System.out.println("Sesion iniciada con exito");
+                break;
+
+            case 2:
+                // Registrar
+                do {
+                    System.out.println("Registrarse");
+
+                    System.out.print("Nombre : ");
+                    nombre = scanner.nextLine();
+
+                    System.out.print("Mail: ");
+                    mail = scanner.nextLine();
+
+                    System.out.print("Contraseña: ");
+                    contrasena = scanner.nextLine();
+
+                    user = gestionUsuario.registrarUsuario(nombre, mail, contrasena);
+                    if (user == null) {
+                        System.out.println("EL correo ya se encuentra registrado, intente nuevamente");
+                    }
+                } while (user == null);
+
+                System.out.println("Usuario registrado con exito");
+
+                break;
+
+            default:
+                user = null;
+                System.out.println("Opcion incorrecta");
+                break;
+        }
 
         /* Espacio para iniciar sesion cargando cuenta o creando y guardando */
-        separadorGrande();
-        System.out.println("Registrarse");
-        System.out.print("Nombre : ");
-        nombre = scanner.nextLine();
-        System.out.print("ID: ");
-        id = scanner.nextLine();
 
-        Usuario user = new Usuario(nombre, id);
         user.setDinero(1000);
         user.setMillas(120);
+        // El usuario se debe serializar?
 
         do {
 
@@ -84,7 +138,7 @@ public class App {
 
             }
 
-        } while (opcion != 5 && (nombre != null && id != null));
+        } while (opcion != 5);
     }
 
     private static void comprarVuelo(Usuario user) {

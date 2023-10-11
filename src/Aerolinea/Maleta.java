@@ -2,6 +2,7 @@ package Aerolinea;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import Cuenta.*;
 
 public class Maleta implements Serializable {
 

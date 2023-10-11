@@ -3,6 +3,7 @@ package Aerolinea;
 import java.io.Serializable;
 import java.util.*;
 import Aerolinea.*;
+import Cuenta.*;
 
 public class Boleto implements Serializable {
     private static final long serialVersionUID = 0;
@@ -26,7 +27,6 @@ public class Boleto implements Serializable {
     // precios...
 
     private Vuelo vuelo;
-
 
     public Boleto(String origen, String destino, Usuario propietario, Vuelo vuelo) {
         this.origen = origen;
@@ -74,7 +74,6 @@ public class Boleto implements Serializable {
     public void addEquipaje(Maleta maleta) {
         this.equipaje.add(maleta);
         this.updateValor();
-        GestionUsuario.inventarioMaletas.put(maleta.getId(),maleta);
     }
 
     public String getInfo() {

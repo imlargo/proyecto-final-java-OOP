@@ -1,33 +1,27 @@
-package Aerolinea;
+package Cuenta;
 
 import java.io.Serializable;
-import Aerolinea.Boleto;
+import Aerolinea.*;
 import java.util.ArrayList;
 
 public class Usuario {
 
 	private int dinero;
-	private String id;
+	private int id;
 	private String nombre;
 	private int millas;
 	private ArrayList<Boleto> historial = new ArrayList<Boleto>();
-	private String correo_electronico;
+	private String mail;
 	private String contrasena;
 
 	public Usuario(int dinero) {
 		this.dinero = dinero;
 	}
 
-	// No sería mejor este constructor?
-	public Usuario(String nombre, String id) {
+	public Usuario(String nombre, String mail, String contrasena, int id) {
 		this.nombre = nombre;
 		this.id = id;
-	}
-
-	public Usuario(String nombre, String id, String correo_electronico, String contrasena) {
-		this.nombre = nombre;
-		this.id = id;
-		this.correo_electronico = correo_electronico;
+		this.mail = mail;
 		this.contrasena = contrasena;
 	}
 
@@ -56,7 +50,15 @@ public class Usuario {
 	public void reasignarAsiento() {
 	}
 
+	public Boolean verificarContrasena(String contrasena) {
+		if (this.contrasena.equals(contrasena)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	// ...get and set
+
 	public int getDinero() {
 		return this.dinero;
 	}
@@ -65,11 +67,11 @@ public class Usuario {
 		this.dinero = dinero;
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -97,12 +99,12 @@ public class Usuario {
 		this.historial = historial;
 	}
 
-	public String getCorreo_electronico() {
-		return this.correo_electronico;
+	public String getMail() {
+		return this.mail;
 	}
 
-	public void setCorreo_electronico(String correo_electronico) {
-		this.correo_electronico = correo_electronico;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	public String getContrasena() {
@@ -112,5 +114,6 @@ public class Usuario {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+
 
 }
