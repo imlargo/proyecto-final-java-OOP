@@ -12,7 +12,7 @@ public class Asiento {
     private Boleto boleto;
     private float valor;
 
-    public Asiento(String tipo, int n_silla, int valor) {
+    public Asiento(String tipo, int n_silla, float valor) {
         this.tipo = tipo;
         this.n_silla = n_silla;
         this.valor = valor;

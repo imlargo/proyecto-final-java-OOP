@@ -25,17 +25,17 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		this.ORIGEN = origen;
 	}
 
-	public void generarAsientos(int economicos, int premium) {
+	public void generarAsientos(int economicos, int premium, float base) {
 		/*
 		 * Dependiendo de la cantidad que se le pase, genera n asientos de tipo vip y
 		 * j asientos de tipo economico
 		 */
 
 		for (int i = 1; i <= premium; i++) {
-			this.asientos.add(new Asiento("Vip", i, 100));
+			this.asientos.add(new Asiento("Vip", i, (float)(base*1.25)));
 		}
 		for (int j = premium+1; j <= premium + economicos; j++) {
-			this.asientos.add(new Asiento("Economico", j, 100));
+			this.asientos.add(new Asiento("Economico", j, base));
 		}
 	}
 

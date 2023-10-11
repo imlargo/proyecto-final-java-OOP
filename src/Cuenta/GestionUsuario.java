@@ -8,11 +8,13 @@ import java.util.ArrayList;
 public class GestionUsuario {
 
     public ArrayList<Usuario> Usuarios = new ArrayList<>();
-    public Usuario user;
+    public Usuario user = null;
     public ArrayList<Maleta> inventarioMaletas = new ArrayList<>();
 
     public GestionUsuario() {
         Usuario user = new Usuario("largo", "admin", "123", 0);
+        user.setDinero(1000);
+        user.setMillas(120);
         Usuarios.add(user);
     }
 
@@ -54,7 +56,7 @@ public class GestionUsuario {
     public Usuario getUser() {
         return this.user;
     }
-    
+
     public Usuario cerrarSesion(Usuario user) {
         this.user = null;
         return null;

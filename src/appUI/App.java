@@ -21,6 +21,8 @@ public class App {
         // El usuario se debe serializar?
 
         do {
+            user = gestionUsuario.getUser();
+
             if (user == null) {
 
                 System.out.println("> > > No hay sesion iniciada!");
@@ -84,11 +86,8 @@ public class App {
                         break;
 
                 }
-                user.setDinero(1000);
-                user.setMillas(120);
 
                 /* Espacio para iniciar sesion cargando cuenta o creando y guardando */
-
             }
 
             while (opcion != 5 && user != null) {
@@ -184,7 +183,7 @@ public class App {
         Vuelo vuelo = vuelos.get(indexVuelo);
 
         // Generar asientos VIP y económicos para el vuelo seleccionado.
-        vuelo.generarAsientos(3, 5);
+        vuelo.generarAsientos(3, 5, 100);
 
         // Crear un boleto para el usuario con el origen, destino y vuelo seleccionados.
         Boleto boleto = new Boleto(origen, destino, user, vuelo);
@@ -359,7 +358,7 @@ public class App {
         Vuelo vuelo = vuelos.get(indexVuelo);
 
         // Generar asientos VIP y económicos para el vuelo seleccionado.
-        vuelo.generarAsientos(3, 5);
+        vuelo.generarAsientos(3, 5, 100);
 
         // Crear un boleto para el usuario con el origen, destino y vuelo seleccionados.
         boletoSelec.setVuelo(vuelo);
@@ -599,11 +598,16 @@ public class App {
 
                 case 4:
                     // Canjear millas
+                    System.out.println("Canjear millas");
+                    System.out.println("En este momento ustede posee n millas que equivalen a:");
+                    System.out.println("Desea confirmar?");
+                    System.out.println("Canjeado con exito, n millas a m dinero, cuenta total: total");
 
                     break;
 
                 case 5:
                     // Cerrar sesion
+                    System.out.println("Cerrando sesion");
                     user = gestionUsuario.cerrarSesion(user);
                     opcion = 6;
                     break;
