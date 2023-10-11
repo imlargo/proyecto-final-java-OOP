@@ -11,7 +11,7 @@ public class Boleto implements Serializable {
     private String id;
     private String tipo;
     private Usuario user;
-    private String status = "Comprado";
+    private String status = "Pendiente";
     private String origen;
     private String destino;
 
@@ -78,7 +78,7 @@ public class Boleto implements Serializable {
 
     public String getInfo() {
         return "Precio: " + this.valor + ", Tipo: " + this.tipo + ", Numero de asiento: " + this.asiento.getN_silla()
-                + "...";
+                + "Estado: " + this.status;
     }
 
     // ...Metodos get y set...

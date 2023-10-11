@@ -12,6 +12,8 @@ public class GestionUsuario {
     public ArrayList<Maleta> inventarioMaletas = new ArrayList<>();
 
     public GestionUsuario() {
+        Usuario user = new Usuario("largo", "admin", "123", 0);
+        Usuarios.add(user);
     }
 
     public Usuario iniciarSesion(String mail, String contrasena) {
@@ -38,23 +40,28 @@ public class GestionUsuario {
         return usuario;
     }
 
+    public Usuario cambiarContrasena(Usuario usuario, String contrasena, String nuevaContrasena) {
+
+        if (usuario.verificarContrasena(contrasena)) {
+            usuario.setContrasena(nuevaContrasena);
+            return usuario;
+        } else {
+            return null;
+        }
+    }
+    
+
+    public Usuario getUser() {
+        return this.user;
+    }
+    
+    public Usuario cerrarSesion(Usuario user) {
+        this.user = null;
+        return null;
+    } 
+
     /*
-     * public String cambiarContrasena(Usuario user) {
-     * String newContrasena;
-     * String confirContrasena;
-     * do {
-     * System.out.print("Nueva contraseña: ");
-     * newContrasena = scanner.nextLine();
-     * System.out.println("Confirmar contraseña: ");
-     * confirContrasena = scanner.nextLine();
-     * if (!newContrasena.equals(confirContrasena)) {
-     * System.out.
-     * println("Las contraseñas no coinciden, por favor inténtelo de nuevo");
-     * }
-     * } while (newContrasena.equals(confirContrasena));
-     * user.setContrasena(newContrasena);
-     * return user.getContrasena();
-     * }
+     * 
      * 
      * 
      * //Rastrear maleta por ID

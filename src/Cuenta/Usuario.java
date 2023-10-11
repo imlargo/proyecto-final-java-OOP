@@ -29,6 +29,7 @@ public class Usuario {
 		this.dinero -= boleto.getValor();
 		this.millas += boleto.getValor() * 0.1;
 		this.historial.add(boleto);
+		boleto.setStatus("Comprado");
 	}
 
 	public void reasignarBoleto(Boleto boleto) {

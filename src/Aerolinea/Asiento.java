@@ -8,6 +8,7 @@ public class Asiento {
     private Pasajero pasajero;
     private int n_silla;
     private boolean disponible = true;
+    private String status = "Disponible";
     private Boleto boleto;
     private float valor;
 
