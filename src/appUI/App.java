@@ -16,8 +16,9 @@ public class App {
         Usuario user = null;
         int opcion = 0;
 
-        aviso("Bienvenido al programa.");
-        separador();
+        aviso("Bienvenido al programa");
+        System.out.print("\n");
+        //separador();
         // El usuario se debe serializar?
 
         do {
@@ -25,64 +26,85 @@ public class App {
 
             if (user == null) {
 
-                System.out.println("> > > No hay sesion iniciada!");
+                aviso("¡No hay sesión iniciada!");
 
                 // Desea iniciar sesion o registrarse:
-                System.out.println("Desea iniciar sesion o registrarse: (1/2)");
+                System.out.println("1. Iniciar Sesión.");
+                System.out.println("2. Registrarse.");
 
                 opcion = scanner.nextInt();
+                scanner.nextLine();
 
                 separadorGrande();
+                System.out.print("\n");
 
                 switch (opcion) {
                     case 1:
 
                         // Iniciar sesion
                         do {
-                            System.out.println("Iniciar sesion");
+                            System.out.println("          Iniciar sesión             ");
+                            System.out.print("\n");
 
-                            System.out.println("Mail: ");
+                            System.out.print(" Mail: ");
                             String mail = scanner.nextLine();
 
-                            System.out.println("Contraseña: ");
+                            System.out.print(" Contraseña: ");
                             String contrasena = scanner.nextLine();
+                            
+                            System.out.print("\n");
+                            System.out.print("\n");
+                            separadorGrande();
 
                             user = gestionUsuario.iniciarSesion(mail, contrasena);
                             if (user == null) {
-                                System.out.println("Usuario invalido, intente nuevamente");
+                            	System.out.print("\n");
+                                aviso("Usuario inválido, intente nuevamente");
+                                System.out.print("\n");
                             }
                         } while (user == null);
 
-                        System.out.println("Sesion iniciada con exito");
+                        System.out.print("\n");
+                        aviso("Sesión iniciada con éxito");
+                        System.out.print("\n");
                         break;
 
                     case 2:
                         // Registrar
                         do {
-                            System.out.println("Registrarse");
+                        	System.out.print("\n");
+                            System.out.println("            Registrarse              ");
+                            System.out.print("\n");
 
-                            System.out.println("Nombre: ");
+                            System.out.print(" Nombre: ");
                             String nombre = scanner.nextLine();
 
-                            System.out.println("Mail: ");
+                            System.out.print(" Mail: ");
                             String mail = scanner.nextLine();
 
-                            System.out.println("Contraseña: ");
+                            System.out.print(" Contraseña: ");
                             String contrasena = scanner.nextLine();
+                            System.out.print("\n");
+                            System.out.print("\n");
+                            separadorGrande();
 
                             user = gestionUsuario.registrarUsuario(nombre, mail, contrasena);
                             if (user == null) {
-                                System.out.println("EL correo ya se encuentra registrado, intente nuevamente");
+                            	System.out.print("\n");
+                                aviso("El correo ya se encuentra registrado, intente nuevamente");
+                                System.out.print("\n");
                             }
                         } while (user == null);
 
-                        System.out.println("Usuario registrado con exito");
+                        System.out.print("\n");
+                        System.out.println("Usuario registrado con éxito");
+                        System.out.print("\n");
 
                         break;
 
                     default:
                         user = null;
-                        System.out.println("Opcion incorrecta");
+                        aviso("Opción incorrecta");
                         break;
 
                 }
@@ -91,16 +113,21 @@ public class App {
             }
 
             while (opcion != 5 && user != null) {
-                System.out.println(user);
+                //System.out.println(user);
 
-                System.out.println(user);
+                System.out.println("Bienvenido " + user.getNombre());
+                System.out.print("\n");
                 separadorGrande();
-                System.out.println("Menú:");
-                System.out.println("1. Comprar vuelo");
-                System.out.println("2. Reasignar vuelo");
-                System.out.println("3. Cancelar vuelo");
-                System.out.println("4. Ver cuenta");
-                System.out.println("5. Salir");
+                System.out.print("\n");
+                System.out.println("                Menú                 ");
+                System.out.print("\n");
+                System.out.println(" 1. Comprar vuelo");
+                System.out.println(" 2. Reasignar vuelo");
+                System.out.println(" 3. Cancelar vuelo");
+                System.out.println(" 4. Ver cuenta");
+                System.out.println(" 5. Salir");
+                System.out.print("\n");
+                System.out.print("\n");
                 separadorGrande();
 
                 System.out.print("> Seleccione una opción (1-5): ");
@@ -108,15 +135,17 @@ public class App {
 
                 switch (opcion) {
                     case 1:
+                    	System.out.print("\n");
                         System.out.println(" - - - > Ha seleccionado la opción Comprar vuelo < - - -");
-                        System.out.println("");
+                        System.out.print("\n");
                         comprarVuelo(user);
                         separadorGrande();
                         break;
 
                     case 2:
+                    	System.out.print("\n");
                         System.out.println(" - - - > Ha seleccionado la opción Reasignar vuelo < - - -");
-                        System.out.println("");
+                        System.out.print("\n");
                         reasignarVuelo(user);
                         separadorGrande();
                         break;
@@ -130,13 +159,14 @@ public class App {
 
                     case 4:
                         System.out.println(" - - - > Ha seleccionado la opción Ver cuenta < - - -");
+                        System.out.print("\n");
                         gestionCuenta(user);
                         user = gestionUsuario.getUser();
                         separadorGrande();
                         break;
 
                     case 5:
-                        System.out.println("Saliendo del programa. ¡Adiós!");
+                        System.out.println("Saliendo del programa. ¡Adios!");
                         break;
 
                     default:
@@ -167,14 +197,17 @@ public class App {
         ArrayList<Vuelo> vuelos = Aeropuerto.generarVuelos(5, origen, destino);
 
         separador();
+        System.out.print("\n");
 
         // Mostrar información sobre los vuelos generados.
         System.out.println("#Vuelo - Origen - Destino");
+        System.out.print("\n");
         for (int i = 0; i < vuelos.size(); i++) {
             Vuelo vuelo = vuelos.get(i);
             System.out.println(vuelo.getInfo());
         }
 
+        System.out.print("\n");
         separador();
 
         // Solicitar al usuario que seleccione un vuelo y se selecciona.
@@ -190,10 +223,12 @@ public class App {
         separador();
 
         // Mostrar los tipos de asientos disponibles y sus precios
-        System.out.println("Tipos de asientos disponibles:");
+        //System.out.println("Tipos de asientos disponibles:");
 
         // Mostrar información sobre los asientos disponibles en el vuelo.
-        System.out.println("Asientos disponibles:");
+        System.out.print("\n");
+        System.out.println("   Asientos disponibles");
+        System.out.print("\n");
         ArrayList<Asiento> asientos = vuelo.getAsientos();
 
         for (Asiento asiento : asientos) {
@@ -201,6 +236,7 @@ public class App {
         }
 
         // Solicitar al usuario que seleccione un número de asiento.
+        System.out.print("\n");
         System.out.println("Por favor, seleccione el número del asiento deseado: ");
         int indexAsiento = scanner.nextInt();
         Asiento asiento = asientos.get(indexAsiento - 1);
@@ -210,9 +246,9 @@ public class App {
 
         // Se muestra una previsualizacion del precio
         separador();
-        System.out.println("Previsualizacion del precio: " + boleto.getValor());
+        System.out.println("Previsualización del precio: " + boleto.getValor());
         separador();
-        System.out.println("Desea continuar?");
+        System.out.println("¿Desea continuar?");
         // Si sí, sigue, sino, selecciona otro asiento??
 
         separador();
@@ -249,6 +285,7 @@ public class App {
                 Maleta maleta = new Maleta(c, peso, largo, ancho, alto);
                 maleta.asignarBoleto(boleto);
                 boleto.addEquipaje(maleta);
+                separador();
                 System.out.println("Nuevo valor del boleto: ");
                 System.out.println("-> $" + boleto.getValor());
 
@@ -260,7 +297,9 @@ public class App {
         }
 
         // Mostrar los detalles de la compra y solicitar confirmación.
+        System.out.print("\n");
         System.out.println("¿Desea finalizar la compra? Los detalles son los siguientes:");
+        System.out.print("\n");
         System.out.println(boleto.getInfo());
 
         separador();
@@ -274,12 +313,18 @@ public class App {
             if (user.getDinero() - boleto.getValor() >= 0) {
                 user.comprarBoleto(boleto);
                 boleto.asignarAsiento(asiento);
+                System.out.print("\n");
                 System.out.println("Boleto comprado con éxito. Detalles:");
+                System.out.print("\n");
             } else {
+            	System.out.print("\n");
                 System.out.println("Dinero insuficiente. Compra cancelada.");
+                System.out.print("\n");
             }
         } else {
+        	System.out.print("\n");
             System.out.println("Compra cancelada.");
+            System.out.print("\n");
         }
 
     }
@@ -291,6 +336,7 @@ public class App {
         ArrayList<Boleto> historial = user.getHistorial();
 
         System.out.println("Información de los vuelos:");
+        System.out.print("\n");
 
         // Iterar a través del historial de boletos
         for (int i = 0; i < historial.size(); i++) {
@@ -298,8 +344,10 @@ public class App {
             // Mostrar información de cada boleto en la lista
             System.out.println(i + " - " + boleto.getInfo());
         }
-
+        
+        System.out.print("\n");
         separador();
+        System.out.print("\n");
 
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
         int indexVueloTemp = scanner.nextInt();
@@ -308,11 +356,14 @@ public class App {
         Boleto boletoSelec = historial.get(indexVueloTemp);
 
         System.out.println("Vuelo seleccionado, información detallada:");
+        System.out.print("\n");
         System.out.println(boletoSelec.getInfo());
 
+        System.out.print("\n");
         separador();
+        System.out.print("\n");
 
-        System.out.println("Esta seguro de reasignar el vuelo? (Escriba 1 para Confirmar, 0 para Cancelar):");
+        System.out.println("Está seguro de reasignar el vuelo? (Escriba 1 para Confirmar, 0 para Cancelar):");
         int confirmacionTemp = scanner.nextInt();
 
         if (confirmacionTemp == 1) {
@@ -342,15 +393,20 @@ public class App {
         ArrayList<Vuelo> vuelos = Aeropuerto.generarVuelos(5, origen, destino);
 
         separador();
+        System.out.print("\n");
 
         // Mostrar información sobre los vuelos generados.
         System.out.println("#Vuelo - Origen - Destino");
+        System.out.print("\n");
         for (int i = 0; i < vuelos.size(); i++) {
             Vuelo vuelo = vuelos.get(i);
             System.out.println(vuelo.getInfo());
         }
 
+        System.out.print("\n");
+        System.out.print("\n");
         separador();
+        System.out.print("\n");
 
         // Solicitar al usuario que seleccione un vuelo y se selecciona.
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
@@ -365,10 +421,11 @@ public class App {
         separador();
 
         // Mostrar los tipos de asientos disponibles y sus precios
-        System.out.println("Tipos de asientos disponibles:");
+        //System.out.println("Tipos de asientos disponibles:");
 
         // Mostrar información sobre los asientos disponibles en el vuelo.
-        System.out.println("Asientos disponibles:");
+        System.out.print("\n");
+        System.out.println("   Asientos disponibles:");
         ArrayList<Asiento> asientos = vuelo.getAsientos();
 
         for (Asiento asiento : asientos) {
@@ -376,6 +433,8 @@ public class App {
         }
 
         // Solicitar al usuario que seleccione un número de asiento.
+        System.out.print("\n");
+        System.out.print("\n");
         System.out.println("Por favor, seleccione el número del asiento deseado: ");
         int indexAsiento = scanner.nextInt();
         Asiento asiento = asientos.get(indexAsiento - 1);
@@ -386,9 +445,9 @@ public class App {
         // Se muestra una previsualizacion del precio
         separador();
         System.out.println(
-                "Previsualizacion del precio: " + boletoSelec.getValor() + "se agrega un recargo extra del 10%");
+                "Previsualización del precio: " + boletoSelec.getValor() + " ,se agregará un recargo extra del 10%");
         separador();
-        System.out.println("Desea continuar?");
+        System.out.println("¿Desea continuar?");
         // Si sí, sigue, sino, selecciona otro asiento??
 
         separador();
@@ -473,6 +532,7 @@ public class App {
         ArrayList<Boleto> historial = user.getHistorial();
 
         System.out.println("Información de los vuelos:");
+        System.out.print("\n");
 
         // Iterar a través del historial de boletos
         for (int i = 0; i < historial.size(); i++) {
@@ -481,7 +541,9 @@ public class App {
             System.out.println(i + " - " + boleto.getInfo());
         }
 
+        System.out.print("\n");
         separador();
+        System.out.print("\n");
 
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
         int indexVuelo = scanner.nextInt();
@@ -490,6 +552,7 @@ public class App {
         Boleto boleto = historial.get(indexVuelo);
 
         System.out.println("Vuelo seleccionado, información detallada:");
+        System.out.print("\n");
         System.out.println(boleto.getInfo());
 
         separador();
@@ -497,7 +560,8 @@ public class App {
         System.out.println("Confirmar la cancelación (Escriba 1 para Confirmar, 0 para Cancelar):");
         int confirmacion = scanner.nextInt();
 
-        separador();
+        separadorGrande();
+        System.out.print("\n");
 
         if (confirmacion == 1) {
             // Realizar la cancelación del boleto
@@ -507,6 +571,7 @@ public class App {
             asiento.desasignarBoleto();
             // Informar al usuario sobre la cancelación exitosa
             System.out.println("La cancelación se ha realizado con éxito.");
+            System.out.print("\n");
         }
 
     }
@@ -518,12 +583,17 @@ public class App {
 
         // Ver cuenta.
         System.out.println("Estado de la cuenta");
+        System.out.print("\n");
         separadorGrande();
+        System.out.print("\n");
         System.out.println(user.getInfo());
         // Agregar opcion para ver vuelos?
 
-        separador();
-        System.out.println("Que desea hacer?");
+        System.out.print("\n");
+        separadorGrande();
+        System.out.print("\n");
+        System.out.println("¿Qué desea hacer?");
+        System.out.print("\n");
         /*
          * Exportar y guardar informacion de la cuenta
          * Cerrar sesion e iniciar con una nueva
@@ -535,23 +605,24 @@ public class App {
         int opcion;
         do {
 
-            System.out.println("Menu");
-            System.out.println("1. Guardar y exportar informacion de la cuenta");
+            //System.out.println("Menu");
+            System.out.println("1. Guardar y exportar información de la cuenta");
             System.out.println("2. Ver historial de vuelos");
             System.out.println("3. Hacer check-in");
             System.out.println("4. Canjear millas");
-            System.out.println("5. Cerrar sesion");
-            System.out.println("6. Volver al menu anterior");
-
-            System.out.print("> Seleccione una opción (1-4): ");
+            System.out.println("5. Cerrar sesión");
+            System.out.println("6. Volver al menú anterior");
+            System.out.print("\n");
+            System.out.print("> Seleccione una opción (1-6): ");
             opcion = scanner.nextInt();
+            System.out.print("\n");
 
             // Imprimir las opciones
 
             switch (opcion) {
                 case 1:
                     // Exportar y guardar informacion de la cuenta
-                    System.out.println("Exportar informacion de la cuenta");
+                    System.out.println("Exportar información de la cuenta");
                     break;
 
                 case 2:
@@ -612,23 +683,26 @@ public class App {
                     System.out.println("Canjear millas");
                     System.out.println("En este momento ustede posee n millas que equivalen a:");
                     System.out.println("Desea confirmar?");
-                    System.out.println("Canjeado con exito, n millas a m dinero, cuenta total: total");
+                    System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
 
                     break;
 
                 case 5:
                     // Cerrar sesion
-                    System.out.println("Cerrando sesion");
+                    System.out.println("Cerrando sesión");
+                    System.out.print("\n");
                     user = gestionUsuario.cerrarSesion(user);
                     opcion = 6;
                     break;
 
                 case 6:
-                    System.out.println("Volviendo al menu!");
+                	System.out.print("\n");
+                    aviso("¡Volviendo al menu!");
+                    System.out.print("\n");
                     break;
 
                 default:
-                    System.out.println("Opcion incorrecta");
+                    System.out.println("Opción incorrecta");
                     break;
             }
 
@@ -636,7 +710,7 @@ public class App {
     }
 
     private static void separador() {
-        System.out.println(". . . . . . . . . . . . .");
+        System.out.println(". . . . . . . . . . . . . . . . . . . . .");
     }
 
     private static void separadorGrande() {
@@ -644,6 +718,6 @@ public class App {
     }
 
     private static void aviso(String text) {
-        System.out.println("> > > " + text);
+        System.out.println("> > > " + text + " < < <");
     }
 }
