@@ -62,21 +62,16 @@ public class GestionUsuario {
         return null;
     } 
 
-    /*
-     * 
-     * 
-     * 
-     * //Rastrear maleta por ID
-     * public String rastreoMaleta(int id){
-     * Maleta maleta = GestionUsuario.inventarioMaletas.get(id);
-     * if (maleta != null) {
-     * return
-     * "Estado de la maleta con Id( "+id+") y a nombre de ("+maleta.getPasajero().
-     * getNombre()+"): "+ maleta.getEstado();
-     * } else {
-     * return "Maleta no encontrada";
-     * }
-     * }
-     */
-
+    
+    //Rastrear maleta por ID
+    public String rastreoMaleta(int id){
+        Maleta maleta = null;
+        if (maleta != null) {
+            return "Estado de la maleta con Id( "+id+") y a nombre de ("+maleta.getPasajero().
+                getNombre()+"): "+ maleta.getEstado();
+        } else {
+            return "Maleta no encontrada";
+        }
+    }
+    
 }

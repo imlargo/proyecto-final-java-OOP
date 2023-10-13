@@ -393,7 +393,7 @@ public class App {
         salto();
 
         // Mostrar información sobre los vuelos generados.
-        System.out.println("#Vuelo - Origen - Destino");
+        System.out.println("#Vuelo - Origen - Destino");// Por mejorar
         salto();
         for (int i = 0; i < vuelos.size(); i++) {
             Vuelo vuelo = vuelos.get(i);
@@ -441,10 +441,6 @@ public class App {
         separador();
         System.out.println(
                 "Previsualización del precio: " + boletoSelec.getValor() + " ,se agregará un recargo extra del 10%");
-        separador();
-        System.out.println("¿Desea continuar?");
-        // Si sí, sigue, sino, selecciona otro asiento??
-
         separador();
 
         // Preguntar al usuario si desea añadir equipaje.
@@ -577,31 +573,22 @@ public class App {
         ArrayList<Boleto> historial = user.getHistorial();
 
         // Ver cuenta.
-        System.out.println("Estado de la cuenta");
-        salto();
-        separadorGrande();
-        salto();
-        System.out.println(user.getInfo());
-        // Agregar opcion para ver vuelos?
-
-        salto();
         separadorGrande();
         salto();
         System.out.println("¿Qué desea hacer?");
         salto();
         /*
-         * Exportar y guardar informacion de la cuenta
          * Cerrar sesion e iniciar con una nueva
          * volver al menu
          * canjear millas
-         * 
+         * Check in
          */
 
         int opcion;
         do {
 
             // System.out.println("Menu");
-            System.out.println("1. Guardar y exportar información de la cuenta");
+            System.out.println("1. Ver informacion de la cuenta");
             System.out.println("2. Ver historial de vuelos");
             System.out.println("3. Hacer check-in");
             System.out.println("4. Canjear millas");
@@ -616,8 +603,16 @@ public class App {
 
             switch (opcion) {
                 case 1:
-                    // Exportar y guardar informacion de la cuenta
-                    System.out.println("Exportar información de la cuenta");
+                    // Ver informacion de la cuenta
+                    System.out.println("Estado de la cuenta");
+                    salto();
+                    separadorGrande();
+                    salto();
+                    System.out.println(user.getInfo());
+                    // Agregar opcion para ver vuelos?
+
+                    salto();
+
                     break;
 
                 case 2:
@@ -719,11 +714,12 @@ public class App {
 
     private static void salto(int n) {
         for (int i = 0; i < n; i++) {
-            System.out.print("\n");   
+            System.out.print("\n");
         }
     }
 
     private static void aviso(String text) {
         System.out.println("> > > " + text + " < < <");
     }
+
 }
