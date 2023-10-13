@@ -1,7 +1,7 @@
-package appUI;
+package uiMain;
 
-import Aerolinea.*;
-import Cuenta.*;
+import gestorAplicacion.Aerolinea.*;
+import gestorAplicacion.Cuenta.*;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -52,8 +52,7 @@ public class App {
                             System.out.print(" Contraseña: ");
                             String contrasena = scanner.nextLine();
 
-                            salto();
-                            salto();
+                            salto(2);
                             separadorGrande();
 
                             user = gestionUsuario.iniciarSesion(mail, contrasena);
@@ -84,8 +83,7 @@ public class App {
 
                             System.out.print(" Contraseña: ");
                             String contrasena = scanner.nextLine();
-                            salto();
-                            salto();
+                            salto(2);
                             separadorGrande();
 
                             user = gestionUsuario.registrarUsuario(nombre, mail, contrasena);
@@ -126,8 +124,7 @@ public class App {
                 System.out.println(" 3. Cancelar vuelo");
                 System.out.println(" 4. Ver cuenta");
                 System.out.println(" 5. Salir");
-                salto();
-                salto();
+                salto(2);
                 separadorGrande();
 
                 System.out.print("> Seleccione una opción (1-5): ");
@@ -403,8 +400,7 @@ public class App {
             System.out.println(vuelo.getInfo());
         }
 
-        salto();
-        salto();
+        salto(2);
         separador();
         salto();
 
@@ -433,8 +429,7 @@ public class App {
         }
 
         // Solicitar al usuario que seleccione un número de asiento.
-        salto();
-        salto();
+        salto(2);
         System.out.println("Por favor, seleccione el número del asiento deseado: ");
         int indexAsiento = scanner.nextInt();
         Asiento asiento = asientos.get(indexAsiento - 1);
@@ -720,6 +715,12 @@ public class App {
 
     private static void salto() {
         System.out.print("\n");
+    }
+
+    private static void salto(int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.print("\n");   
+        }
     }
 
     private static void aviso(String text) {

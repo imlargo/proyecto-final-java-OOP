@@ -1,4 +1,4 @@
-package Aerolinea;
+package gestorAplicacion.Aerolinea;
 
 import java.io.Serializable;// clase para serializar
 import java.util.ArrayList;

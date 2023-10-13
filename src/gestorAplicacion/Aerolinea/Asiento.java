@@ -1,6 +1,6 @@
-package Aerolinea;
+package gestorAplicacion.Aerolinea;
 
-import Aerolinea.Pasajero;
+import gestorAplicacion.Aerolinea.Pasajero;
 
 public class Asiento {
 

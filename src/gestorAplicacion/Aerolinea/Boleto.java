@@ -1,9 +1,10 @@
-package Aerolinea;
+package gestorAplicacion.Aerolinea;
 
 import java.io.Serializable;
 import java.util.*;
-import Aerolinea.*;
-import Cuenta.*;
+
+import gestorAplicacion.Aerolinea.*;
+import gestorAplicacion.Cuenta.*;
 
 public class Boleto implements Serializable {
     private static final long serialVersionUID = 0;

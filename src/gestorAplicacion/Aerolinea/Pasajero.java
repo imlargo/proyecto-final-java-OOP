@@ -1,8 +1,10 @@
-package Aerolinea;
+package gestorAplicacion.Aerolinea;
 
 import java.io.Serializable;
-import Aerolinea.Maleta;
-import Cuenta.*;
+
+import gestorAplicacion.Aerolinea.Maleta;
+import gestorAplicacion.Cuenta.*;
+
 import java.util.ArrayList;
 
 public class Pasajero {

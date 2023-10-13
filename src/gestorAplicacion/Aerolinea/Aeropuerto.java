@@ -1,7 +1,8 @@
-package Aerolinea;
+package gestorAplicacion.Aerolinea;
 
 import java.util.ArrayList;
-import Aerolinea.*;
+
+import gestorAplicacion.Aerolinea.*;
 
 public class Aeropuerto {
 

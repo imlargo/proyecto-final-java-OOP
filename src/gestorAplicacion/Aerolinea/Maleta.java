@@ -1,8 +1,9 @@
-package Aerolinea;
+package gestorAplicacion.Aerolinea;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import Cuenta.*;
+
+import gestorAplicacion.Cuenta.*;
 
 public class Maleta implements Serializable {
 

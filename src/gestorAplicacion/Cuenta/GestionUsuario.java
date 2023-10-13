@@ -1,9 +1,9 @@
-package Cuenta;
+package gestorAplicacion.Cuenta;
 
 import java.io.Serializable;
-
-import Aerolinea.*;
 import java.util.ArrayList;
+
+import gestorAplicacion.Aerolinea.*;
 
 public class GestionUsuario {
 
