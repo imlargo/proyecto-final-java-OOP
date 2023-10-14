@@ -44,10 +44,10 @@ public class App {
                             identacion("Iniciar sesión", 4);
                             salto();
 
-                            System.out.print("Mail: ");
+                            System.out.println("Mail: ");
                             String mail = inputS();
 
-                            System.out.print("Contraseña: ");
+                            System.out.println("Contraseña: ");
                             String contrasena = inputS();
 
                             salto(2);
@@ -121,7 +121,7 @@ public class App {
                 identacion("2. Reasignar vuelo");
                 identacion("3. Cancelar vuelo");
                 identacion("4. Ver cuenta");
-                identacion(" 5. Salir");
+                identacion("5. Salir");
                 salto(2);
                 separadorGrande();
 
@@ -162,6 +162,7 @@ public class App {
 
                     case 5:
                         System.out.println("Saliendo del programa. ¡Adios!");
+                        System.exit(0);
                         break;
 
                     default:
@@ -751,7 +752,7 @@ public class App {
         System.out.print("> ");
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
-        scanner.close();
+        //scanner.close();
         return s;
     }
 
@@ -760,7 +761,7 @@ public class App {
         System.out.print("> ");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        scanner.close();
+        //scanner.close();
         return n;
     }
 
