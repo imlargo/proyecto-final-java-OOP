@@ -31,7 +31,7 @@ public class Asiento {
     }
 
     public String getInfo() {
-        return n_silla + " - " + tipo + ", $" + valor; // Muestra la info del asiento
+        return n_silla + ". Tipo: " + tipo + ", Valor: $" + valor; // Muestra la info del asiento
     }
 
     // ...Metodos get y set...

@@ -73,13 +73,13 @@ public class App {
                             identacion("Registrarse", 4);
                             salto();
 
-                            System.out.print(" Nombre: ");
+                            System.out.println("Nombre: ");
                             String nombre = inputS();
 
-                            System.out.print(" Mail: ");
+                            System.out.println("Mail: ");
                             String mail = inputS();
 
-                            System.out.print(" Contraseña: ");
+                            System.out.println("Contraseña: ");
                             String contrasena = inputS();
                             salto(2);
                             separadorGrande();
@@ -111,10 +111,10 @@ public class App {
             while (opcion != 5 && user != null) {
                 // System.out.println(user);
 
-                System.out.println("Bienvenido " + user.getNombre());
+                titulo("Bienvenido " + user.getNombre() + ":)");
                 salto();
                 separadorGrande();
-                salto();            
+                salto();
                 identacion("Menú", 4);
                 salto();
                 identacion("1. Comprar vuelo");
@@ -125,7 +125,7 @@ public class App {
                 salto(2);
                 separadorGrande();
 
-                prompt("> Seleccione una opción (1-5): ");
+                prompt("Seleccione una opción (1-5): ");
                 opcion = inputI();
 
                 switch (opcion) {
@@ -195,11 +195,11 @@ public class App {
         salto();
 
         // Mostrar información sobre los vuelos generados.
-        System.out.println("#Vuelo - Origen - Destino");
+        identacion("Vuelo - Origen - Destino");
         salto();
         for (int i = 0; i < vuelos.size(); i++) {
             Vuelo vuelo = vuelos.get(i);
-            System.out.println(vuelo.getInfo());
+            identacion(vuelo.getInfo(), 2);
         }
 
         salto();
@@ -222,12 +222,12 @@ public class App {
 
         // Mostrar información sobre los asientos disponibles en el vuelo.
         salto();
-        System.out.println("   Asientos disponibles");
+        identacion("Asientos disponibles");
         salto();
         ArrayList<Asiento> asientos = vuelo.getAsientos();
 
         for (Asiento asiento : asientos) {
-            System.out.println(asiento.getInfo());
+            identacion(asiento.getInfo(), 2);
         }
 
         // Solicitar al usuario que seleccione un número de asiento.
@@ -295,7 +295,7 @@ public class App {
         salto();
         prompt("¿Desea finalizar la compra? Los detalles son los siguientes:");
         salto();
-        System.out.println(boleto.getInfo());
+        identacion(boleto.getInfo());
 
         separador();
         prompt("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
@@ -329,21 +329,21 @@ public class App {
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
 
-        System.out.println("Información de los vuelos:");
+        identacion("Información de los vuelos:");
         salto();
 
         // Iterar a través del historial de boletos
         for (int i = 0; i < historial.size(); i++) {
             Boleto boleto = historial.get(i);
             // Mostrar información de cada boleto en la lista
-            System.out.println(i + " - " + boleto.getInfo());
+            identacion(i + ". " + boleto.getInfo(), 2);
         }
 
         salto();
         separador();
         salto();
 
-        System.out.println("Por favor, seleccione el número del vuelo deseado: ");
+        prompt("Por favor, seleccione el número del vuelo deseado: ");
         int indexVueloTemp = inputI();
 
         // Obtener el boleto seleccionado por el usuario
@@ -351,13 +351,13 @@ public class App {
 
         System.out.println("Vuelo seleccionado, información detallada:");
         salto();
-        System.out.println(boletoSelec.getInfo());
+        identacion(boletoSelec.getInfo());
 
         salto();
         separador();
         salto();
 
-        System.out.println("Está seguro de reasignar el vuelo? (Escriba 1 para Confirmar, 0 para Cancelar):");
+        prompt("Está seguro de reasignar el vuelo? (Escriba 1 para Confirmar, 0 para Cancelar):");
         int confirmacionTemp = inputI();
 
         if (confirmacionTemp == 1) {
@@ -375,11 +375,11 @@ public class App {
         }
         // Solicitar al usuario el origen del vuelo.
         String origen = boletoSelec.getOrigen();
-        System.out.println("Origen: " + origen);
+        identacion("Origen: " + origen);
 
         // Solicitar al usuario el destino del vuelo.
         String destino = boletoSelec.getDestino();
-        System.out.println("Destino: " + destino);
+        identacion("Destino: " + destino);
 
         // Ingrese la cantidad de vuelos a generar?
 
@@ -390,11 +390,11 @@ public class App {
         salto();
 
         // Mostrar información sobre los vuelos generados.
-        System.out.println("#Vuelo - Origen - Destino");// Por mejorar
+        identacion("Vuelo - Origen - Destino");// Por mejorar
         salto();
         for (int i = 0; i < vuelos.size(); i++) {
             Vuelo vuelo = vuelos.get(i);
-            System.out.println(vuelo.getInfo());
+            identacion(vuelo.getInfo(), 2);
         }
 
         salto(2);
@@ -402,7 +402,7 @@ public class App {
         salto();
 
         // Solicitar al usuario que seleccione un vuelo y se selecciona.
-        System.out.println("Por favor, seleccione el número del vuelo deseado: ");
+        prompt("Por favor, seleccione el número del vuelo deseado: ");
         int indexVuelo = inputI();
         Vuelo vuelo = vuelos.get(indexVuelo);
 
@@ -418,16 +418,16 @@ public class App {
 
         // Mostrar información sobre los asientos disponibles en el vuelo.
         salto();
-        System.out.println("   Asientos disponibles:");
+        identacion("Asientos disponibles:");
         ArrayList<Asiento> asientos = vuelo.getAsientos();
 
         for (Asiento asiento : asientos) {
-            System.out.println(asiento.getInfo());
+            identacion(asiento.getInfo(), 2);
         }
 
         // Solicitar al usuario que seleccione un número de asiento.
         salto(2);
-        System.out.println("Por favor, seleccione el número del asiento deseado: ");
+        prompt("Por favor, seleccione el número del asiento deseado: ");
         int indexAsiento = inputI();
         Asiento asiento = asientos.get(indexAsiento - 1);
         boletoSelec.reasignarAsiento(asiento);
@@ -441,7 +441,7 @@ public class App {
         separador();
 
         // Preguntar al usuario si desea añadir equipaje.
-        System.out.println("¿Desea añadir equipaje? (Escriba 1 para Sí, 0 para No)");
+        prompt("¿Desea añadir equipaje? (Escriba 1 para Sí, 0 para No)");
         int opcion = inputI();
 
         if (opcion == 1) {
@@ -456,16 +456,16 @@ public class App {
                 separador();
                 // Solicitar información sobre el equipaje a agregar.
 
-                System.out.print("Peso de la maleta: ");
+                prompt("Peso de la maleta: ");
                 int peso = inputI();
 
-                System.out.print("Ancho de la maleta: ");
+                prompt("Ancho de la maleta: ");
                 int ancho = inputI();
 
-                System.out.print("Largo de la maleta: ");
+                prompt("Largo de la maleta: ");
                 int largo = inputI();
 
-                System.out.print("Alto de la maleta: ");
+                prompt("Alto de la maleta: ");
                 int alto = inputI();
 
                 // Agregar una maleta al boleto y mostrar el nuevo valor del boleto.
@@ -474,21 +474,21 @@ public class App {
                 boletoSelec.addEquipaje(maleta);
 
                 System.out.println("Nuevo valor del boleto: ");
-                System.out.println("-> $" + boletoSelec.getValor());
+                identacion("-> $" + boletoSelec.getValor());
 
                 separador();
-                System.out.println("¿Desea agregar otro equipaje o continuar? (1 para Sí, 0 para No)");
+                prompt("¿Desea agregar otro equipaje o continuar? (1 para Sí, 0 para No)");
                 exit = inputI();
 
             } while (exit == 1);
         }
 
         // Mostrar los detalles de la compra y solicitar confirmación.
-        System.out.println("¿Desea finalizar la compra? Los detalles son los siguientes:");
-        System.out.println(boletoSelec.getInfo());
+        prompt("¿Desea finalizar la compra? Los detalles son los siguientes:");
+        identacion(boletoSelec.getInfo());
 
         separador();
-        System.out.println("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
+        prompt("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
         int confirmacion = inputI();
 
         separador();
@@ -514,37 +514,37 @@ public class App {
         // Seleccionar el vuelo
         // Cancelarlo (Se modifica el boleto y se cambian los valores)
 
-
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
 
-        System.out.println("Información de los vuelos:");
+        identacion("Información de los vuelos:");
         salto();
 
         // Iterar a través del historial de boletos
         for (int i = 0; i < historial.size(); i++) {
             Boleto boleto = historial.get(i);
             // Mostrar información de cada boleto en la lista
-            System.out.println(i + " - " + boleto.getInfo());
+            identacion(i + ". " + boleto.getInfo(), 2);
         }
 
         salto();
         separador();
         salto();
 
-        System.out.println("Por favor, seleccione el número del vuelo deseado: ");
+        prompt("Por favor, seleccione el número del vuelo deseado: ");
         int indexVuelo = inputI();
 
         // Obtener el boleto seleccionado por el usuario
         Boleto boleto = historial.get(indexVuelo);
 
+        separador();
         System.out.println("Vuelo seleccionado, información detallada:");
         salto();
-        System.out.println(boleto.getInfo());
+        identacion(boleto.getInfo());
 
         separador();
 
-        System.out.println("Confirmar la cancelación (Escriba 1 para Confirmar, 0 para Cancelar):");
+        prompt("Confirmar la cancelación (Escriba 1 para Confirmar, 0 para Cancelar):");
         int confirmacion = inputI();
 
         separadorGrande();
@@ -569,7 +569,7 @@ public class App {
         // Ver cuenta.
         separadorGrande();
         salto();
-        System.out.println("¿Qué desea hacer?");
+        prompt("¿Qué desea hacer?");
         salto();
         /*
          * Cerrar sesion e iniciar con una nueva
@@ -582,14 +582,14 @@ public class App {
         do {
 
             // System.out.println("Menu");
-            System.out.println("1. Ver informacion de la cuenta");
-            System.out.println("2. Ver historial de vuelos");
-            System.out.println("3. Hacer check-in");
-            System.out.println("4. Canjear millas");
-            System.out.println("5. Cerrar sesión");
-            System.out.println("6. Volver al menú anterior");
+            identacion("1. Ver informacion de la cuenta");
+            identacion("2. Ver historial de vuelos");
+            identacion("3. Hacer check-in");
+            identacion("4. Canjear millas");
+            identacion("5. Cerrar sesión");
+            identacion("6. Volver al menú anterior");
             salto();
-            System.out.print("> Seleccione una opción (1-6): ");
+            prompt("> Seleccione una opción (1-6): ");
             opcion = inputI();
             salto();
 
@@ -611,13 +611,13 @@ public class App {
 
                 case 2:
                     // Ver historial de vuelos
-                    System.out.println("Información de los vuelos:");
+                    identacion("Información de los vuelos:");
 
                     // Iterar a través del historial de boletos
                     for (int i = 0; i < historial.size(); i++) {
                         Boleto boleto = historial.get(i);
                         // Mostrar información de cada boleto en la lista
-                        System.out.println(i + " - " + boleto.getInfo());
+                        identacion(i + ". " + boleto.getInfo(), 2);
                     }
 
                     break;
@@ -638,7 +638,7 @@ public class App {
 
                 case 5:
                     // Cerrar sesion
-                    System.out.println("Cerrando sesión");
+                    aviso("Cerrando sesión");
                     salto();
                     user = gestionUsuario.cerrarSesion(user);
                     opcion = 6;
@@ -658,12 +658,10 @@ public class App {
         } while (opcion != 6);
     }
 
-
     private static void checkin(Usuario user) {
         // Mostrar la lista de vuelos
         // Seleccionar el vuelo
         // Cancelarlo (Se modifica el boleto y se cambian los valores)
-
 
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
@@ -747,21 +745,19 @@ public class App {
         System.out.println("> " + text);
     }
 
-
     private static String inputS() {
-        System.out.print("> ");
+        System.out.print("  > ");
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
-        //scanner.close();
+        // scanner.close();
         return s;
     }
 
-
     private static int inputI() {
-        System.out.print("> ");
+        System.out.print("  > ");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        //scanner.close();
+        // scanner.close();
         return n;
     }
 

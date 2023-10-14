@@ -63,7 +63,7 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		/*
 		 * Regresa como string la informacion de origen - destino
 		 */
-		String info = this.ID + ". " + this.ORIGEN + " - " + this.DESTINO;
+		String info = "Id: " + this.ID + ", Origen: " + this.ORIGEN + ", Destino: " + this.DESTINO;
 		return info;
 	}
 
