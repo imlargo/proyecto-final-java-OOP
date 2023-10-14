@@ -12,7 +12,6 @@ public class App {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
         Usuario user = null;
         int opcion = 0;
 
@@ -29,11 +28,10 @@ public class App {
                 aviso("¡No hay sesión iniciada!");
 
                 // Desea iniciar sesion o registrarse:
-                System.out.println("1. Iniciar Sesión.");
-                System.out.println("2. Registrarse.");
+                identacion("1. Iniciar Sesión.");
+                identacion("2. Registrarse.");
 
-                opcion = scanner.nextInt();
-                scanner.nextLine();
+                opcion = inputI();
 
                 separadorGrande();
                 salto();
@@ -43,14 +41,14 @@ public class App {
 
                         // Iniciar sesion
                         do {
-                            System.out.println("          Iniciar sesión             ");
+                            identacion("Iniciar sesión", 4);
                             salto();
 
-                            System.out.print(" Mail: ");
-                            String mail = scanner.nextLine();
+                            System.out.print("Mail: ");
+                            String mail = inputS();
 
-                            System.out.print(" Contraseña: ");
-                            String contrasena = scanner.nextLine();
+                            System.out.print("Contraseña: ");
+                            String contrasena = inputS();
 
                             salto(2);
                             separadorGrande();
@@ -72,17 +70,17 @@ public class App {
                         // Registrar
                         do {
                             salto();
-                            System.out.println("            Registrarse              ");
+                            identacion("Registrarse", 4);
                             salto();
 
                             System.out.print(" Nombre: ");
-                            String nombre = scanner.nextLine();
+                            String nombre = inputS();
 
                             System.out.print(" Mail: ");
-                            String mail = scanner.nextLine();
+                            String mail = inputS();
 
                             System.out.print(" Contraseña: ");
-                            String contrasena = scanner.nextLine();
+                            String contrasena = inputS();
                             salto(2);
                             separadorGrande();
 
@@ -116,19 +114,19 @@ public class App {
                 System.out.println("Bienvenido " + user.getNombre());
                 salto();
                 separadorGrande();
+                salto();            
+                identacion("Menú", 4);
                 salto();
-                System.out.println("                Menú                 ");
-                salto();
-                System.out.println(" 1. Comprar vuelo");
-                System.out.println(" 2. Reasignar vuelo");
-                System.out.println(" 3. Cancelar vuelo");
-                System.out.println(" 4. Ver cuenta");
-                System.out.println(" 5. Salir");
+                identacion("1. Comprar vuelo");
+                identacion("2. Reasignar vuelo");
+                identacion("3. Cancelar vuelo");
+                identacion("4. Ver cuenta");
+                identacion(" 5. Salir");
                 salto(2);
                 separadorGrande();
 
-                System.out.print("> Seleccione una opción (1-5): ");
-                opcion = scanner.nextInt();
+                prompt("> Seleccione una opción (1-5): ");
+                opcion = inputI();
 
                 switch (opcion) {
                     case 1:
@@ -178,15 +176,14 @@ public class App {
     }
 
     private static void comprarVuelo(Usuario user) {
-        Scanner scanner = new Scanner(System.in);
 
         // Solicitar al usuario el origen del vuelo.
-        System.out.println("Por favor ingrese el origen: ");
-        String origen = scanner.nextLine();
+        prompt("Por favor ingrese el origen: ");
+        String origen = inputS();
 
         // Solicitar al usuario el destino del vuelo.
-        System.out.println("Por favor ingrese el destino: ");
-        String destino = scanner.nextLine();
+        prompt("Por favor ingrese el destino: ");
+        String destino = inputS();
 
         // Ingrese la cantidad de vuelos a generar?
 
@@ -208,8 +205,8 @@ public class App {
         separador();
 
         // Solicitar al usuario que seleccione un vuelo y se selecciona.
-        System.out.println("Por favor, seleccione el número del vuelo deseado: ");
-        int indexVuelo = scanner.nextInt();
+        prompt("Por favor, seleccione el número del vuelo deseado: ");
+        int indexVuelo = inputI();
         Vuelo vuelo = vuelos.get(indexVuelo);
 
         // Generar asientos VIP y económicos para el vuelo seleccionado.
@@ -234,8 +231,8 @@ public class App {
 
         // Solicitar al usuario que seleccione un número de asiento.
         salto();
-        System.out.println("Por favor, seleccione el número del asiento deseado: ");
-        int indexAsiento = scanner.nextInt();
+        prompt("Por favor, seleccione el número del asiento deseado: ");
+        int indexAsiento = inputI();
         Asiento asiento = asientos.get(indexAsiento - 1);
         boleto.setAsiento(asiento);
 
@@ -245,14 +242,14 @@ public class App {
         separador();
         System.out.println("Previsualización del precio: " + boleto.getValor());
         separador();
-        System.out.println("¿Desea continuar?");
+        prompt("¿Desea continuar?");
         // Si sí, sigue, sino, selecciona otro asiento??
 
         separador();
 
         // Preguntar al usuario si desea añadir equipaje.
-        System.out.println("¿Desea añadir equipaje? (Escriba 1 para Sí, 0 para No)");
-        int opcion = scanner.nextInt();
+        prompt("¿Desea añadir equipaje? (Escriba 1 para Sí, 0 para No)");
+        int opcion = inputI();
 
         if (opcion == 1) {
             // Cada vez q se agrega un equipaje se va mostrando una previsualizacion del
@@ -266,17 +263,17 @@ public class App {
                 separador();
                 // Solicitar información sobre el equipaje a agregar.
 
-                System.out.print("Peso de la maleta: ");
-                int peso = scanner.nextInt();
+                prompt("Peso de la maleta: ");
+                int peso = inputI();
 
-                System.out.print("Ancho de la maleta: ");
-                int ancho = scanner.nextInt();
+                prompt("Ancho de la maleta: ");
+                int ancho = inputI();
 
-                System.out.print("Largo de la maleta: ");
-                int largo = scanner.nextInt();
+                prompt("Largo de la maleta: ");
+                int largo = inputI();
 
-                System.out.print("Alto de la maleta: ");
-                int alto = scanner.nextInt();
+                prompt("Alto de la maleta: ");
+                int alto = inputI();
 
                 // Agregar una maleta al boleto y mostrar el nuevo valor del boleto.
                 Maleta maleta = new Maleta(c, peso, largo, ancho, alto);
@@ -287,21 +284,21 @@ public class App {
                 System.out.println("-> $" + boleto.getValor());
 
                 separador();
-                System.out.println("¿Desea agregar otro equipaje o continuar? (1 para Sí, 0 para No)");
-                exit = scanner.nextInt();
+                prompt("¿Desea agregar otro equipaje o continuar? (1 para Sí, 0 para No)");
+                exit = inputI();
 
             } while (exit == 1);
         }
 
         // Mostrar los detalles de la compra y solicitar confirmación.
         salto();
-        System.out.println("¿Desea finalizar la compra? Los detalles son los siguientes:");
+        prompt("¿Desea finalizar la compra? Los detalles son los siguientes:");
         salto();
         System.out.println(boleto.getInfo());
 
         separador();
-        System.out.println("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
-        int confirmacion = scanner.nextInt();
+        prompt("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
+        int confirmacion = inputI();
 
         separador();
         if (confirmacion == 1) {
@@ -327,7 +324,6 @@ public class App {
     }
 
     private static void reasignarVuelo(Usuario user) {
-        Scanner scanner = new Scanner(System.in);
 
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
@@ -347,7 +343,7 @@ public class App {
         salto();
 
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
-        int indexVueloTemp = scanner.nextInt();
+        int indexVueloTemp = inputI();
 
         // Obtener el boleto seleccionado por el usuario
         Boleto boletoSelec = historial.get(indexVueloTemp);
@@ -361,7 +357,7 @@ public class App {
         salto();
 
         System.out.println("Está seguro de reasignar el vuelo? (Escriba 1 para Confirmar, 0 para Cancelar):");
-        int confirmacionTemp = scanner.nextInt();
+        int confirmacionTemp = inputI();
 
         if (confirmacionTemp == 1) {
             // Limpiar
@@ -406,7 +402,7 @@ public class App {
 
         // Solicitar al usuario que seleccione un vuelo y se selecciona.
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
-        int indexVuelo = scanner.nextInt();
+        int indexVuelo = inputI();
         Vuelo vuelo = vuelos.get(indexVuelo);
 
         // Generar asientos VIP y económicos para el vuelo seleccionado.
@@ -431,7 +427,7 @@ public class App {
         // Solicitar al usuario que seleccione un número de asiento.
         salto(2);
         System.out.println("Por favor, seleccione el número del asiento deseado: ");
-        int indexAsiento = scanner.nextInt();
+        int indexAsiento = inputI();
         Asiento asiento = asientos.get(indexAsiento - 1);
         boletoSelec.reasignarAsiento(asiento);
 
@@ -445,7 +441,7 @@ public class App {
 
         // Preguntar al usuario si desea añadir equipaje.
         System.out.println("¿Desea añadir equipaje? (Escriba 1 para Sí, 0 para No)");
-        int opcion = scanner.nextInt();
+        int opcion = inputI();
 
         if (opcion == 1) {
             // Cada vez q se agrega un equipaje se va mostrando una previsualizacion del
@@ -460,16 +456,16 @@ public class App {
                 // Solicitar información sobre el equipaje a agregar.
 
                 System.out.print("Peso de la maleta: ");
-                int peso = scanner.nextInt();
+                int peso = inputI();
 
                 System.out.print("Ancho de la maleta: ");
-                int ancho = scanner.nextInt();
+                int ancho = inputI();
 
                 System.out.print("Largo de la maleta: ");
-                int largo = scanner.nextInt();
+                int largo = inputI();
 
                 System.out.print("Alto de la maleta: ");
-                int alto = scanner.nextInt();
+                int alto = inputI();
 
                 // Agregar una maleta al boleto y mostrar el nuevo valor del boleto.
                 Maleta maleta = new Maleta(c, peso, largo, ancho, alto);
@@ -481,7 +477,7 @@ public class App {
 
                 separador();
                 System.out.println("¿Desea agregar otro equipaje o continuar? (1 para Sí, 0 para No)");
-                exit = scanner.nextInt();
+                exit = inputI();
 
             } while (exit == 1);
         }
@@ -492,7 +488,7 @@ public class App {
 
         separador();
         System.out.println("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
-        int confirmacion = scanner.nextInt();
+        int confirmacion = inputI();
 
         separador();
         if (confirmacion == 1) {
@@ -517,7 +513,6 @@ public class App {
         // Seleccionar el vuelo
         // Cancelarlo (Se modifica el boleto y se cambian los valores)
 
-        Scanner scanner = new Scanner(System.in);
 
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
@@ -537,7 +532,7 @@ public class App {
         salto();
 
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
-        int indexVuelo = scanner.nextInt();
+        int indexVuelo = inputI();
 
         // Obtener el boleto seleccionado por el usuario
         Boleto boleto = historial.get(indexVuelo);
@@ -549,7 +544,7 @@ public class App {
         separador();
 
         System.out.println("Confirmar la cancelación (Escriba 1 para Confirmar, 0 para Cancelar):");
-        int confirmacion = scanner.nextInt();
+        int confirmacion = inputI();
 
         separadorGrande();
         salto();
@@ -568,8 +563,6 @@ public class App {
     }
 
     private static void gestionCuenta(Usuario user) {
-        Scanner scanner = new Scanner(System.in);
-
         ArrayList<Boleto> historial = user.getHistorial();
 
         // Ver cuenta.
@@ -596,7 +589,7 @@ public class App {
             System.out.println("6. Volver al menú anterior");
             salto();
             System.out.print("> Seleccione una opción (1-6): ");
-            opcion = scanner.nextInt();
+            opcion = inputI();
             salto();
 
             // Imprimir las opciones
@@ -670,7 +663,6 @@ public class App {
         // Seleccionar el vuelo
         // Cancelarlo (Se modifica el boleto y se cambian los valores)
 
-        Scanner scanner = new Scanner(System.in);
 
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
@@ -687,7 +679,7 @@ public class App {
         separador();
 
         System.out.println("Por favor, seleccione el número del vuelo deseado: ");
-        int indexVuelo = scanner.nextInt();
+        int indexVuelo = inputI();
 
         // Obtener el boleto seleccionado por el usuario
         Boleto boleto = historial.get(indexVuelo);
@@ -698,7 +690,7 @@ public class App {
         separador();
 
         System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
-        int confirmacion = scanner.nextInt();
+        int confirmacion = inputI();
 
         separador();
 
@@ -713,11 +705,11 @@ public class App {
 
     // Estetica
     private static void separador() {
-        System.out.println(". . . . . . . . . . . . . . . . . . . . .");
+        System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
     }
 
     private static void separadorGrande() {
-        System.out.println("+ - - - - - - - - - - - - - - - - - +");
+        System.out.println("+ = = = = = = = = = = = = = = = = = = = = = = = +");
     }
 
     private static void salto() {
@@ -733,4 +725,43 @@ public class App {
     private static void aviso(String text) {
         System.out.println("> > > " + text + " < < <");
     }
+
+    private static void identacion(String text, int n) {
+        String cadena = "";
+        for (int i = 0; i < n; i++) {
+            cadena += "    ";
+        }
+        System.out.println(cadena + text);
+    }
+
+    private static void identacion(String text) {
+        System.out.println("    " + text);
+    }
+
+    private static void titulo(String text) {
+        System.out.println("# = = = " + text + " = = = #");
+    }
+
+    private static void prompt(String text) {
+        System.out.println("> " + text);
+    }
+
+
+    private static String inputS() {
+        System.out.print("> ");
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+        scanner.close();
+        return s;
+    }
+
+
+    private static int inputI() {
+        System.out.print("> ");
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        scanner.close();
+        return n;
+    }
+
 }

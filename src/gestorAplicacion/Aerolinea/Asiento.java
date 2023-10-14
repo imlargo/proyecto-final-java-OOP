@@ -10,7 +10,7 @@ public class Asiento {
     private boolean disponible = true;
     private String status = "Disponible";
     private Boleto boleto;
-    private float valor;
+    private final float valor;
 
     public Asiento(String tipo, int n_silla, float valor) {
         this.tipo = tipo;
@@ -82,10 +82,6 @@ public class Asiento {
 
     public float getValor() {
         return this.valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
     }
 
 }
