@@ -51,7 +51,6 @@ public class GestionUsuario {
             return null;
         }
     }
-    
 
     public Usuario getUser() {
         return this.user;
@@ -60,18 +59,41 @@ public class GestionUsuario {
     public Usuario cerrarSesion(Usuario user) {
         this.user = null;
         return null;
-    } 
-
-    
-    //Rastrear maleta por ID
-    public String rastreoMaleta(int id){
-        Maleta maleta = null;
-        if (maleta != null) {
-            return "Estado de la maleta con Id( "+id+") y a nombre de ("+maleta.getPasajero().
-                getNombre()+"): "+ maleta.getEstado();
-        } else {
-            return "Maleta no encontrada";
-        }
     }
-    
+
+    // Rastrear maleta por ID
+    public String rastrearMaleta(int tipo, int value) {
+
+        switch (tipo) {
+            case 1:
+                // Rastreo por id de la maleta
+                // Por cada boleto que tiene asociado un vuelo encuentra el asiento y las
+                // maletas asociadas y tambien da informacion
+                Boleto encontrado = null;
+                for (Boleto boleto : this.user.getHistorial()) {
+                    for (Maleta maleta : boleto.getEquipaje()) {
+                        if (maleta.getId() == value) {
+                            encontrado = boleto;
+                            return "La maleta se encuentra en el vuelo X con info";
+                        }
+                    }
+                }
+                Asiento asiento = encontrado.getAsiento();
+
+                break;
+
+            case 2:
+                // Rastreo de maleta en un vuelo
+                break;
+
+            case 3:
+                // Tipo de equipaje
+                break;
+
+            default:
+                break;
+        }
+
+        return null;
+    }
 }

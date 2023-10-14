@@ -191,7 +191,7 @@ public class App {
         // Ingrese la cantidad de vuelos a generar?
 
         // Generar una lista de n vuelos con el origen y destino proporcionados.
-        ArrayList<Vuelo> vuelos = Aeropuerto.generarVuelos(5, origen, destino);
+        ArrayList<Vuelo> vuelos = Vuelo.generarVuelos(5, origen, destino);
 
         separador();
         salto();
@@ -387,7 +387,7 @@ public class App {
         // Ingrese la cantidad de vuelos a generar?
 
         // Generar una lista de n vuelos con el origen y destino proporcionados.
-        ArrayList<Vuelo> vuelos = Aeropuerto.generarVuelos(5, origen, destino);
+        ArrayList<Vuelo> vuelos = Vuelo.generarVuelos(5, origen, destino);
 
         separador();
         salto();
@@ -630,41 +630,6 @@ public class App {
 
                 case 3:
                     // hacer check-in
-                    System.out.println("Confirmando check-in");
-                    System.out.println("Información de los vuelos:");
-
-                    // Iterar a través del historial de boletos
-                    for (int i = 0; i < historial.size(); i++) {
-                        Boleto boleto = historial.get(i);
-                        // Mostrar información de cada boleto en la lista
-                        System.out.println(i + " - " + boleto.getInfo());
-                    }
-
-                    separador();
-
-                    System.out.println("Por favor, seleccione el número del vuelo deseado: ");
-                    int indexVuelo = scanner.nextInt();
-
-                    // Obtener el boleto seleccionado por el usuario
-                    Boleto boleto = historial.get(indexVuelo);
-
-                    System.out.println("Vuelo seleccionado, información detallada:");
-                    System.out.println(boleto.getInfo());
-
-                    separador();
-
-                    System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
-                    int confirmacion = scanner.nextInt();
-
-                    separador();
-
-                    if (confirmacion == 1) {
-                        // Realizar la cancelación del boleto
-                        boleto.setStatus("Confirmado");
-
-                        // Informar al usuario sobre la cancelación exitosa
-                        System.out.println("Realizado con éxito.");
-                    }
 
                     break;
 
@@ -699,6 +664,53 @@ public class App {
         } while (opcion != 6);
     }
 
+
+    private static void checkin(Usuario user) {
+        // Mostrar la lista de vuelos
+        // Seleccionar el vuelo
+        // Cancelarlo (Se modifica el boleto y se cambian los valores)
+
+        Scanner scanner = new Scanner(System.in);
+
+        // Obtener el historial de boletos del usuario
+        ArrayList<Boleto> historial = user.getHistorial();
+
+        System.out.println("Información de los vuelos:");
+
+        // Iterar a través del historial de boletos
+        for (int i = 0; i < historial.size(); i++) {
+            Boleto boleto = historial.get(i);
+            // Mostrar información de cada boleto en la lista
+            System.out.println(i + " - " + boleto.getInfo());
+        }
+
+        separador();
+
+        System.out.println("Por favor, seleccione el número del vuelo deseado: ");
+        int indexVuelo = scanner.nextInt();
+
+        // Obtener el boleto seleccionado por el usuario
+        Boleto boleto = historial.get(indexVuelo);
+
+        System.out.println("Vuelo seleccionado, información detallada:");
+        System.out.println(boleto.getInfo());
+
+        separador();
+
+        System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
+        int confirmacion = scanner.nextInt();
+
+        separador();
+
+        if (confirmacion == 1) {
+            // Realizar la cancelación del boleto
+            boleto.setStatus("Confirmado");
+
+            // Informar al usuario sobre la cancelación exitosa
+            System.out.println("Realizado con éxito.");
+        }
+    }
+
     // Estetica
     private static void separador() {
         System.out.println(". . . . . . . . . . . . . . . . . . . . .");
@@ -721,5 +733,4 @@ public class App {
     private static void aviso(String text) {
         System.out.println("> > > " + text + " < < <");
     }
-
 }

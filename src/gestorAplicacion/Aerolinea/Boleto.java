@@ -9,7 +9,8 @@ import gestorAplicacion.Cuenta.*;
 public class Boleto implements Serializable {
     private static final long serialVersionUID = 0;
 
-    private String id;
+    private static int cont = 0;
+    private int id;
     private String tipo;
     private Usuario user;
     private String status = "Pendiente";
@@ -30,11 +31,13 @@ public class Boleto implements Serializable {
     private Vuelo vuelo;
 
     public Boleto(String origen, String destino, Usuario propietario, Vuelo vuelo) {
+        cont++;
         this.origen = origen;
         this.destino = destino;
         this.user = propietario;
         this.vuelo = vuelo;
         this.pasajero = new Pasajero(propietario, this);
+        this.id = cont;
     }
 
     public void updateValor() {
@@ -84,11 +87,11 @@ public class Boleto implements Serializable {
 
     // ...Metodos get y set...
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -136,7 +139,7 @@ public class Boleto implements Serializable {
         return this.valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(float valor) {
         this.valor = valor;
     }
 
@@ -152,6 +155,7 @@ public class Boleto implements Serializable {
         return this.asiento;
     }
 
+
     public Pasajero getPasajero() {
         return this.pasajero;
     }
@@ -164,7 +168,7 @@ public class Boleto implements Serializable {
         return this.valorInicial;
     }
 
-    public void setValorInicial(int valorInicial) {
+    public void setValorInicial(float valorInicial) {
         this.valorInicial = valorInicial;
     }
 
@@ -172,7 +176,7 @@ public class Boleto implements Serializable {
         return this.valorEquipaje;
     }
 
-    public void setValorEquipaje(int valorEquipaje) {
+    public void setValorEquipaje(float valorEquipaje) {
         this.valorEquipaje = valorEquipaje;
     }
 
@@ -183,4 +187,5 @@ public class Boleto implements Serializable {
     public void setVuelo(Vuelo vuelo) {
         this.vuelo = vuelo;
     }
+
 }

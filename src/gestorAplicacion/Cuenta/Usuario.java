@@ -15,10 +15,6 @@ public class Usuario {
 	private String mail;
 	private String contrasena;
 
-	public Usuario(int dinero) {
-		this.dinero = dinero;
-	}
-
 	public Usuario(String nombre, String mail, String contrasena, int id) {
 		this.nombre = nombre;
 		this.id = id;
@@ -59,8 +55,8 @@ public class Usuario {
 			return false;
 		}
 	}
+	
 	// ...get and set
-
 	public int getDinero() {
 		return this.dinero;
 	}

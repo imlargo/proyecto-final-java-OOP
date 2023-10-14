@@ -25,6 +25,22 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		this.ORIGEN = origen;
 	}
 
+	public static ArrayList<Vuelo> generarVuelos(int cantidad, String origen, String destino) {
+
+        ArrayList<Vuelo> vuelos = new ArrayList<>();
+
+        for (int i = 0; i < cantidad; i++) {
+            // Generar vuelos y meterlos al array, devueve al array y puede mostrarse
+            // Generar aleatoriamente
+            String aerolinea = "Latam";
+            String id = Integer.toString(i);
+            String hSalida = "69:69";
+            String hLlegada = "";
+            vuelos.add(new Vuelo(origen, destino, aerolinea, id, hSalida, hLlegada));
+        }
+        return vuelos;
+    }
+
 	public void generarAsientos(int economicos, int premium, float base) {
 		/*
 		 * Dependiendo de la cantidad que se le pase, genera n asientos de tipo vip y
@@ -40,9 +56,6 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 	}
 
 	public String getOrigenDestino() {
-		/*
-		 * Regresa como string la informacion de origen - destino
-		 */
 		return this.ORIGEN + " - " + this.DESTINO;
 	}
 
