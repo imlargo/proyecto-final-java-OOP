@@ -14,8 +14,6 @@ public class Pasajero {
     private Usuario user;
     private Boleto boleto;
 
-    private boolean trabajador;
-
     public Pasajero(Usuario user, Boleto boleto) {
         this.nombre = user.getNombre();
         this.boleto = boleto;
@@ -46,17 +44,4 @@ public class Pasajero {
     public void setBoleto(Boleto boleto) {
         this.boleto = boleto;
     }
-
-    public boolean isTrabajador() {
-        return this.trabajador;
-    }
-
-    public boolean getTrabajador() {
-        return this.trabajador;
-    }
-
-    public void setTrabajador(boolean trabajador) {
-        this.trabajador = trabajador;
-    }
-
 }

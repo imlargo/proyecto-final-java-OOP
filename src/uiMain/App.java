@@ -597,20 +597,20 @@ public class App {
 
             switch (opcion) {
                 case 1:
-                    // Ver informacion de la cuenta
+                    // Ver informacion general de la cuenta
                     System.out.println("Estado de la cuenta");
                     salto();
                     separadorGrande();
                     salto();
                     System.out.println(user.getInfo());
-                    // Agregar opcion para ver vuelos?
+
 
                     salto();
 
                     break;
 
                 case 2:
-                    // Ver historial de vuelos
+                    // Ver historial de vuelos y visualizar informacion (Casi Listo)
                     identacion("Información de los vuelos:");
 
                     // Iterar a través del historial de boletos
@@ -637,7 +637,7 @@ public class App {
                     break;
 
                 case 5:
-                    // Cerrar sesion
+                    // Cerrar sesion (Listo)
                     aviso("Cerrando sesión");
                     salto();
                     user = gestionUsuario.cerrarSesion(user);
@@ -645,6 +645,7 @@ public class App {
                     break;
 
                 case 6:
+                    //Volver al menu (Listo)
                     salto();
                     aviso("¡Volviendo al menu!");
                     salto();
@@ -699,7 +700,22 @@ public class App {
 
             // Informar al usuario sobre la cancelación exitosa
             System.out.println("Realizado con éxito.");
+        } else {
+            return;
         }
+
+        //Despues de hacer el check in se le da al usuario la opcion de agregar mas cosas
+        
+        //Alimentacion: menu de compas
+        // Definir productos y precios
+        //mostrar informacion de confirmacion
+
+        
+        //Upgrate de asiento
+
+
+
+
     }
 
     // Estetica
@@ -762,3 +778,6 @@ public class App {
     }
 
 }
+
+
+//SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde

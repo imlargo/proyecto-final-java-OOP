@@ -61,6 +61,8 @@ public class GestionUsuario {
         return null;
     }
 
+    
+
     // Rastrear maleta por ID
     public String rastrearMaleta(int tipo, int value) {
 

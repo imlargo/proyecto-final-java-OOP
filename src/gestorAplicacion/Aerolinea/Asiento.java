@@ -36,6 +36,7 @@ public class Asiento {
 
     // ...Metodos get y set...
 
+
     public String getTipo() {
         return this.tipo;
     }
@@ -72,6 +73,14 @@ public class Asiento {
         this.disponible = disponible;
     }
 
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Boleto getBoleto() {
         return this.boleto;
     }
@@ -83,5 +92,7 @@ public class Asiento {
     public float getValor() {
         return this.valor;
     }
+
+  
 
 }
