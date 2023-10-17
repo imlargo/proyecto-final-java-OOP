@@ -692,6 +692,16 @@ public class App {
 
         separador();
 
+
+        //Upgrate de asiento
+        //
+
+
+
+
+
+        
+
         System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
         int confirmacion = inputI();
 
@@ -709,13 +719,14 @@ public class App {
 
         //Despues de hacer el check in se le da al usuario la opcion de agregar mas cosas
         
+        prompt("Agregar adicionales");
+ 
         //Alimentacion: menu de compas
         // Definir productos y precios
         //mostrar informacion de confirmacion
 
         
-        //Upgrate de asiento
-
+        
 
 
 
@@ -786,10 +797,8 @@ public class App {
 //SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
 
 
+
 /*
  * Canejar millas por mejorar tipo de sillas y descuento en la maleta y comida
- * alimenacion, con una clase abstracta y un menu q se le asigna una cantidad x de alimentos
- * 
- * Done
- * 
+ * alimenacion, con una clase abstracta y un menu q se le asigna una cantidad x de alimentos 
  */
