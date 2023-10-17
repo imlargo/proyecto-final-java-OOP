@@ -793,10 +793,7 @@ public class App {
 
 }
 
-
 //SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
-
-
 
 /*
  * Canejar millas por mejorar tipo de sillas y descuento en la maleta y comida
