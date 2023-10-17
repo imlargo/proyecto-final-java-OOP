@@ -6,7 +6,6 @@ import gestorAplicacion.Cuenta.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-
 public class App {
 
     public static GestionUsuario gestionUsuario = new GestionUsuario();
@@ -790,7 +789,6 @@ public class App {
         // scanner.close();
         return n;
     }
-
 }
 
 //SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
