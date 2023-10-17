@@ -12,7 +12,7 @@ public class GestionUsuario {
     public ArrayList<Maleta> inventarioMaletas = new ArrayList<>();
 
     public GestionUsuario() {
-        Usuario user = new Usuario("largo", "admin", "123", 0);
+        Usuario user = new Usuario("imlargod", "admin", "123", 0);
         user.setDinero(1000);
         user.setMillas(120);
         Usuarios.add(user);

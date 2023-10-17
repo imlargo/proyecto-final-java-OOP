@@ -603,6 +603,8 @@ public class App {
                     separadorGrande();
                     salto();
                     System.out.println(user.getInfo());
+                    salto();
+                    separadorGrande();
 
 
                     salto();
@@ -781,3 +783,11 @@ public class App {
 
 
 //SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
+
+
+/*
+ * Canejar millas por mejorar tipo de sillas y descuento en la maleta y comida
+ * alimenacion, con una clase abstracta y un menu q se le asigna una cantidad x de alimentos
+ * 
+ * 
+ */
