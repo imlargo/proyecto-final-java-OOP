@@ -40,12 +40,13 @@ public class Usuario {
 	}
 
 	public String getInfo() {
-		return "Usuario: " + this.nombre + "   ID-" + this.id +
+		return "Usuario: " + this.nombre + "   ID -" + this.id +
 				"\nBalance: " + this.dinero + "\nMillas: " + this.millas +
 				"\nVuelos comprados: " + this.historial.size();
 	}
 
-	public void reasignarAsiento() {
+	public void canjearMillas() {
+
 	}
 
 	public Boolean verificarContrasena(String contrasena) {

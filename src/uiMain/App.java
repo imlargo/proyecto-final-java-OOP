@@ -37,6 +37,7 @@ public class App {
                 salto();
 
                 switch (opcion) {
+
                     case 1:
 
                         // Iniciar sesion
@@ -64,8 +65,11 @@ public class App {
                         salto();
                         aviso("Sesión iniciada con éxito");
                         salto();
-                        break;
+                        titulo("Bienvenido " + user.getNombre() + ":)");
+                        salto();
 
+                        continuar();
+                        break;
                     case 2:
                         // Registrar
                         do {
@@ -95,7 +99,10 @@ public class App {
                         salto();
                         System.out.println("Usuario registrado con éxito");
                         salto();
+                        titulo("Bienvenido " + user.getNombre() + ":)");
+                        salto();
 
+                        continuar();
                         break;
 
                     default:
@@ -108,11 +115,8 @@ public class App {
                 /* Espacio para iniciar sesion cargando cuenta o creando y guardando */
             }
 
-            while (opcion != 5 && user != null) {
+            while (opcion != 6 && user != null) {
                 // System.out.println(user);
-
-                titulo("Bienvenido " + user.getNombre() + ":)");
-                salto();
                 separadorGrande();
                 salto();
                 identacion("Menú", 4);
@@ -121,7 +125,8 @@ public class App {
                 identacion("2. Reasignar vuelo");
                 identacion("3. Cancelar vuelo");
                 identacion("4. Ver cuenta");
-                identacion("5. Salir");
+                identacion("5. vacio");
+                identacion("6. Salir");
                 salto(2);
                 separadorGrande();
 
@@ -161,6 +166,15 @@ public class App {
                         break;
 
                     case 5:
+                        System.out.println(" - - - > Ha seleccionado la opción Check-in < - - -");
+                        salto();
+                        user = gestionUsuario.getUser();
+                        checkin(user);
+                        user = gestionUsuario.getUser();
+                        separadorGrande();
+                        break;
+
+                    case 6:
                         System.out.println("Saliendo del programa. ¡Adios!");
                         System.exit(0);
                         break;
@@ -606,7 +620,6 @@ public class App {
                     salto();
                     separadorGrande();
 
-
                     salto();
 
                     break;
@@ -647,7 +660,7 @@ public class App {
                     break;
 
                 case 6:
-                    //Volver al menu (Listo)
+                    // Volver al menu (Listo)
                     salto();
                     aviso("¡Volviendo al menu!");
                     salto();
@@ -691,15 +704,15 @@ public class App {
 
         separador();
 
+        System.out.println("Informacion de su asiento:");
+        Asiento asiento = boleto.getAsiento();
+        identacion(asiento.getInfo());
 
-        //Upgrate de asiento
+        separador();
+
+        // Upgrate de asiento
         //
-
-
-
-
-
-        
+        prompt("Desea cambiar o hacer un upgrate a su asiento?");
 
         System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
         int confirmacion = inputI();
@@ -716,18 +729,64 @@ public class App {
             return;
         }
 
-        //Despues de hacer el check in se le da al usuario la opcion de agregar mas cosas
-        
-        prompt("Agregar adicionales");
- 
-        //Alimentacion: menu de compas
+        // Despues de hacer el check in se le da al usuario la opcion de agregar mas
+        // cosas
+
+        prompt("Le gustaria agregar servicios adicionales?");
+
+        prompt("Agregar comida, 0 - 1");
+
+        int exit;
+
+        do {
+
+            if (asiento.getTipo().equals("Vip")) {
+
+                /*
+                 * Almuerzo
+                 * Vino
+                 * Tines
+                 * Tales
+                 * 
+                 */
+
+                prompt("Selecciona una opcion:");
+
+                prompt("Cantidad:");
+                prompt("Desea agregar mas o continuar? (1 mas - 0 salir)");
+                exit = inputI();
+
+            } else {
+
+                /*
+                 * Almuerzo
+                 * Vino
+                 * Tines
+                 * Tales
+                 * 
+                 */
+
+                prompt("Selecciona una opcion:");
+
+                prompt("Cantidad:");
+
+                prompt("Desea agregar mas o continuar? (1 mas - 0 salir)");
+                exit = inputI();
+            }
+
+        } while (exit != 0);
+
+        // Alimentacion: menu de compas
         // Definir productos y precios
-        //mostrar informacion de confirmacion
+        // mostrar informacion de confirmacion
 
-        
-        
-
-
+        System.out.println("Completado con exito, informacion detallada:");
+        identacion("Informacion del Vuelo");
+        identacion(boleto.getInfo(), 2);
+        identacion("Informacion del asiento");
+        identacion(asiento.getInfo(), 2);
+        identacion("Informacion adicional");
+        identacion("null", 2);
 
     }
 
@@ -789,11 +848,17 @@ public class App {
         // scanner.close();
         return n;
     }
+
+    private static void continuar() {
+        prompt("Presione enter para continuar");
+        String continuar = inputS();
+    }
 }
 
-//SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
+// SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
 
 /*
  * Canejar millas por mejorar tipo de sillas y descuento en la maleta y comida
- * alimenacion, con una clase abstracta y un menu q se le asigna una cantidad x de alimentos 
+ * alimenacion, con una clase abstracta y un menu q se le asigna una cantidad x
+ * de alimentos
  */
