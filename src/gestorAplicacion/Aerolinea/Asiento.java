@@ -5,6 +5,7 @@ import gestorAplicacion.Aerolinea.Pasajero;
 public class Asiento {
 
     private String tipo;
+    private Boolean vip;
     private Pasajero pasajero;
     private int n_silla;
     private boolean disponible = true;
@@ -22,12 +23,14 @@ public class Asiento {
         this.boleto = boleto;
         this.pasajero = boleto.getPasajero();
         this.disponible = false;
+        this.status = "Asignado";
     }
 
     public void desasignarBoleto() {
         this.boleto = null;
         this.pasajero = null;
         this.disponible = false;
+        this.status = "Disponible";
     }
 
     public String getInfo() {

@@ -60,6 +60,23 @@ public class Boleto implements Serializable {
         this.tipo = asiento.getTipo();
     }
 
+    public void upgradeAsiento(Asiento prevAsiento, Asiento newAsiento) {
+        this.asiento = newAsiento;
+        this.valorInicial = newAsiento.getValor();
+        this.valor = valorInicial;
+        this.tipo = newAsiento.getTipo();
+
+        int temp = 0;
+        for (Maleta maleta : equipaje) {
+            temp += maleta.calcularPrecio();
+        }
+        this.valorEquipaje = temp;
+        this.valor = this.valorInicial + temp;
+
+        prevAsiento.desasignarBoleto();
+        newAsiento.asignarBoleto(this);
+    }
+
     public void reasignarAsiento(Asiento asiento) {
         this.asiento = asiento;
         this.valorInicial = asiento.getValor() * (float) (asiento.getValor() * 0.1);
@@ -154,7 +171,6 @@ public class Boleto implements Serializable {
     public Asiento getAsiento() {
         return this.asiento;
     }
-
 
     public Pasajero getPasajero() {
         return this.pasajero;

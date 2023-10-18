@@ -739,6 +739,7 @@ public class App {
             identacion(asiento.getInfo());
 
             salto();
+
             // Hacer asiento vip o hacer cosas adicionales
             prompt("Desea pasarse a asiento Vip?");
             confirmacion = inputI();
@@ -759,6 +760,10 @@ public class App {
                 int indexAsiento = inputI();
                 // ... Cmabiar y reasignar todo
 
+
+                Asiento newAsiento = asientos.get(indexAsiento - 1);
+                boleto.upgradeAsiento(newAsiento);
+                //Maletas y equoaje
             }
 
         }
@@ -943,4 +948,5 @@ public class App {
  * Canejar millas por mejorar tipo de sillas y descuento en la maleta y comida
  * alimenacion, con una clase abstracta y un menu q se le asigna una cantidad x
  * de alimentos
- */
+*/
+
