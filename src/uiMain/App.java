@@ -598,12 +598,11 @@ public class App {
             // System.out.println("Menu");
             identacion("1. Ver informacion de la cuenta");
             identacion("2. Ver historial de vuelos");
-            identacion("3. Hacer check-in");
-            identacion("4. Canjear millas");
-            identacion("5. Cerrar sesión");
-            identacion("6. Volver al menú anterior");
+            identacion("3. Canjear millas");
+            identacion("4. Cerrar sesión");
+            identacion("5. Volver al menú anterior");
             salto();
-            prompt("> Seleccione una opción (1-6): ");
+            prompt("> Seleccione una opción (1-5): ");
             opcion = inputI();
             salto();
 
@@ -638,11 +637,6 @@ public class App {
                     break;
 
                 case 3:
-                    // hacer check-in
-
-                    break;
-
-                case 4:
                     // Canjear millas
                     System.out.println("Canjear millas");
                     System.out.println("En este momento ustede posee n millas que equivalen a:");
@@ -651,15 +645,15 @@ public class App {
 
                     break;
 
-                case 5:
+                case 4:
                     // Cerrar sesion (Listo)
                     aviso("Cerrando sesión");
                     salto();
                     user = gestionUsuario.cerrarSesion(user);
-                    opcion = 6;
+                    opcion = 5;
                     break;
 
-                case 6:
+                case 5:
                     // Volver al menu (Listo)
                     salto();
                     aviso("¡Volviendo al menu!");
@@ -671,7 +665,7 @@ public class App {
                     break;
             }
 
-        } while (opcion != 6);
+        } while (opcion != 5);
     }
 
     private static void checkin(Usuario user) {
