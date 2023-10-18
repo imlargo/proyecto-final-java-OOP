@@ -125,7 +125,7 @@ public class App {
                 identacion("2. Reasignar vuelo");
                 identacion("3. Cancelar vuelo");
                 identacion("4. Ver cuenta");
-                identacion("5. vacio");
+                identacion("5. Check in");
                 identacion("6. Salir");
                 salto(2);
                 separadorGrande();
@@ -693,23 +693,63 @@ public class App {
         // Obtener el boleto seleccionado por el usuario
         Boleto boleto = historial.get(indexVuelo);
 
-        System.out.println("Vuelo seleccionado, información detallada:");
-        System.out.println(boleto.getInfo());
-
         separador();
+        salto();
+
+        System.out.println("Vuelo seleccionado, información detallada:");
+        identacion(boleto.getInfo());
+
 
         System.out.println("Informacion de su asiento:");
         Asiento asiento = boleto.getAsiento();
         identacion(asiento.getInfo());
 
+        
+        salto();
         separador();
-
+        salto();
+        
+        continuar();
+        
         // Upgrate de asiento
         //
-        prompt("Desea cambiar o hacer un upgrate a su asiento?");
+        prompt("Desea cambiar o hacer un upgrate a su asiento? (1 si, 0 no)");
+        int confirmacion = inputI();
+
+        if (confirmacion == 1) {
+            //Mejorar asiento
+
+            System.out.println("Informacion de su asiento:");
+            identacion(asiento.getInfo());
+
+            //Hacer asiento vip o hacer cosas adicionales
+            prompt("Desea pasarse a asiento Vip?");
+            confirmacion = inputI();
+
+            if (confirmacion == 1) {
+                //Mostrar asientos disponibles y permitir seleccionar el nuevo asiento vip
+                
+                ArrayList<Asiento> asientos = (boleto.getVuelo()).getAsientos();
+
+                for (Asiento asientoTemp : asientos) {
+                    if (asientoTemp.getTipo().equals("Vip")) {
+                        identacion(asientoTemp.getInfo(), 2);   
+                    }
+                }
+
+                salto();
+                prompt("Por favor, seleccione el número del asiento deseado: ");
+                int indexAsiento = inputI();
+                //... Cmabiar y reasignar todo
+
+            }
+
+            
+        }
+
 
         System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
-        int confirmacion = inputI();
+        confirmacion = inputI();
 
         separador();
 
@@ -736,6 +776,7 @@ public class App {
 
             if (asiento.getTipo().equals("Vip")) {
 
+                //Cliente vip deberia tener mas beneficios
                 /*
                  * Almuerzo
                  * Vino
@@ -845,7 +886,9 @@ public class App {
 
     private static void continuar() {
         prompt("Presione enter para continuar");
-        String continuar = inputS();
+        System.out.print("  >_");
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
     }
 }
 
