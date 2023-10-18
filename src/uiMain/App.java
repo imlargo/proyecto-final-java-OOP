@@ -128,7 +128,7 @@ public class App {
                 identacion("5. Check in");
                 identacion("6. Salir");
                 salto(2);
-                separadorGrande();
+                separador();
 
                 prompt("Seleccione una opción (1-5): ");
                 opcion = inputI();
@@ -138,6 +138,8 @@ public class App {
                         salto();
                         System.out.println(" - - - > Ha seleccionado la opción Comprar vuelo < - - -");
                         salto();
+
+                        separadorGrande();
                         comprarVuelo(user);
                         separadorGrande();
                         break;
@@ -146,13 +148,16 @@ public class App {
                         salto();
                         System.out.println(" - - - > Ha seleccionado la opción Reasignar vuelo < - - -");
                         salto();
+
+                        separadorGrande();
                         reasignarVuelo(user);
                         separadorGrande();
                         break;
 
                     case 3:
                         System.out.println(" - - - > Ha seleccionado la opción Cancelar vuelo < - - -");
-                        System.out.println("");
+                        salto();
+                        separadorGrande();
                         cancelarVuelo(user);
                         separadorGrande();
                         break;
@@ -169,9 +174,11 @@ public class App {
                         System.out.println(" - - - > Ha seleccionado la opción Check-in < - - -");
                         salto();
                         user = gestionUsuario.getUser();
-                        checkin(user);
-                        user = gestionUsuario.getUser();
                         separadorGrande();
+                        checkin(user);
+                        separadorGrande();
+                        user = gestionUsuario.getUser();
+
                         break;
 
                     case 6:
@@ -257,7 +264,8 @@ public class App {
         separador();
         System.out.println("Previsualización del precio: " + boleto.getValor());
         separador();
-        prompt("¿Desea continuar?");
+
+        continuar();
         // Si sí, sigue, sino, selecciona otro asiento??
 
         separador();
@@ -312,6 +320,7 @@ public class App {
         identacion(boleto.getInfo());
 
         separador();
+
         prompt("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
         int confirmacion = inputI();
 
@@ -325,6 +334,12 @@ public class App {
                 salto();
                 System.out.println("Boleto comprado con éxito. Detalles:");
                 salto();
+
+                salto();
+                System.out.println("Informacion y detalles:");
+                identacion(boleto.getInfo());
+                continuar();
+                // Mostrar los detalles del vuelo
             } else {
                 salto();
                 System.out.println("Dinero insuficiente. Compra cancelada.");
@@ -620,11 +635,14 @@ public class App {
                     separadorGrande();
 
                     salto();
+                    continuar();
+                    salto();
 
                     break;
 
                 case 2:
                     // Ver historial de vuelos y visualizar informacion (Casi Listo)
+                    salto();
                     identacion("Información de los vuelos:");
 
                     // Iterar a través del historial de boletos
@@ -633,6 +651,10 @@ public class App {
                         // Mostrar información de cada boleto en la lista
                         identacion(i + ". " + boleto.getInfo(), 2);
                     }
+
+                    salto();
+                    continuar();
+                    salto();
 
                     break;
 
@@ -676,18 +698,18 @@ public class App {
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
 
+        salto();
         System.out.println("Información de los vuelos:");
 
         // Iterar a través del historial de boletos
         for (int i = 0; i < historial.size(); i++) {
             Boleto boleto = historial.get(i);
             // Mostrar información de cada boleto en la lista
-            System.out.println(i + " - " + boleto.getInfo());
+            identacion(i + ". " + boleto.getInfo());
         }
+        salto();
 
-        separador();
-
-        System.out.println("Por favor, seleccione el número del vuelo deseado: ");
+        prompt("Por favor, seleccione el número del vuelo deseado: ");
         int indexVuelo = inputI();
 
         // Obtener el boleto seleccionado por el usuario
@@ -696,57 +718,54 @@ public class App {
         separador();
         salto();
 
-        System.out.println("Vuelo seleccionado, información detallada:");
-        identacion(boleto.getInfo());
+        identacion("Vuelo seleccionado, información detallada:");
+        identacion(boleto.getInfo(), 2);
 
-
-        System.out.println("Informacion de su asiento:");
         Asiento asiento = boleto.getAsiento();
-        identacion(asiento.getInfo());
+        identacion("Informacion de su asiento:");
+        identacion(asiento.getInfo(), 2);
 
-        
         salto();
-        separador();
-        salto();
-        
         continuar();
-        
+        separador();
+
         // Upgrate de asiento
         //
         prompt("Desea cambiar o hacer un upgrate a su asiento? (1 si, 0 no)");
         int confirmacion = inputI();
 
         if (confirmacion == 1) {
-            //Mejorar asiento
+            // Mejorar asiento
+
+            salto();
 
             System.out.println("Informacion de su asiento:");
             identacion(asiento.getInfo());
 
-            //Hacer asiento vip o hacer cosas adicionales
+            salto();
+            // Hacer asiento vip o hacer cosas adicionales
             prompt("Desea pasarse a asiento Vip?");
             confirmacion = inputI();
 
             if (confirmacion == 1) {
-                //Mostrar asientos disponibles y permitir seleccionar el nuevo asiento vip
-                
+                // Mostrar asientos disponibles y permitir seleccionar el nuevo asiento vip
+
                 ArrayList<Asiento> asientos = (boleto.getVuelo()).getAsientos();
 
                 for (Asiento asientoTemp : asientos) {
                     if (asientoTemp.getTipo().equals("Vip")) {
-                        identacion(asientoTemp.getInfo(), 2);   
+                        identacion(asientoTemp.getInfo(), 2);
                     }
                 }
 
                 salto();
                 prompt("Por favor, seleccione el número del asiento deseado: ");
                 int indexAsiento = inputI();
-                //... Cmabiar y reasignar todo
+                // ... Cmabiar y reasignar todo
 
             }
 
-            
         }
-
 
         System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
         confirmacion = inputI();
@@ -768,15 +787,19 @@ public class App {
 
         prompt("Le gustaria agregar servicios adicionales?");
 
+        // Que servicios adicionales se podrian pensar?
+
         prompt("Agregar comida, 0 - 1");
 
         int exit;
 
+        int alimento;
+        int cantidad;
         do {
 
             if (asiento.getTipo().equals("Vip")) {
 
-                //Cliente vip deberia tener mas beneficios
+                // Cliente vip deberia tener mas beneficios
                 /*
                  * Almuerzo
                  * Vino
@@ -786,24 +809,30 @@ public class App {
                  */
 
                 prompt("Selecciona una opcion:");
+                alimento = inputI();
 
                 prompt("Cantidad:");
+                cantidad = inputI();
+
+                switch (alimento) {
+                    case 1:
+                        // Crea isntancia del alimento
+                        // Se la asigna al array de los alimentos en boleto
+                        // Le asigna el boleto a cada alimento y el nombre del usuario
+                        // El menu va asociado a un solo usuario, boleto y asiento q tiene alimentacion
+
+                        break;
+
+                    default:
+                        break;
+                }
+
                 prompt("Desea agregar mas o continuar? (1 mas - 0 salir)");
                 exit = inputI();
 
             } else {
 
-                /*
-                 * Almuerzo
-                 * Vino
-                 * Tines
-                 * Tales
-                 * 
-                 */
-
-                prompt("Selecciona una opcion:");
-
-                prompt("Cantidad:");
+                // LO mismo de arriba pero sin tnatos beneficios
 
                 prompt("Desea agregar mas o continuar? (1 mas - 0 salir)");
                 exit = inputI();
@@ -815,14 +844,25 @@ public class App {
         // Definir productos y precios
         // mostrar informacion de confirmacion
 
+        separadorGrande();
+        salto();
+        
         System.out.println("Completado con exito, informacion detallada:");
+        salto();
+
         identacion("Informacion del Vuelo");
         identacion(boleto.getInfo(), 2);
+        salto();
+
         identacion("Informacion del asiento");
         identacion(asiento.getInfo(), 2);
+        salto();
+
         identacion("Informacion adicional");
         identacion("null", 2);
+        salto();
 
+        continuar();
     }
 
     // Estetica
