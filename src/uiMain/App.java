@@ -660,11 +660,7 @@ public class App {
 
                 case 3:
                     // Canjear millas
-                    System.out.println("Canjear millas");
-                    System.out.println("En este momento ustede posee n millas que equivalen a:");
-                    System.out.println("Desea confirmar?");
-                    System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
-
+                    canjearMillas(user);
                     break;
 
                 case 4:
@@ -846,7 +842,7 @@ public class App {
 
         separadorGrande();
         salto();
-        
+
         System.out.println("Completado con exito, informacion detallada:");
         salto();
 
@@ -930,6 +926,15 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
     }
+
+    private static void canjearMillas(Usuario user) {
+
+        System.out.println("Canjear millas");
+        System.out.println("En este momento ustede posee n millas que equivalen a:");
+        System.out.println("Desea confirmar?");
+        System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
+    }
+
 }
 
 // SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
