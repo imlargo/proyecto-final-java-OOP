@@ -761,7 +761,7 @@ public class App {
                 // ... Cmabiar y reasignar todo
 
                 Asiento newAsiento = asientos.get(indexAsiento - 1);
-                boleto.upgradeAsiento(newAsiento);
+                boleto.upgradeAsiento(asiento, newAsiento);
                 // Maletas y equoaje
             }
 
@@ -898,6 +898,8 @@ public class App {
          * Comida en si, por ejemplo un cupon para un almuerzo
          */
 
+         /*Implementar clase abstracta o interfaz para comidas y como integrarlo con el usuario */
+
 
         System.out.println(" - - - > Ha seleccionado la opción Canjear millas < - - -");
         salto();
@@ -1013,7 +1015,7 @@ public class App {
         System.out.print("  > ");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        // scanner.close();
+        scanner.close();
         return n;
     }
 
