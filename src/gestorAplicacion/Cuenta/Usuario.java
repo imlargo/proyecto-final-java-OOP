@@ -61,6 +61,10 @@ public class Usuario {
 		}
 	}
 	
+	public void depositarDinero(int valor) {
+		this.dinero += valor;
+	}
+	
 	// ...get and set
 	public int getDinero() {
 		return this.dinero;

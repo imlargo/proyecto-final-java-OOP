@@ -14,7 +14,7 @@ public class App {
     public static void main(String[] args) {
 
         Usuario user = null;
-        int opcion = 0;
+        String opcion = "0";
 
         aviso("Bienvenido al programa");
         salto();
@@ -31,17 +31,19 @@ public class App {
                 // Desea iniciar sesion o registrarse:
                 identacion("1. Iniciar Sesión.");
                 identacion("2. Registrarse.");
-
-                opcion = inputI();
+                identacion("3. Salir.");
+                
+                opcion = inputS();
 
                 separadorGrande();
                 salto();
 
                 switch (opcion) {
 
-                    case 1:
+                    case "1":
 
                         // Iniciar sesion
+                    	int intentos = 0;
                         do {
                             identacion("Iniciar sesión", 4);
                             salto();
@@ -58,44 +60,48 @@ public class App {
                             user = gestionUsuario.iniciarSesion(mail, contrasena);
                             if (user == null) {
                                 salto();
-                                aviso("Usuario inválido, intente nuevamente");
+                                aviso("Usuario inválido o no existe, intente nuevamente");
                                 salto();
+                                intentos++;
                             }
-                        } while (user == null);
+                        } while (user == null && intentos < 3);
 
+                        if(intentos >= 3) {
+                        	break;
+                        }
+                        
                         salto();
                         aviso("Sesión iniciada con éxito");
                         salto();
-                        titulo("Bienvenido " + user.getNombre() + ":)");
+                        titulo("Bienvenido " + user.getNombre() + " :)");
                         salto();
 
                         continuar();
                         break;
-                    case 2:
+                    case "2":
                         // Registrar
-                        do {
+                    	salto();
+                        identacion("Registrarse", 4);
+                        salto();
+
+                        System.out.println("Nombre: ");
+                        String nombre = inputS();
+
+                        System.out.println("Mail: ");
+                        String mail = inputS();
+
+                        System.out.println("Contraseña: ");
+                        String contrasena = inputS();
+                        salto(2);
+                        separadorGrande();
+
+                        user = gestionUsuario.registrarUsuario(nombre, mail, contrasena);
+                        if (user == null) {
                             salto();
-                            identacion("Registrarse", 4);
+                            aviso("El correo ya se encuentra registrado");
                             salto();
-
-                            System.out.println("Nombre: ");
-                            String nombre = inputS();
-
-                            System.out.println("Mail: ");
-                            String mail = inputS();
-
-                            System.out.println("Contraseña: ");
-                            String contrasena = inputS();
-                            salto(2);
-                            separadorGrande();
-
-                            user = gestionUsuario.registrarUsuario(nombre, mail, contrasena);
-                            if (user == null) {
-                                salto();
-                                aviso("El correo ya se encuentra registrado, intente nuevamente");
-                                salto();
-                            }
-                        } while (user == null);
+                            break;
+                        }
 
                         salto();
                         System.out.println("Usuario registrado con éxito");
@@ -106,6 +112,11 @@ public class App {
                         continuar();
                         break;
 
+                    case "3":
+                    	System.out.println("Saliendo del programa. ¡Adios!");
+                    	separadorGrande();
+                        System.exit(0);
+                    
                     default:
                         user = null;
                         aviso("Opción incorrecta");
@@ -116,7 +127,7 @@ public class App {
                 /* Espacio para iniciar sesion cargando cuenta o creando y guardando */
             }
 
-            while (opcion != 6 && user != null) {
+            while (opcion != "6" && user != null) {
                 // System.out.println(user);
                 separadorGrande();
                 salto();
@@ -132,10 +143,10 @@ public class App {
                 separador();
 
                 prompt("Seleccione una opción (1-5): ");
-                opcion = inputI();
+                opcion = inputS();
 
                 switch (opcion) {
-                    case 1:
+                    case "1":
                         salto();
                         System.out.println(" - - - > Ha seleccionado la opción Comprar vuelo < - - -");
                         salto();
@@ -145,7 +156,7 @@ public class App {
                         separadorGrande();
                         break;
 
-                    case 2:
+                    case "2":
                         salto();
                         System.out.println(" - - - > Ha seleccionado la opción Reasignar vuelo < - - -");
                         salto();
@@ -155,7 +166,7 @@ public class App {
                         separadorGrande();
                         break;
 
-                    case 3:
+                    case "3":
                         System.out.println(" - - - > Ha seleccionado la opción Cancelar vuelo < - - -");
                         salto();
                         separadorGrande();
@@ -163,7 +174,7 @@ public class App {
                         separadorGrande();
                         break;
 
-                    case 4:
+                    case "4":
                         System.out.println(" - - - > Ha seleccionado la opción Ver cuenta < - - -");
                         salto();
                         gestionCuenta(user);
@@ -171,7 +182,7 @@ public class App {
                         separadorGrande();
                         break;
 
-                    case 5:
+                    case "5":
                         System.out.println(" - - - > Ha seleccionado la opción Check-in < - - -");
                         salto();
                         user = gestionUsuario.getUser();
@@ -182,10 +193,9 @@ public class App {
 
                         break;
 
-                    case 6:
+                    case "6":
                         System.out.println("Saliendo del programa. ¡Adios!");
                         System.exit(0);
-                        break;
 
                     default:
                         System.out.println("Opción no válida. Por favor, seleccione una opción válida (1-5).");
@@ -608,24 +618,25 @@ public class App {
          * Check in
          */
 
-        int opcion;
+        String opcion;
         do {
 
             // System.out.println("Menu");
             identacion("1. Ver informacion de la cuenta");
             identacion("2. Ver historial de vuelos");
-            identacion("3. Canjear millas");
-            identacion("4. Cerrar sesión");
-            identacion("5. Volver al menú anterior");
+            identacion("3. Depositar dinero");
+            identacion("4. Canjear millas");
+            identacion("5. Cerrar sesión");
+            identacion("6. Volver al menú anterior");
             salto();
             prompt("> Seleccione una opción (1-5): ");
-            opcion = inputI();
+            opcion = inputS();
             salto();
 
             // Imprimir las opciones
 
             switch (opcion) {
-                case 1:
+                case "1":
                     // Ver informacion general de la cuenta
                     System.out.println("Estado de la cuenta");
                     salto();
@@ -641,7 +652,7 @@ public class App {
 
                     break;
 
-                case 2:
+                case "2":
                     // Ver historial de vuelos y visualizar informacion (Casi Listo)
                     salto();
                     identacion("Información de los vuelos:");
@@ -659,20 +670,26 @@ public class App {
 
                     break;
 
-                case 3:
+                case "3":
+                	// Depositar dinero
+                	prompt("Ingrese el valor que desea deporistar: ");
+                	int valor = inputI();
+                	user.depositarDinero(valor);
+                
+                case "4":
                     // Canjear millas
                     canjearMillas(user);
                     break;
 
-                case 4:
+                case "5":
                     // Cerrar sesion (Listo)
                     aviso("Cerrando sesión");
                     salto();
                     user = gestionUsuario.cerrarSesion(user);
-                    opcion = 5;
+                    opcion = "6";
                     break;
 
-                case 5:
+                case "6":
                     // Volver al menu (Listo)
                     salto();
                     aviso("¡Volviendo al menu!");
@@ -684,7 +701,7 @@ public class App {
                     break;
             }
 
-        } while (opcion != 5);
+        } while (opcion != "6");
     }
 
     private static void checkin(Usuario user) {
@@ -1040,8 +1057,10 @@ public class App {
          * System.out.println(ANSI_YELLOW + text + ANSI_RESET);
          */
     }
-
+    
 }
+
+
 
 // SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
 
