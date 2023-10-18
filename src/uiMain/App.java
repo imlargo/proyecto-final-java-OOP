@@ -733,39 +733,29 @@ public class App {
 
         if (confirmacion == 1) {
             // Mejorar asiento
-
             salto();
-
             System.out.println("Informacion de su asiento:");
             identacion(asiento.getInfo());
-
             salto();
 
             // Hacer asiento vip o hacer cosas adicionales
-            prompt("Desea pasarse a asiento Vip?");
+            prompt("Desea pasarse a asiento Vip? (Se pueden usar cupones)");
             confirmacion = inputI();
 
             if (confirmacion == 1) {
                 // Mostrar asientos disponibles y permitir seleccionar el nuevo asiento vip
-
                 ArrayList<Asiento> asientos = (boleto.getVuelo()).getAsientos();
-
                 for (Asiento asientoTemp : asientos) {
                     if (asientoTemp.getTipo().equals("Vip")) {
                         identacion(asientoTemp.getInfo(), 2);
                     }
                 }
-
                 salto();
                 prompt("Por favor, seleccione el número del asiento deseado: ");
                 int indexAsiento = inputI();
                 // ... Cmabiar y reasignar todo
-
                 Asiento newAsiento = asientos.get(indexAsiento - 1);
-                boleto.upgradeAsiento(asiento, newAsiento);
-                // Maletas y equoaje
             }
-
         }
 
         System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
@@ -774,11 +764,9 @@ public class App {
         separador();
 
         if (confirmacion == 1) {
-            // Realizar la cancelación del boleto
             boleto.setStatus("Confirmado");
-
-            // Informar al usuario sobre la cancelación exitosa
             System.out.println("Realizado con éxito.");
+            boleto.upgradeAsiento(asiento, newAsiento);
         } else {
             return;
         }
@@ -809,8 +797,6 @@ public class App {
                  * 
                  * ....
                  */
-
-
 
                 prompt("Selecciona una opcion:");
                 alimento = inputI();
@@ -905,8 +891,10 @@ public class App {
          * Comida en si, por ejemplo un cupon para un almuerzo
          */
 
-         /*Implementar clase abstracta o interfaz para comidas y como integrarlo con el usuario */
-
+        /*
+         * Implementar clase abstracta o interfaz para comidas y como integrarlo con el
+         * usuario
+         */
 
         System.out.println(" - - - > Ha seleccionado la opción Canjear millas < - - -");
         salto();
@@ -966,7 +954,6 @@ public class App {
         System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
     }
 
-
     // Estetica
     private static void separador() {
         System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
@@ -1009,7 +996,6 @@ public class App {
     private static void prompt(String text) {
         System.out.println("> " + text);
     }
-
 
     private static String inputS() {
         System.out.print("  > ");
