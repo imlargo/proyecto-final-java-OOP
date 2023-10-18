@@ -926,12 +926,96 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
     }
+    public static String colorTexto(String text){
+        // Códigos ANSI para colores
+        String ANSI_RESET = "\u001B[0m";
+        String ANSI_RED = "\u001B[31m";
+        String ANSI_GREEN = "\u001B[32m";
+        String ANSI_YELLOW = "\u001B[33m";
+        String ANSI_WHITE = "\u001B[37m";
+    
+        // Mensajes con colores
+        return ANSI_GREEN + text + ANSI_RESET;
+        /*System.out.println(ANSI_GREEN + text+ ANSI_RESET);
+        System.out.println(ANSI_YELLOW + text + ANSI_RESET);*/
+    }
 
     private static void canjearMillas(Usuario user) {
 
-        System.out.println("Canjear millas");
-        System.out.println("En este momento ustede posee n millas que equivalen a:");
-        System.out.println("Desea confirmar?");
+        /*
+        Saludar al usuario
+        Le dices q tiene n millas
+        - Descuentos
+        - Mejoras de silla (upgrates)
+        - Comida, cupon para x comidas
+        */
+
+        /*Requerimientos (Backend).
+         * CLases para la comida (inferfaz de clase)
+         * Asignar los descuentos al usuario (arraylist)
+         * Cupones de cierto tipo, para cada cosa, descuentos, mejoras de sulla, comida,comida en si (derecho a un almuerzo)
+         * Todo eso se asigna tambien al boleto y a la silla y debe ir de la mano con la funcionalidad checkin
+         * Cada descuento puede ser una sublclasse de un descuento, quye al momento de ejecutar el metodo sobreescrito aplicar descuento, dependiendo del tiepo
+         * Se haga x o y procedimien.
+         */
+
+        System.out.println(" - - - > Ha seleccionado la opción Canjear millas < - - -");
+        salto();
+        separadorGrande();
+        salto();
+        identacion("Hola "+colorTexto(user.getNombre()),3);
+        salto();
+        identacion("En este momento usted posee "+user.getMillas() +" millas");
+        salto();
+        prompt("Escoja en lo que desea canjear sus millas");
+        salto();
+        int opcion;
+        do {
+
+            // System.out.println("Menu");
+            identacion("1. Mejora de silla");
+            identacion("2. Cupón para comida");
+            identacion("3. Descuento vuelo");
+            identacion("4. Descuento maleta");
+            identacion("5. Volver al menú anterior");
+            salto();
+            prompt("> Seleccione una opción (1-5): ");
+            opcion = inputI();
+            salto();
+
+            // Imprimir las opciones
+
+            switch (opcion) {
+                case 1:
+                    
+
+                    break;
+
+                case 2:
+                   
+
+                    break;
+
+                case 3:
+                    
+                    break;
+
+                case 4:
+                    
+                    break;
+
+                case 5:
+                    
+                    break;
+
+                default:
+                    System.out.println("Opción incorrecta");
+                    break;
+            }
+
+        } while (opcion != 5);
+        
+
         System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
     }
 
