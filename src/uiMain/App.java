@@ -805,9 +805,12 @@ public class App {
                  * Almuerzo
                  * Vino
                  * Tines
-                 * Tales
+                 * Tales.
                  * 
+                 * ....
                  */
+
+
 
                 prompt("Selecciona una opcion:");
                 alimento = inputI();
@@ -1006,6 +1009,7 @@ public class App {
     private static void prompt(String text) {
         System.out.println("> " + text);
     }
+
 
     private static String inputS() {
         System.out.print("  > ");
