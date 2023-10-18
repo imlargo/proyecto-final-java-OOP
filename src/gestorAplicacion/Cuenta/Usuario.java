@@ -15,6 +15,10 @@ public class Usuario {
 	private String mail;
 	private String contrasena;
 
+	//....
+	private ArrayList<Descuento> descuentos = new ArrayList<>();
+	
+	
 	public Usuario(String nombre, String mail, String contrasena, int id) {
 		this.nombre = nombre;
 		this.id = id;

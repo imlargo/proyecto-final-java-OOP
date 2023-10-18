@@ -925,23 +925,27 @@ public class App {
 
             switch (opcion) {
                 case 1:
-
+                    //Con este descuento se tiene derecho a una mejora TOTAL de silla instantanea
+                    //Se puede aplicar directamente aqui o al llamar el check in
                     break;
 
                 case 2:
-
+                    //Con este descuento se tiene derecho a un alimento en especifico de una lista de seleccionables
+                    //Se puede aplicar directamente aqui o al llamar el check in
                     break;
 
                 case 3:
-
+                    //Con este cupon se tiene derecho a un % de descuento al pagar un vuelo
+                    //Se puede aplicar directamente aqui (seleccionando un vuelo y recibiendo %) o al llamar el check in 
                     break;
 
                 case 4:
-
+                    //Con este cupon se tiene derecho a un % de descuento al del precio TOTAL de maletas en un vuelo
+                    //Se puede aplicar directamente aqui (seleccionando un vuelo y recibiendo %) o al llamar el check in 
                     break;
 
                 case 5:
-
+                System.out.println("Saliendo del programa");
                     break;
 
                 default:
