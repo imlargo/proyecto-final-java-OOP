@@ -755,6 +755,7 @@ public class App {
                     }
                 }
 
+                
                 salto();
                 prompt("Por favor, seleccione el número del asiento deseado: ");
                 int indexAsiento = inputI();
