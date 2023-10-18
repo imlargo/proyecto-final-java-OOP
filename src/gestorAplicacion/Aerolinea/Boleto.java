@@ -2,6 +2,7 @@ package gestorAplicacion.Aerolinea;
 
 import java.io.Serializable;
 import java.util.*;
+import gestorAplicacion.Alimentos.*;
 
 import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Cuenta.*;
@@ -27,6 +28,9 @@ public class Boleto implements Serializable {
     private float valorInicial;
     private float valorEquipaje;
     // precios...
+
+    // Some atributos...
+    private ArrayList<Comida> comidas = new ArrayList<>();
 
     private Vuelo vuelo;
 

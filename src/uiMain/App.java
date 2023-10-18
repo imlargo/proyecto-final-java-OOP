@@ -1,6 +1,7 @@
 package uiMain;
 
 import gestorAplicacion.Aerolinea.*;
+import gestorAplicacion.Alimentos.Comida;
 import gestorAplicacion.Cuenta.*;
 
 import java.util.Scanner;
@@ -816,6 +817,9 @@ public class App {
 
                 switch (alimento) {
                     case 1:
+                        for (int i = 0; i < cantidad; i++) {
+                            Comida comida = new Comida();
+                        }
                         // Crea isntancia del alimento
                         // Se la asigna al array de los alimentos en boleto
                         // Le asigna el boleto a cada alimento y el nombre del usuario
