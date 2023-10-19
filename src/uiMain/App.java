@@ -14,7 +14,7 @@ public class App {
     public static void main(String[] args) {
 
         Usuario user = null;
-        String opcion = "0";
+        int opcion = 0;
 
         aviso("Bienvenido al programa");
         salto();
@@ -33,14 +33,14 @@ public class App {
                 identacion("2. Registrarse.");
                 identacion("3. Salir.");
                 
-                opcion = inputS();
+                opcion = inputI();
 
                 separadorGrande();
                 salto();
 
                 switch (opcion) {
 
-                    case "1":
+                    case 1:
 
                         // Iniciar sesion
                     	int intentos = 0;
@@ -78,7 +78,7 @@ public class App {
 
                         continuar();
                         break;
-                    case "2":
+                    case 2:
                         // Registrar
                     	salto();
                         identacion("Registrarse", 4);
@@ -112,7 +112,7 @@ public class App {
                         continuar();
                         break;
 
-                    case "3":
+                    case 3:
                     	System.out.println("Saliendo del programa. ¡Adios!");
                     	separadorGrande();
                         System.exit(0);
@@ -127,7 +127,7 @@ public class App {
                 /* Espacio para iniciar sesion cargando cuenta o creando y guardando */
             }
 
-            while (opcion != "6" && user != null) {
+            while (opcion != 6 && user != null) {
                 // System.out.println(user);
                 separadorGrande();
                 salto();
@@ -143,10 +143,10 @@ public class App {
                 separador();
 
                 prompt("Seleccione una opción (1-5): ");
-                opcion = inputS();
+                opcion = inputI();
 
                 switch (opcion) {
-                    case "1":
+                    case 1:
                         salto();
                         System.out.println(" - - - > Ha seleccionado la opción Comprar vuelo < - - -");
                         salto();
@@ -156,7 +156,7 @@ public class App {
                         separadorGrande();
                         break;
 
-                    case "2":
+                    case 2:
                         salto();
                         System.out.println(" - - - > Ha seleccionado la opción Reasignar vuelo < - - -");
                         salto();
@@ -166,7 +166,7 @@ public class App {
                         separadorGrande();
                         break;
 
-                    case "3":
+                    case 3:
                         System.out.println(" - - - > Ha seleccionado la opción Cancelar vuelo < - - -");
                         salto();
                         separadorGrande();
@@ -174,7 +174,7 @@ public class App {
                         separadorGrande();
                         break;
 
-                    case "4":
+                    case 4:
                         System.out.println(" - - - > Ha seleccionado la opción Ver cuenta < - - -");
                         salto();
                         gestionCuenta(user);
@@ -182,7 +182,7 @@ public class App {
                         separadorGrande();
                         break;
 
-                    case "5":
+                    case 5:
                         System.out.println(" - - - > Ha seleccionado la opción Check-in < - - -");
                         salto();
                         user = gestionUsuario.getUser();
@@ -193,7 +193,7 @@ public class App {
 
                         break;
 
-                    case "6":
+                    case 6:
                         System.out.println("Saliendo del programa. ¡Adios!");
                         System.exit(0);
 
@@ -618,7 +618,7 @@ public class App {
          * Check in
          */
 
-        String opcion;
+        int opcion;
         do {
 
             // System.out.println("Menu");
@@ -629,14 +629,14 @@ public class App {
             identacion("5. Cerrar sesión");
             identacion("6. Volver al menú anterior");
             salto();
-            prompt("> Seleccione una opción (1-5): ");
-            opcion = inputS();
+            prompt("> Seleccione una opción (1-6): ");
+            opcion = inputI();
             salto();
 
             // Imprimir las opciones
 
             switch (opcion) {
-                case "1":
+                case 1:
                     // Ver informacion general de la cuenta
                     System.out.println("Estado de la cuenta");
                     salto();
@@ -652,7 +652,7 @@ public class App {
 
                     break;
 
-                case "2":
+                case 2:
                     // Ver historial de vuelos y visualizar informacion (Casi Listo)
                     salto();
                     identacion("Información de los vuelos:");
@@ -670,26 +670,27 @@ public class App {
 
                     break;
 
-                case "3":
+                case 3:
                 	// Depositar dinero
                 	prompt("Ingrese el valor que desea deporistar: ");
                 	int valor = inputI();
                 	user.depositarDinero(valor);
+                	break;
                 
-                case "4":
+                case 4:
                     // Canjear millas
                     canjearMillas(user);
                     break;
 
-                case "5":
+                case 5:
                     // Cerrar sesion (Listo)
                     aviso("Cerrando sesión");
                     salto();
                     user = gestionUsuario.cerrarSesion(user);
-                    opcion = "6";
+                    opcion = 6;
                     break;
 
-                case "6":
+                case 6:
                     // Volver al menu (Listo)
                     salto();
                     aviso("¡Volviendo al menu!");
@@ -701,7 +702,7 @@ public class App {
                     break;
             }
 
-        } while (opcion != "6");
+        } while(opcion != 6);
     }
 
     private static void checkin(Usuario user) {
@@ -1030,7 +1031,7 @@ public class App {
         System.out.print("  > ");
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
-        scanner.close();
+        // scanner.close();
         return n;
     }
 
