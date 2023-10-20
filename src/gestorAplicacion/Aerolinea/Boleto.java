@@ -17,6 +17,7 @@ public class Boleto implements Serializable {
     private String status = "Pendiente";
     private String origen;
     private String destino;
+    private boolean checkInRealizado = false;
 
     private float valor;
 
@@ -207,5 +208,12 @@ public class Boleto implements Serializable {
     public void setVuelo(Vuelo vuelo) {
         this.vuelo = vuelo;
     }
-
+    
+    public boolean getCheckInRealizado() {
+    	return this.checkInRealizado;
+    }
+    
+    public void setCheckInRealizado(boolean checkInRealizado) {
+    	this.checkInRealizado = checkInRealizado;
+    }
 }

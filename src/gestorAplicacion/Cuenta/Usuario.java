@@ -65,6 +65,10 @@ public class Usuario {
 		this.dinero += valor;
 	}
 	
+	public void realizarPago(int valor) {
+		this.dinero -= valor;
+	}
+	
 	// ...get and set
 	public int getDinero() {
 		return this.dinero;

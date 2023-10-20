@@ -736,58 +736,68 @@ public class App {
         identacion("Vuelo seleccionado, información detallada:");
         identacion(boleto.getInfo(), 2);
 
-        Asiento asiento = boleto.getAsiento();
-        identacion("Informacion de su asiento:");
-        identacion(asiento.getInfo(), 2);
-
         salto();
         continuar();
         separador();
-
-        // Upgrate de asiento
-        //
-        prompt("Desea cambiar o hacer un upgrate a su asiento? (1 si, 0 no)");
-        int confirmacion = inputI();
-
-        if (confirmacion == 1) {
-            // Mejorar asiento
+        
+        int opcion;
+        
+        do {
+        	
+        	System.out.println("Bienvenido al sistema de check-in del vuelo");
+            identacion("1. Realizar check-in");
+            identacion("2. Mejorar asiento");
+            identacion("3. Comprar servicios especiales");
+            identacion("4. Volver al menú anterior");
             salto();
-            System.out.println("Informacion de su asiento:");
-            identacion(asiento.getInfo());
+            prompt("> Seleccione una opción (1-4): ");
+            opcion = inputI();
             salto();
+        	
+            switch(opcion) {
+            	
+            case 1:
+            	System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
+                int confirmacion = inputI();
 
-            // Hacer asiento vip o hacer cosas adicionales
-            prompt("Desea pasarse a asiento Vip? (Se pueden usar cupones)");
-            confirmacion = inputI();
+                separador();
 
-            if (confirmacion == 1) {
-                // Mostrar asientos disponibles y permitir seleccionar el nuevo asiento vip
-                ArrayList<Asiento> asientos = (boleto.getVuelo()).getAsientos();
-                for (Asiento asientoTemp : asientos) {
-                    if (asientoTemp.getTipo().equals("Vip")) {
-                        identacion(asientoTemp.getInfo(), 2);
-                    }
+                if (confirmacion == 1) {
+                    boleto.setStatus("Confirmado");
+                    boleto.setCheckInRealizado(true);
+                    System.out.println("CheckIn Realizado con éxito.");
+                } else {
+                	System.out.println("Proceso cancelado.");
+                	
                 }
+                break;
+            
+            case 2:
+            	mejorarAsiento(boleto);
+            	break;
+            	
+            case 3:
+            	
+            	break;
+            	
+            case 4:
+            	// Volver al menu (Listo)
                 salto();
-                prompt("Por favor, seleccione el número del asiento deseado: ");
-                int indexAsiento = inputI();
-                // ... Cmabiar y reasignar todo
-                Asiento newAsiento = asientos.get(indexAsiento - 1);
+                aviso("¡Volviendo al menu!");
+                salto();
+                break;
+            	            
+            default:
+                System.out.println("Opción incorrecta");
+                break;
+            
             }
-        }
-
-        System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
-        confirmacion = inputI();
-
-        separador();
-
-        if (confirmacion == 1) {
-            boleto.setStatus("Confirmado");
-            System.out.println("Realizado con éxito.");
-            boleto.upgradeAsiento(asiento, newAsiento);
-        } else {
-            return;
-        }
+            
+        }while(opcion != 4 && !boleto.getCheckInRealizado());
+        
+        
+        
+       
 
         // Despues de hacer el check in se le da al usuario la opcion de agregar mas
         // cosas
@@ -804,10 +814,10 @@ public class App {
         int cantidad;
         do {
 
-            if (asiento.getTipo().equals("Vip")) {
+          if (true) {
 
                 // Cliente vip deberia tener mas beneficios
-                /*
+                /*asiento.getTipo().equals("Vip") va en el if
                  * Almuerzo
                  * Vino
                  * Tines
@@ -815,6 +825,7 @@ public class App {
                  * 
                  * ....
                  */
+        	
 
                 prompt("Selecciona una opcion:");
                 alimento = inputI();
@@ -866,7 +877,7 @@ public class App {
         salto();
 
         identacion("Informacion del asiento");
-        identacion(asiento.getInfo(), 2);
+     //   identacion(asiento.getInfo(), 2);
         salto();
 
         identacion("Informacion adicional");
@@ -874,6 +885,45 @@ public class App {
         salto();
 
         continuar();
+    }
+    
+    private static void mejorarAsiento(Boleto boleto) {
+    	Asiento asiento = boleto.getAsiento();
+        
+        if(asiento.getTipo() == "Economico") {
+        	prompt("Desea mejorar su asiento a VIP, esto tiene un costo de $25? (1 Si, 0 No)");
+        	int confirmacion = inputI();
+
+            if (confirmacion == 1) {
+                // Mejorar asiento
+                salto();
+                System.out.println("Informacion de su asiento:");
+                identacion(asiento.getInfo());
+                salto();
+                continuar();
+
+                // Hacer asiento vip 
+                ArrayList<Asiento> asientos = (boleto.getVuelo()).getAsientos();
+                for (Asiento asientoTemp : asientos) {
+                    if (asientoTemp.getTipo().equals("Vip")) {
+                        identacion(asientoTemp.getInfo(), 2);
+                    }
+                }
+                salto();
+                prompt("Por favor, seleccione el número del asiento deseado: ");
+                int indexAsiento = inputI();
+                // ... Cambiar y reasignar todo
+                Asiento newAsiento = asientos.get(indexAsiento - 1);
+                Usuario user = boleto.getUser();
+                if(user.getDinero() >= 25) {
+                	boleto.upgradeAsiento(asiento, newAsiento);
+                    boleto.getUser().realizarPago(25);
+                    System.out.println("Mejora de asiento realizado con exito");
+                }else {
+                	System.out.println("Dinero insuficiente, mejora cancelada");
+                }
+            }
+        }	
     }
 
     private static void canjearMillas(Usuario user) {
