@@ -18,6 +18,7 @@ public class Boleto implements Serializable {
     private String origen;
     private String destino;
     private boolean checkInRealizado = false;
+    private ArrayList<ServiciosEspeciales> serviciosContratados = new ArrayList<>();
 
     private float valor;
 
@@ -215,5 +216,13 @@ public class Boleto implements Serializable {
     
     public void setCheckInRealizado(boolean checkInRealizado) {
     	this.checkInRealizado = checkInRealizado;
+    }
+    
+    public ArrayList<ServiciosEspeciales> getServiciosContratados(){
+    	return this.serviciosContratados;
+    }
+    
+    public void setServiciosContrados(ArrayList<ServiciosEspeciales> serviciosContratados) {
+    	this.serviciosContratados = serviciosContratados;
     }
 }

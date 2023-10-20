@@ -777,7 +777,7 @@ public class App {
             	break;
             	
             case 3:
-            	
+            	comprarServiciosEspeciales(boleto);
             	break;
             	
             case 4:
@@ -891,7 +891,7 @@ public class App {
     	Asiento asiento = boleto.getAsiento();
         
         if(asiento.getTipo() == "Economico") {
-        	prompt("Desea mejorar su asiento a VIP, esto tiene un costo de $25? (1 Si, 0 No)");
+        	prompt("Desea mejorar su asiento a VIP?, esto tiene un costo de $25 (1 Si, 0 No)");
         	int confirmacion = inputI();
 
             if (confirmacion == 1) {
@@ -925,7 +925,139 @@ public class App {
             }
         }	
     }
-
+    
+    private static void comprarServiciosEspeciales(Boleto boleto) {
+    	
+    	ArrayList<ServiciosEspeciales> serviciosContratados = new ArrayList<>();
+    	int opcion;
+    	do {
+    		System.out.println("Tenemos los siguientes servicios disponibles");
+            identacion("1. Comida a la carta");
+            identacion("2. Viaje con mascota");
+            identacion("3. Acompañante para menor de edad");
+            identacion("4. Asistencia para pasajero con necesidades especiales");
+            identacion("5. Transporte terrestre");
+            identacion("6. Volver al menú anterior");
+            salto();
+            prompt("> Seleccione una opción (1-6): ");
+            opcion = inputI();
+            salto();
+            
+            switch(opcion) {
+            case 1:
+            	
+            	break;
+            
+            case 2:
+            	viajarConMascota(serviciosContratados, boleto);
+            	break;
+            	
+            case 3:
+            	contratarAcompañante(serviciosContratados, boleto);
+            	break;
+            	
+            case 4:
+            	prompt("Desea contartar un asistencia para pajero con necesidades especiales? (1. Si 2. No)");
+            	prompt("este servicio no tiene ningun costo");
+            	int respuesta = inputI();
+            	if(respuesta == 1) {
+            		serviciosContratados.add(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
+            		System.out.println("Compra realizada con exito");
+            	}
+            	break;
+            	
+            case 5:
+            	contratarTrasporteTerrestre(serviciosContratados, boleto);
+            	break;
+            	
+            case 6:
+            	// Volver al menu (Listo)
+                salto();
+                aviso("¡Volviendo al menu!");
+                salto();
+                break;
+            	            
+            default:
+                System.out.println("Opción incorrecta");
+                break;
+            }
+            
+            
+    	}while(opcion != 6);
+    }
+    
+    private static void viajarConMascota(ArrayList<ServiciosEspeciales> serviciosContratados, Boleto boleto) {
+    	prompt("Por favor ingrese el peso de la amascota");
+    	int peso = inputI();
+    	
+    	if(peso > 50) {
+    		aviso("El peso excede el máximo permitido de 50 kg");
+    	}else {
+    		prompt("Desea llevar la mascota en cabina? (1 Si, 0 No)");
+    		int opcion = inputI();
+    		if(opcion == 1) {
+    			if(peso <= 10) {
+    				if(boleto.getUser().getDinero() >= ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio()) {
+        				serviciosContratados.add(ServiciosEspeciales.MASCOTA_EN_CABINA);
+        				boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio());
+        				System.out.println("Compra realizada con exito");
+        			}else {
+        				System.out.println("Dinero insuficiente, compra cancelada");
+        			}
+    			}else {
+    				System.out.println("El peso de la mascota supera el maximo permitido para cabina, solo se puede llevar en bodega");
+    				if(boleto.getUser().getDinero() >= ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio()) {
+    					serviciosContratados.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+    					boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
+    					System.out.println("Compra realizada con exito");
+    				}else {
+    					System.out.println("Dinero insuficiente, compra cancelada");
+    				}
+    			}
+    		}else {
+    			if(boleto.getUser().getDinero() >= ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio()) {
+					serviciosContratados.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+					boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
+					System.out.println("Compra realizada con exito");
+				}else {
+					System.out.println("Dinero insuficiente, compra cancelada");
+				}
+    		}
+    	}
+    }
+    
+    private static void contratarAcompañante(ArrayList<ServiciosEspeciales> serviciosContratados, Boleto boleto) {
+    	prompt("desea contratar un acompañante para el pasajero menor de edad? (1. Si 2. No)");
+    	prompt("esto tiene un costo de $15");
+    	int opcion = inputI();
+    	
+    	if(opcion == 1) {
+    		if(boleto.getUser().getDinero() >= ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio()) {
+    			serviciosContratados.add(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
+				boleto.getUser().realizarPago(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio());
+				System.out.println("Compra realizada con exito");
+			}else {
+				System.out.println("Dinero insuficiente, compra cancelada");
+			} 		
+    	}  	
+    }
+    
+    private static void contratarTrasporteTerrestre(ArrayList<ServiciosEspeciales> serviciosContratados, Boleto boleto) {
+    	prompt("desea contratar el servicio de transporte terrestre? (1. Si 2. No)");
+    	prompt("esto tiene un costo de $70");
+    	int opcion = inputI();
+    	
+    	if(opcion == 1) {
+    		if(boleto.getUser().getDinero() >= ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio()) {
+    			serviciosContratados.add(ServiciosEspeciales.TRANSPORTE_TERRESTRE);
+				boleto.getUser().realizarPago(ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio());
+				System.out.println("Compra realizada con exito");
+			}else {
+				System.out.println("Dinero insuficiente, compra cancelada");
+			} 		
+    	} 
+    }
+    
     private static void canjearMillas(Usuario user) {
 
         /*
