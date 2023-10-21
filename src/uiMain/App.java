@@ -1097,7 +1097,7 @@ public class App {
 
         System.out.println(" - - - > Ha seleccionado la opción Canjear millas < - - -");
         separadorGrande();
-        identacion("Hola " + colorTexto(user.getNombre()), 3);
+        identacion("Hola " + colorTexto(user.getNombre(),"verde"), 3);
         salto();
         identacion("En este momento usted posee " + user.getMillas() + " millas");
         salto();
@@ -1229,21 +1229,34 @@ public class App {
         String s = scanner.nextLine();
     }
 
-    public static String colorTexto(String text) {
-        // , String color
+    public static String colorTexto(String text, String color) {
         // Códigos ANSI para colores
         String ANSI_RESET = "\u001B[0m";
         String ANSI_RED = "\u001B[31m";
         String ANSI_GREEN = "\u001B[32m";
         String ANSI_YELLOW = "\u001B[33m";
         String ANSI_WHITE = "\u001B[37m";
+        String ANSI_BLUE = "\u001B[34m";
 
-        // Mensajes con colores
-        return ANSI_GREEN + text + ANSI_RESET;
-        /*
-         * System.out.println(ANSI_GREEN + text+ ANSI_RESET);
-         * System.out.println(ANSI_YELLOW + text + ANSI_RESET);
-         */
+        switch (color.toLowerCase()) {
+            case "rojo":
+                return ANSI_RED + text + ANSI_RESET;
+            case "verde":
+                return ANSI_GREEN + text + ANSI_RESET;
+            case "amarillo":
+                return ANSI_YELLOW + text + ANSI_RESET;
+            case "blanco":
+                return ANSI_WHITE + text + ANSI_RESET;
+            case "azul":
+                return ANSI_BLUE + text + ANSI_RESET;
+            default:
+                return text;
+        }
+    }
+    public static String negrita(String text){
+        String ANSI_NEGRITA = "\u001B[1m";
+        String ANSI_RESET = "\u001B[0m";
+        return ANSI_NEGRITA + text + ANSI_RESET;
     }
 
 }
