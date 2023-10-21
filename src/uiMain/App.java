@@ -741,155 +741,71 @@ public class App {
         separador();
         
         int opcion;
-        
-        do {
-        	
-        	System.out.println("Bienvenido al sistema de check-in del vuelo");
-            identacion("1. Realizar check-in");
-            identacion("2. Mejorar asiento");
-            identacion("3. Comprar servicios especiales");
-            identacion("4. Volver al menú anterior");
-            salto();
-            prompt("> Seleccione una opción (1-4): ");
-            opcion = inputI();
-            salto();
-        	
-            switch(opcion) {
+        // verifica si ya se realizo el checkin para el vuelo
+        //en caso de que ya se realizo el check in no dejaria entrar a este menu
+        if(!boleto.getCheckInRealizado()) {
+        	do {
+            	//muestra el menu del check in
+            	System.out.println("Bienvenido al sistema de check-in del vuelo");
+                identacion("1. Realizar check-in");
+                identacion("2. Mejorar asiento");
+                identacion("3. Comprar servicios especiales");
+                identacion("4. Volver al menú anterior");
+                salto();
+                prompt("> Seleccione una opción (1-4): ");
+                opcion = inputI();
+                salto();
             	
-            case 1:
-            	System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
-                int confirmacion = inputI();
-
-                separador();
-
-                if (confirmacion == 1) {
-                    boleto.setStatus("Confirmado");
-                    boleto.setCheckInRealizado(true);
-                    System.out.println("CheckIn Realizado con éxito.");
-                } else {
-                	System.out.println("Proceso cancelado.");
+                switch(opcion) {
                 	
+                case 1:
+                	//realizar el check in
+                	System.out.println("Confirma el check-in? (Escriba 1 para Confirmar, 0 para Cancelar):");
+                    int confirmacion = inputI();
+
+                    separador();
+
+                    if (confirmacion == 1) {
+                        boleto.setStatus("Confirmado");
+                        boleto.setCheckInRealizado(true);
+                        System.out.println("CheckIn Realizado con éxito.");
+                    } else {
+                    	System.out.println("Proceso cancelado.");
+                    	
+                    }
+                    break;
+                
+                case 2:
+                	mejorarAsiento(boleto);
+                	break;
+                	
+                case 3:
+                	comprarServiciosEspeciales(boleto);
+                	break;
+                	
+                case 4:
+                	// Volver al menu (Listo)
+                    salto();
+                    aviso("¡Volviendo al menu!");
+                    salto();
+                    break;
+                	            
+                default:
+                    System.out.println("Opción incorrecta");
+                    break;
+                
                 }
-                break;
-            
-            case 2:
-            	mejorarAsiento(boleto);
-            	break;
-            	
-            case 3:
-            	comprarServiciosEspeciales(boleto);
-            	break;
-            	
-            case 4:
-            	// Volver al menu (Listo)
-                salto();
-                aviso("¡Volviendo al menu!");
-                salto();
-                break;
-            	            
-            default:
-                System.out.println("Opción incorrecta");
-                break;
-            
-            }
-            
-        }while(opcion != 4 && !boleto.getCheckInRealizado());
-        
-        
-        
-       
-
-        // Despues de hacer el check in se le da al usuario la opcion de agregar mas
-        // cosas
-
-        prompt("Le gustaria agregar servicios adicionales?");
-
-        // Que servicios adicionales se podrian pensar?
-
-        prompt("Agregar comida, 0 - 1");
-
-        int exit;
-
-        int alimento;
-        int cantidad;
-        do {
-
-          if (true) {
-
-                // Cliente vip deberia tener mas beneficios
-                /*asiento.getTipo().equals("Vip") va en el if
-                 * Almuerzo
-                 * Vino
-                 * Tines
-                 * Tales.
-                 * 
-                 * ....
-                 */
-        	
-
-                prompt("Selecciona una opcion:");
-                alimento = inputI();
-
-                prompt("Cantidad:");
-                cantidad = inputI();
-
-                switch (alimento) {
-                    case 1:
-                        for (int i = 0; i < cantidad; i++) {
-                            Comida comida = new Comida();
-                        }
-                        // Crea isntancia del alimento
-                        // Se la asigna al array de los alimentos en boleto
-                        // Le asigna el boleto a cada alimento y el nombre del usuario
-                        // El menu va asociado a un solo usuario, boleto y asiento q tiene alimentacion
-
-                        break;
-
-                    default:
-                        break;
-                }
-
-                prompt("Desea agregar mas o continuar? (1 mas - 0 salir)");
-                exit = inputI();
-
-            } else {
-
-                // LO mismo de arriba pero sin tnatos beneficios
-
-                prompt("Desea agregar mas o continuar? (1 mas - 0 salir)");
-                exit = inputI();
-            }
-
-        } while (exit != 0);
-
-        // Alimentacion: menu de compas
-        // Definir productos y precios
-        // mostrar informacion de confirmacion
-
-        separadorGrande();
-        salto();
-
-        System.out.println("Completado con exito, informacion detallada:");
-        salto();
-
-        identacion("Informacion del Vuelo");
-        identacion(boleto.getInfo(), 2);
-        salto();
-
-        identacion("Informacion del asiento");
-     //   identacion(asiento.getInfo(), 2);
-        salto();
-
-        identacion("Informacion adicional");
-        identacion("null", 2);
-        salto();
-
-        continuar();
+                
+            }while(opcion != 4 && !boleto.getCheckInRealizado());   
+        }else {
+        	System.out.println("Usted ya realizo el Check-in para este vuelo");
+        }
     }
     
     private static void mejorarAsiento(Boleto boleto) {
     	Asiento asiento = boleto.getAsiento();
-        
+        //se verifica que el asiento sea economico
+    	//si es vip ya no se puede mejorar
         if(asiento.getTipo() == "Economico") {
         	prompt("Desea mejorar su asiento a VIP?, esto tiene un costo de $25 (1 Si, 0 No)");
         	int confirmacion = inputI();
@@ -923,7 +839,9 @@ public class App {
                 	System.out.println("Dinero insuficiente, mejora cancelada");
                 }
             }
-        }	
+        }else {
+        	System.out.println("Su asiento ya es VIP");
+        }
     }
     
     private static void comprarServiciosEspeciales(Boleto boleto) {
@@ -937,23 +855,39 @@ public class App {
             identacion("3. Acompañante para menor de edad");
             identacion("4. Asistencia para pasajero con necesidades especiales");
             identacion("5. Transporte terrestre");
-            identacion("6. Volver al menú anterior");
+            identacion("6. Ver servicios contratados");
+            identacion("7. Volver al menú anterior");
             salto();
-            prompt("> Seleccione una opción (1-6): ");
+            prompt("> Seleccione una opción (1-7): ");
             opcion = inputI();
             salto();
             
             switch(opcion) {
             case 1:
-            	
+            	//anade el servicio a la lista del bloque
+            	serviciosContratados.addAll(comprarComidaCarta(boleto));
+            	//anade la lista de servicios al boleto
+            	boleto.anadirServiciosEspeciales(serviciosContratados);
+            	//limpia la lista de servicios para evitar duplicados al asignarse al boleto
+            	serviciosContratados.clear();
             	break;
             
             case 2:
-            	viajarConMascota(serviciosContratados, boleto);
+            	//anade el servicio a la lista del bloque
+            	serviciosContratados.addAll(viajarConMascota(boleto));
+            	//anade la lista de servicios al boleto
+            	boleto.anadirServiciosEspeciales(serviciosContratados);
+            	//limpia la lista de servicios para evitar duplicados al asignarse al boleto
+            	serviciosContratados.clear();
             	break;
             	
             case 3:
-            	contratarAcompañante(serviciosContratados, boleto);
+            	//anade el servicio a la lista del bloque
+            	serviciosContratados.addAll(contratarAcompañante(boleto));
+            	//anade la lista de servicios al boleto
+            	boleto.anadirServiciosEspeciales(serviciosContratados);
+            	//limpia la lista de servicios para evitar duplicados al asignarse al boleto
+            	serviciosContratados.clear();
             	break;
             	
             case 4:
@@ -961,16 +895,30 @@ public class App {
             	prompt("este servicio no tiene ningun costo");
             	int respuesta = inputI();
             	if(respuesta == 1) {
-            		serviciosContratados.add(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
+            		//anade el servicio a la lista del bloque
+            		serviciosContratados.add(ServiciosEspeciales.ASISTENCIA_NECESIDADES_ESPECIALES);
+            		//anade la lista de servicios al boleto
+            		boleto.anadirServiciosEspeciales(serviciosContratados);
             		System.out.println("Compra realizada con exito");
+            		//limpia la lista de servicios para evitar duplicados al asignarse al boleto
+            		serviciosContratados.clear();
             	}
             	break;
             	
             case 5:
-            	contratarTrasporteTerrestre(serviciosContratados, boleto);
+            	//anade el servicio a la lista del bloque
+            	serviciosContratados.addAll(contratarTrasporteTerrestre(boleto));
+            	//anade la lista de servicios al boleto
+            	boleto.anadirServiciosEspeciales(serviciosContratados);
+            	//limpia la lista de servicios para evitar duplicados al asignarse al boleto
+            	serviciosContratados.clear();
+            	break;
+            
+            case 6:
+            	verServiciosContratados(boleto);
             	break;
             	
-            case 6:
+            case 7:
             	// Volver al menu (Listo)
                 salto();
                 aviso("¡Volviendo al menu!");
@@ -983,79 +931,153 @@ public class App {
             }
             
             
-    	}while(opcion != 6);
+    	}while(opcion != 7);
     }
     
-    private static void viajarConMascota(ArrayList<ServiciosEspeciales> serviciosContratados, Boleto boleto) {
+    private static ArrayList<ServiciosEspeciales> comprarComidaCarta(Boleto boleto) {
+    	ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
+    	prompt("Desea comprar el servicio de comida a la acarta durante el vuelo? (1. Si 2. No)");
+    	prompt("esto tiene un costo de $40");
+    	int opcion = inputI();
+    	
+    	if(opcion == 1) {
+    		//verifica que tenga suficiente dinero en la cuenta
+    		if(boleto.getUser().getDinero() >= ServiciosEspeciales.COMIDA_A_LA_CARTA.getPrecio()) {
+    			if(confirmarTransaccion()) {
+    				//anade a el servicio a la lista
+    				servicios.add(ServiciosEspeciales.COMIDA_A_LA_CARTA);
+    				//realiza el pago del servicio
+    				boleto.getUser().realizarPago(ServiciosEspeciales.COMIDA_A_LA_CARTA.getPrecio());
+    			}
+			}else {
+				System.out.println("Dinero insuficiente, compra cancelada");
+			} 		
+    	}
+		return servicios; 
+    }
+    
+    private static ArrayList<ServiciosEspeciales> viajarConMascota(Boleto boleto) {
+    	ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
     	prompt("Por favor ingrese el peso de la amascota");
     	int peso = inputI();
-    	
+    	//verifica que el peso no exceda el maximo permitido para volar de 50kg
     	if(peso > 50) {
     		aviso("El peso excede el máximo permitido de 50 kg");
     	}else {
     		prompt("Desea llevar la mascota en cabina? (1 Si, 0 No)");
+    		prompt("esto tiene un costo de $40");
     		int opcion = inputI();
     		if(opcion == 1) {
+    			//verifica que el peso no exceda el peso maximo para volar en cabina de 10kg
     			if(peso <= 10) {
+    				//verifica que tenga suficiente dinero en la cuenta
     				if(boleto.getUser().getDinero() >= ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio()) {
-        				serviciosContratados.add(ServiciosEspeciales.MASCOTA_EN_CABINA);
-        				boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio());
-        				System.out.println("Compra realizada con exito");
+    					if(confirmarTransaccion()) {
+    						//anade a el servicio a la lista
+    						servicios.add(ServiciosEspeciales.MASCOTA_EN_CABINA);
+    						//realiza el pago del servicio
+            				boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio());
+    					}
         			}else {
         				System.out.println("Dinero insuficiente, compra cancelada");
         			}
     			}else {
     				System.out.println("El peso de la mascota supera el maximo permitido para cabina, solo se puede llevar en bodega");
+    				prompt("esto tiene un costo de $30");
+    				//verifica que tenga suficiente dinero en la cuenta
     				if(boleto.getUser().getDinero() >= ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio()) {
-    					serviciosContratados.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
-    					boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
-    					System.out.println("Compra realizada con exito");
+    					if(confirmarTransaccion()) {
+    						//anade a el servicio a la lista
+    						servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+    						//realiza el pago del servicio
+        					boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
+    					}
     				}else {
     					System.out.println("Dinero insuficiente, compra cancelada");
     				}
     			}
     		}else {
+    			//verifica que tenga suficiente dinero en la cuenta
     			if(boleto.getUser().getDinero() >= ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio()) {
-					serviciosContratados.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
-					boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
-					System.out.println("Compra realizada con exito");
+    				if(confirmarTransaccion()) {
+    					//anade a el servicio a la lista
+    					servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+    					//realiza el pago del servicio
+    					boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
+    				}
 				}else {
 					System.out.println("Dinero insuficiente, compra cancelada");
 				}
     		}
     	}
+		return servicios;
     }
     
-    private static void contratarAcompañante(ArrayList<ServiciosEspeciales> serviciosContratados, Boleto boleto) {
+    private static ArrayList<ServiciosEspeciales> contratarAcompañante(Boleto boleto) {
+    	ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
     	prompt("desea contratar un acompañante para el pasajero menor de edad? (1. Si 2. No)");
     	prompt("esto tiene un costo de $15");
     	int opcion = inputI();
     	
     	if(opcion == 1) {
+    		//verifica que tenga suficiente dinero en la cuenta
     		if(boleto.getUser().getDinero() >= ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio()) {
-    			serviciosContratados.add(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
-				boleto.getUser().realizarPago(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio());
-				System.out.println("Compra realizada con exito");
+    			if(confirmarTransaccion()) {
+    				//anade a el servicio a la lista
+    				servicios.add(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
+    				//realiza el pago del servicio
+    				boleto.getUser().realizarPago(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio());
+    			}
 			}else {
 				System.out.println("Dinero insuficiente, compra cancelada");
 			} 		
-    	}  	
+    	}
+    	return servicios;
     }
     
-    private static void contratarTrasporteTerrestre(ArrayList<ServiciosEspeciales> serviciosContratados, Boleto boleto) {
+    private static ArrayList<ServiciosEspeciales> contratarTrasporteTerrestre(Boleto boleto) {
+    	ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
     	prompt("desea contratar el servicio de transporte terrestre? (1. Si 2. No)");
     	prompt("esto tiene un costo de $70");
     	int opcion = inputI();
     	
     	if(opcion == 1) {
+    		//verifica que tenga suficiente dinero en la cuenta
     		if(boleto.getUser().getDinero() >= ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio()) {
-    			serviciosContratados.add(ServiciosEspeciales.TRANSPORTE_TERRESTRE);
-				boleto.getUser().realizarPago(ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio());
-				System.out.println("Compra realizada con exito");
+    			if(confirmarTransaccion()) {
+    				//anade a el servicio a la lista
+    				servicios.add(ServiciosEspeciales.TRANSPORTE_TERRESTRE);
+    				//realiza el pago del servicio
+    				boleto.getUser().realizarPago(ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio());
+    			}
 			}else {
 				System.out.println("Dinero insuficiente, compra cancelada");
 			} 		
-    	} 
+    	}
+    	return servicios;
+    }
+    
+    private static void verServiciosContratados(Boleto boleto) {
+    	if(boleto.getServiciosContratados().size() != 0) {
+    		System.out.println("Usted tiene los siguientes servicios contratados");
+    		for(ServiciosEspeciales servicio : boleto.getServiciosContratados()) {
+    			System.out.println("Servicio: " + servicio.getServicio() + " por un valor de: " + servicio.getPrecio());
+    		}
+    	}else {
+    		System.out.println("No tiene servicios contratados");
+    	}
+    }
+    
+    private static boolean confirmarTransaccion() {
+   
+        prompt("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
+        int confirmacion = inputI();
+        if(confirmacion == 1) {
+        	System.out.println("Compra realizada con exito");
+        	return true;
+        }
+        System.out.println("Compra cancelada");
+        return false;
     }
     
     private static void canjearMillas(Usuario user) {

@@ -89,6 +89,10 @@ public class Boleto implements Serializable {
         this.valor = valorInicial;
         this.tipo = asiento.getTipo();
     }
+    
+    public void anadirServiciosEspeciales(ArrayList<ServiciosEspeciales> serviciosContratados) {
+    	this.serviciosContratados.addAll(serviciosContratados);
+    }
 
     public void resetEquipaje() {
         this.equipaje = null;
@@ -222,7 +226,7 @@ public class Boleto implements Serializable {
     	return this.serviciosContratados;
     }
     
-    public void setServiciosContrados(ArrayList<ServiciosEspeciales> serviciosContratados) {
+    public void setServiciosContratados(ArrayList<ServiciosEspeciales> serviciosContratados) {
     	this.serviciosContratados = serviciosContratados;
     }
 }
