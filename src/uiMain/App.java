@@ -317,7 +317,7 @@ public class App {
         separadorGrande();
         prompt("¿Desea finalizar la compra? Los detalles son los siguientes:");
         salto();
-        
+
         identacion(boleto.getInfo());
         separadorGrande();
 
@@ -426,7 +426,7 @@ public class App {
         }
 
         separador();
-        
+
         // Solicitar al usuario que seleccione un vuelo y se selecciona.
         prompt("Por favor, seleccione el número del vuelo deseado: ");
         int indexVuelo = inputI();
@@ -461,7 +461,8 @@ public class App {
 
         // Se muestra una previsualizacion del precio
         separador();
-        System.out.println("Previsualización del precio: " + boletoSelec.getValor() + " ,se agregará un recargo extra del 10%");
+        System.out.println(
+                "Previsualización del precio: " + boletoSelec.getValor() + " ,se agregará un recargo extra del 10%");
         separador();
 
         // Preguntar al usuario si desea añadir equipaje.
@@ -509,13 +510,9 @@ public class App {
 
         // !!! Error !!! Error !!! Error !!!
 
-        
-    
-        
-
         // Mostrar los detalles de la compra y solicitar confirmación.
         separadorGrande();
-        
+
         prompt("¿Desea finalizar la compra? Los detalles son los siguientes:");
         salto();
         identacion(boletoSelec.getInfo());
@@ -525,7 +522,7 @@ public class App {
         int confirmacion = inputI();
 
         separador();
-        
+
         if (confirmacion == 1) {
             // Comprobar si el usuario tiene suficiente dinero y, si es así, realizar la
             // compra.
@@ -598,10 +595,10 @@ public class App {
 
         // Ver cuenta.
         separadorGrande();
-        
+
         prompt("¿Qué desea hacer?");
         salto();
-        
+
         int opcion;
         do {
 
@@ -613,7 +610,7 @@ public class App {
             identacion("5. Cerrar sesión");
             identacion("6. Volver al menú anterior");
             salto();
-        
+
             prompt("> Seleccione una opción (1-6): ");
             opcion = inputI();
             salto();
@@ -708,7 +705,6 @@ public class App {
         Boleto boleto = historial.get(indexVuelo);
 
         separador();
-        
 
         identacion("Vuelo seleccionado, información detallada:");
         identacion(boleto.getInfo(), 2);
@@ -1097,7 +1093,7 @@ public class App {
 
         System.out.println(" - - - > Ha seleccionado la opción Canjear millas < - - -");
         separadorGrande();
-        identacion("Hola " + colorTexto(user.getNombre(),"verde"), 3);
+        identacion("Hola " + colorTexto(user.getNombre(), "verde"), 3);
         salto();
         identacion("En este momento usted posee " + user.getMillas() + " millas");
         salto();
@@ -1231,32 +1227,33 @@ public class App {
 
     public static String colorTexto(String text, String color) {
         // Códigos ANSI para colores
-        String ANSI_RESET = "\u001B[0m";
-        String ANSI_RED = "\u001B[31m";
-        String ANSI_GREEN = "\u001B[32m";
-        String ANSI_YELLOW = "\u001B[33m";
-        String ANSI_WHITE = "\u001B[37m";
-        String ANSI_BLUE = "\u001B[34m";
+        String RESET = "\u001B[0m";
+        String RED = "\u001B[31m";
+        String GREEN = "\u001B[32m";
+        String YELLOW = "\u001B[33m";
+        String WHITE = "\u001B[37m";
+        String BLUE = "\u001B[34m";
 
         switch (color.toLowerCase()) {
             case "rojo":
-                return ANSI_RED + text + ANSI_RESET;
+                return RED + text + RESET;
             case "verde":
-                return ANSI_GREEN + text + ANSI_RESET;
+                return GREEN + text + RESET;
             case "amarillo":
-                return ANSI_YELLOW + text + ANSI_RESET;
+                return YELLOW + text + RESET;
             case "blanco":
-                return ANSI_WHITE + text + ANSI_RESET;
+                return WHITE + text + RESET;
             case "azul":
-                return ANSI_BLUE + text + ANSI_RESET;
+                return BLUE + text + RESET;
             default:
                 return text;
         }
     }
-    public static String negrita(String text){
-        String ANSI_NEGRITA = "\u001B[1m";
-        String ANSI_RESET = "\u001B[0m";
-        return ANSI_NEGRITA + text + ANSI_RESET;
+
+    public static String negrita(String text) {
+        String NEGRITA = "\u001B[1m";
+        String RESET = "\u001B[0m";
+        return NEGRITA + text + RESET;
     }
 
 }

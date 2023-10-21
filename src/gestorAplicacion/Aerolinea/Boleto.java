@@ -89,9 +89,9 @@ public class Boleto implements Serializable {
         this.valor = valorInicial;
         this.tipo = asiento.getTipo();
     }
-    
+
     public void anadirServiciosEspeciales(ArrayList<ServiciosEspeciales> serviciosContratados) {
-    	this.serviciosContratados.addAll(serviciosContratados);
+        this.serviciosContratados.addAll(serviciosContratados);
     }
 
     public void resetEquipaje() {
@@ -213,20 +213,20 @@ public class Boleto implements Serializable {
     public void setVuelo(Vuelo vuelo) {
         this.vuelo = vuelo;
     }
-    
+
     public boolean getCheckInRealizado() {
-    	return this.checkInRealizado;
+        return this.checkInRealizado;
     }
-    
+
     public void setCheckInRealizado(boolean checkInRealizado) {
-    	this.checkInRealizado = checkInRealizado;
+        this.checkInRealizado = checkInRealizado;
     }
-    
-    public ArrayList<ServiciosEspeciales> getServiciosContratados(){
-    	return this.serviciosContratados;
+
+    public ArrayList<ServiciosEspeciales> getServiciosContratados() {
+        return this.serviciosContratados;
     }
-    
+
     public void setServiciosContratados(ArrayList<ServiciosEspeciales> serviciosContratados) {
-    	this.serviciosContratados = serviciosContratados;
+        this.serviciosContratados = serviciosContratados;
     }
 }

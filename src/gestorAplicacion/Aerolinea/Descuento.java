@@ -11,8 +11,6 @@ package gestorAplicacion.Aerolinea;
     Comida en si, por ejemplo un cupon para un almuerzo
 */
 
-
-
 public class Descuento {
     private String info;
 }

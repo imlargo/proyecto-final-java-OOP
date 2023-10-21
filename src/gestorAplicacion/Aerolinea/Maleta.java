@@ -115,5 +115,4 @@ public class Maleta implements Serializable {
         this.estado = estado;
     }
 
-
 }

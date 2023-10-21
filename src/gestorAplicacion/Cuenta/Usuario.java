@@ -15,10 +15,9 @@ public class Usuario {
 	private String mail;
 	private String contrasena;
 
-	//....
+	// ....
 	private ArrayList<Descuento> descuentos = new ArrayList<>();
-	
-	
+
 	public Usuario(String nombre, String mail, String contrasena, int id) {
 		this.nombre = nombre;
 		this.id = id;
@@ -49,9 +48,6 @@ public class Usuario {
 				"\nVuelos comprados: " + this.historial.size();
 	}
 
-	public void canjearMillas() {
-
-	}
 
 	public Boolean verificarContrasena(String contrasena) {
 		if (this.contrasena.equals(contrasena)) {
@@ -60,15 +56,15 @@ public class Usuario {
 			return false;
 		}
 	}
-	
+
 	public void depositarDinero(int valor) {
 		this.dinero += valor;
 	}
-	
+
 	public void realizarPago(int valor) {
 		this.dinero -= valor;
 	}
-	
+
 	// ...get and set
 	public int getDinero() {
 		return this.dinero;
@@ -125,6 +121,5 @@ public class Usuario {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-
 
 }

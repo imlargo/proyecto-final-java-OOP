@@ -16,7 +16,8 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 	private final String ORIGEN;
 	private ArrayList<Maleta> equipajes = new ArrayList<>();
 
-	public Vuelo(String origen, String destino, String aerolinea, String id, String tiempoSalida, String tiempoLlegada) {
+	public Vuelo(String origen, String destino, String aerolinea, String id, String tiempoSalida,
+			String tiempoLlegada) {
 		this.AEROLINEA = aerolinea;
 		this.ID = id;
 		this.horarioSalida = tiempoSalida;
@@ -27,19 +28,19 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 
 	public static ArrayList<Vuelo> generarVuelos(int cantidad, String origen, String destino) {
 
-        ArrayList<Vuelo> vuelos = new ArrayList<>();
+		ArrayList<Vuelo> vuelos = new ArrayList<>();
 
-        for (int i = 0; i < cantidad; i++) {
-            // Generar vuelos y meterlos al array, devueve al array y puede mostrarse
-            // Generar aleatoriamente
-            String aerolinea = "Latam";
-            String id = Integer.toString(i);
-            String hSalida = "69:69";
-            String hLlegada = "";
-            vuelos.add(new Vuelo(origen, destino, aerolinea, id, hSalida, hLlegada));
-        }
-        return vuelos;
-    }
+		for (int i = 0; i < cantidad; i++) {
+			// Generar vuelos y meterlos al array, devueve al array y puede mostrarse
+			// Generar aleatoriamente
+			String aerolinea = "Latam";
+			String id = Integer.toString(i);
+			String hSalida = "69:69";
+			String hLlegada = "";
+			vuelos.add(new Vuelo(origen, destino, aerolinea, id, hSalida, hLlegada));
+		}
+		return vuelos;
+	}
 
 	public void generarAsientos(int economicos, int premium, float base) {
 		/*
@@ -48,9 +49,9 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		 */
 
 		for (int i = 1; i <= premium; i++) {
-			this.asientos.add(new Asiento("Vip", i, (float)(base*1.25)));
+			this.asientos.add(new Asiento("Vip", i, (float) (base * 1.25)));
 		}
-		for (int j = premium+1; j <= premium + economicos; j++) {
+		for (int j = premium + 1; j <= premium + economicos; j++) {
 			this.asientos.add(new Asiento("Economico", j, base));
 		}
 	}
@@ -67,8 +68,7 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		return info;
 	}
 
-
-	//...Metodos get y set...
+	// ...Metodos get y set...
 
 	public ArrayList<Asiento> getAsientos() {
 		return this.asientos;
@@ -82,11 +82,9 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		return this.AEROLINEA;
 	}
 
-
 	public String getID() {
 		return this.ID;
 	}
-
 
 	public String getHorarioSalida() {
 		return this.horarioSalida;
@@ -108,11 +106,9 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		return this.DESTINO;
 	}
 
-
 	public String getORIGEN() {
 		return this.ORIGEN;
 	}
-
 
 	public ArrayList<Maleta> getEquipajes() {
 		return this.equipajes;
@@ -121,6 +117,5 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 	public void setEquipajes(ArrayList<Maleta> equipajes) {
 		this.equipajes = equipajes;
 	}
-
 
 }

@@ -7,20 +7,20 @@ public enum ServiciosEspeciales {
 	ACOMPAÑANTE_PARA_MENOR("Acompañante para menor", 15),
 	ASISTENCIA_NECESIDADES_ESPECIALES("Asistencia para pasajero con necesidades especiales", 0),
 	TRANSPORTE_TERRESTRE("Transporte terrestre", 70);
-		
+
 	private String servicio;
 	private int precio;
-		
+
 	ServiciosEspeciales(String servicio, int precio) {
 		this.servicio = servicio;
 		this.precio = precio;
 	}
-		 
+
 	public String getServicio() {
 		return this.servicio;
 	}
-		
+
 	public int getPrecio() {
 		return this.precio;
-	}	
+	}
 }

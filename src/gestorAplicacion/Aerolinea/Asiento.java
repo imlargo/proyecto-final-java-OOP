@@ -39,7 +39,6 @@ public class Asiento {
 
     // ...Metodos get y set...
 
-
     public String getTipo() {
         return this.tipo;
     }
@@ -95,7 +94,5 @@ public class Asiento {
     public float getValor() {
         return this.valor;
     }
-
-  
 
 }
