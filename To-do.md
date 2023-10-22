@@ -9,7 +9,6 @@
 - Realizacion de test con cada funcionalidad y cada posiblilidad para detectar y corregir errores
 
 
-
 ### Errores detectados:
 
 - Error en el calculo de costo final en funcionalidad de reasignar vuelo (Sobre costo)
