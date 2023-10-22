@@ -12,4 +12,5 @@
 
 ### Errores detectados:
 
+- Error en el calculo de costo final en funcionalidad de reasignar vuelo (Sobre costo)
 - Error en funcionalidad reasignar, despues de ingresar los datos de maleta

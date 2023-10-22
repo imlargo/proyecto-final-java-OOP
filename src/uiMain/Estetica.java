@@ -13,7 +13,7 @@ public class Estetica {
         String GREEN = "\u001B[32m";
         String YELLOW = "\u001B[33m";
         String WHITE = "\u001B[37m";
-        String BLUE = "\u001B[34m";
+        String BLUE = "\u001B[36m"; // Cambiado a cyan
         String PURPLE = "\u001B[35m";
 
         switch (color.toLowerCase()) {
@@ -57,7 +57,7 @@ public class Estetica {
     }
 
     public static void aviso(String text) {
-        System.out.println(negrita(colorTexto(("> > > " + text + " < < <"), "morado")));
+        System.out.println(negrita(("> > > " + text + " < < <")));
     }
 
     public static void identacion(String text, int n) {
@@ -82,6 +82,10 @@ public class Estetica {
     }
     public static void promptOut(String text) {
         System.out.println(negrita(colorTexto(("> " + text), "morado")));
+    }
+    
+    public static void promptError(String text) {
+        System.out.println((colorTexto(("> " + text), "rojo")));
     }
 
 
