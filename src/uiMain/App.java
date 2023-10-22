@@ -7,6 +7,8 @@ import gestorAplicacion.Cuenta.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import static uiMain.Colores.*;
+
 public class App {
 
     public static GestionUsuario gestionUsuario = new GestionUsuario();
@@ -1155,7 +1157,8 @@ public class App {
         System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
     }
 
-    // Estetica
+    // - - - Funciones de estetica - - - 
+    
     private static void separador() {
         salto();
         System.out.println("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
@@ -1189,6 +1192,7 @@ public class App {
         }
         System.out.println(cadena + text);
     }
+    
 
     private static void identacion(String text) {
         System.out.println("    " + text);
@@ -1223,37 +1227,6 @@ public class App {
         System.out.print("  >_");
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
-    }
-
-    public static String colorTexto(String text, String color) {
-        // Códigos ANSI para colores
-        String RESET = "\u001B[0m";
-        String RED = "\u001B[31m";
-        String GREEN = "\u001B[32m";
-        String YELLOW = "\u001B[33m";
-        String WHITE = "\u001B[37m";
-        String BLUE = "\u001B[34m";
-
-        switch (color.toLowerCase()) {
-            case "rojo":
-                return RED + text + RESET;
-            case "verde":
-                return GREEN + text + RESET;
-            case "amarillo":
-                return YELLOW + text + RESET;
-            case "blanco":
-                return WHITE + text + RESET;
-            case "azul":
-                return BLUE + text + RESET;
-            default:
-                return text;
-        }
-    }
-
-    public static String negrita(String text) {
-        String NEGRITA = "\u001B[1m";
-        String RESET = "\u001B[0m";
-        return NEGRITA + text + RESET;
     }
 
 }

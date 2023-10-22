@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import gestorAplicacion.Aerolinea.*;
+import gestorAplicacion.Descuentos.Descuento;
 
 public class Usuario {
 
