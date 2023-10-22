@@ -6,7 +6,7 @@
 ### Por hacer.
 
 - Hacer manejo de errores
-- 
+- Hacer funcionalidad canjear millas
 
 - Serializacion (Harri se encarga)
 - Realizacion de test con cada funcionalidad y cada posiblilidad para detectar y corregir errores
