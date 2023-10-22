@@ -32,8 +32,7 @@ public class App {
 
                 // Desea iniciar sesion o registrarse:
                 identacion("1. Iniciar Sesión.");
-                identacion("2. Registrarse.");
-                identacion("3. Salir.");
+                identacion("2. Salir.");
 
                 salto();
                 promptIn("Opcion:");
@@ -81,42 +80,8 @@ public class App {
 
                         continuar();
                         break;
+                        
                     case 2:
-                        // Registrar
-                        salto();
-                        identacion(negrita(colorTexto("Registrarse", "morado")), 4);
-                        salto();
-
-                        printNegrita("Nombre:");
-                        String nombre = inputS();
-
-                        printNegrita("Mail:");
-                        String mail = inputS();
-
-                        printNegrita("Contraseña:");
-                        String contrasena = inputS();
-
-                        separadorGrande();
-
-                        user = gestionUsuario.registrarUsuario(nombre, mail, contrasena);
-
-                        if (user == null) {
-                            salto();
-                            aviso(colorTexto("El correo ya se encuentra registrado", "rojo"));
-                            salto();
-                            break;
-                        }
-
-                        salto();
-                        System.out.println(colorTexto("Usuario registrado con éxito", "verde"));
-                        salto();
-                        titulo(colorTexto(("Bienvenido " + user.getNombre() + ":)"), "morado"));
-                        salto();
-
-                        continuar();
-                        break;
-
-                    case 3:
                         System.out.println(colorTexto("Saliendo del programa. ¡Adios!", "morado"));
                         separadorGrande();
                         System.exit(0);

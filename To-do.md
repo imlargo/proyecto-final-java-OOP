@@ -5,6 +5,9 @@
 
 ### Por hacer.
 
+- Hacer manejo de errores
+- 
+
 - Serializacion (Harri se encarga)
 - Realizacion de test con cada funcionalidad y cada posiblilidad para detectar y corregir errores
 
