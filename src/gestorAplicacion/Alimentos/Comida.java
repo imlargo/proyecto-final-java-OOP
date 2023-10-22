@@ -12,6 +12,6 @@ package gestorAplicacion.Alimentos;
 
 public class Comida {
 
-  private Boleto boleto;
+  //private Boleto boleto;
 
 }
