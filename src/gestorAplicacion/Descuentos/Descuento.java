@@ -33,29 +33,9 @@ import gestorAplicacion.Aerolinea.*;
 
 public abstract class Descuento {
 
-    protected int millasNecesarias;
-    protected double porcentajeDescuento;
-
-
-    public int getMillasNecesarias() {
-        return this.millasNecesarias;
-    }
-
-    public void setMillasNecesarias(int millasNecesarias) {
-        this.millasNecesarias = millasNecesarias;
-    }
+    protected Boleto boleto;
+    protected Usuario user;
+    protected boolean aplicado;
     
-    public double getPorcentajeDescuento() {
-        return this.porcentajeDescuento;
-    }
-
-    public void setPorcentajeDescuento(double porcentajeDescuento) {
-        this.porcentajeDescuento = porcentajeDescuento;
-    }
-
-    public abstract int aplicarDescuento(Usuario usuario);
-
-
-    
-
+    public abstract int aplicarDescuento();
 }

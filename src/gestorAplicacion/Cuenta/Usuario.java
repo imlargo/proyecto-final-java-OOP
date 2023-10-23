@@ -67,6 +67,10 @@ public class Usuario {
 		this.dinero -= valor;
 	}
 
+	public void descontarMillas(int valor) {
+		this.millas -= valor;
+	}
+
 	// ...get and set
 	public int getDinero() {
 		return this.dinero;

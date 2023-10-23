@@ -8,12 +8,15 @@ import static uiMain.Estetica.*;
 
 import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Cuenta.*;
+import gestorAplicacion.Descuentos.Descuento;
 
 public class Boleto implements Serializable {
     private static final long serialVersionUID = 0;
 
     private static int cont = 0;
     private int id;
+    
+    // Atributos 
     private String tipo;
     private Usuario user;
     private String status = "Pendiente";
@@ -34,8 +37,7 @@ public class Boleto implements Serializable {
     // precios...
 
     // Some atributos...
-    private ArrayList<Comida> comidas = new ArrayList<>();
-
+    private ArrayList<Descuento> descuentos = new ArrayList<>();
     private Vuelo vuelo;
 
     public Boleto(String origen, String destino, Usuario propietario, Vuelo vuelo) {
