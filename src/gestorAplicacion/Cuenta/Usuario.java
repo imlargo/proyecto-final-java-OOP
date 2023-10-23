@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Descuentos.Descuento;
 
+
 public class Usuario {
 
 	private int dinero;

@@ -2,7 +2,6 @@
 
 - Cambios y mejoras en los prints (En todas las funcionalidades y en general)
 
-
 ### Por hacer.
 
 - Hacer manejo de errores

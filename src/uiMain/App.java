@@ -8,6 +8,7 @@ import gestorAplicacion.Cuenta.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
 public class App {
 
     public static GestionUsuario gestionUsuario = new GestionUsuario();
@@ -836,6 +837,7 @@ public class App {
     private static void comprarServiciosEspeciales(Boleto boleto, Usuario user) {
 
         ArrayList<ServiciosEspeciales> serviciosContratados = new ArrayList<>();
+
         int opcion;
         do {
             separador();
@@ -1161,23 +1163,6 @@ public class App {
         }
     }
 
-    /*
-     * private static boolean confirmarTransaccion() {
-     * 
-     * promptIn("Confirmar (Escriba 1 para Confirmar, 0 para Cancelar)");
-     * int confirmacion = inputI();
-     * 
-     * salto();
-     * if (confirmacion == 1) {
-     * System.out.println(colorTexto("Compra realizada con exito", "verde"));
-     * return true;
-     * }
-     * 
-     * System.out.println(colorTexto("Compra cancelada", "rojo"));
-     * return false;
-     * }
-     */
-
     private static void canjearMillas(Usuario user) {
 
         /*
@@ -1202,9 +1187,9 @@ public class App {
          */
 
         /*
-         * Por hacer:
+         * Por hacer: (No lo se, estoy esperando opiniones)
          * crear diferentes tipos de descuentos en una clase abstracta q implementen
-         * diferentes metodos "".aplicar()"
+         * diferentes metodos "".aplicar()"???
          * Descuentos en upgrade de asiento
          * Descuentos al momento de comprar
          * Descuento al momento de pagar comida
@@ -1216,10 +1201,54 @@ public class App {
          * usuario
          */
 
+         /*
+          * Estructura propuesta:
+          - El usuario selecciona un vuelo como en la opcion de check in
+          - Una vez q tiene un vuelo seleccionado (boleto asociado) se muestra las opciones con las q puede canjear millas
+          - El usuario elige lo q desea, se genera el cupon y con confirmaciones y etc se aplica el descuento respectivo
+          */
+
         System.out.println(" - - - > Ha seleccionado la opción Canjear millas < - - -");
         separadorGrande();
         identacion("Hola " + colorTexto(user.getNombre(), "verde"), 3);
         salto();
+
+
+        identacion("En este momento usted posee " + colorTexto("" + user.getMillas(), "morado") + " millas");
+        salto();
+
+        //Seleccion de vuelo
+        promptOut("Usted tiene la posibilidad de: ... bla bla bla pero antes necesita seleccionar un vuelo");
+
+        // Obtener el historial de boletos del usuario
+        ArrayList<Boleto> historial = user.getHistorial();
+
+        System.out.println(colorTexto("Información de los vuelos:", "morado"));
+        salto();
+
+        // Iterar a través del historial de boletos
+        for (int i = 0; i < historial.size(); i++) {
+            Boleto boleto = historial.get(i);
+            // Mostrar información de cada boleto en la lista
+            identacion(i + ". " + boleto.getInfo());
+        }
+        salto();
+
+        promptIn("Por favor, seleccione el número del vuelo deseado:");
+        int indexVuelo = inputI();
+
+        // Obtener el boleto seleccionado por el usuario
+        Boleto boleto = historial.get(indexVuelo);
+
+        separador();
+
+        System.out.println(colorTexto("Vuelo seleccionado, información detallada:", "morado"));
+        salto();
+        identacion(boleto.getInfo());
+
+        salto();
+        continuar();
+
         identacion("En este momento usted posee " + colorTexto("" + user.getMillas(), "morado") + " millas");
         salto();
         int opcion;
@@ -1234,9 +1263,10 @@ public class App {
             identacion("2. Cupón para comida");
             identacion("3. Descuento vuelo");
             identacion("4. Descuento maleta");
-            identacion("5. Volver al menú anterior");
+            identacion("5. > Aplicar descuentos");
+            identacion("6. Volver al menú anterior");
             salto();
-            promptIn("> Seleccione una opción (1-5): ");
+            promptIn("> Seleccione una opción (1-6): ");
             opcion = inputI();
             salto();
 
@@ -1246,6 +1276,7 @@ public class App {
                 case 1:
                     // Con este descuento se tiene derecho a una mejora TOTAL de silla instantanea
                     // Se puede aplicar directamente aqui o al llamar el check in
+
                     break;
 
                 case 2:
@@ -1268,6 +1299,11 @@ public class App {
                     break;
 
                 case 5:
+                    // Aplicar descuento
+                    break;
+
+
+                    case 6:
                     aviso(colorTexto("Volviendo al menu", "rojo"));
                     separador();
                     break;
@@ -1278,8 +1314,8 @@ public class App {
             }
 
             separador();
-            
-        } while (opcion != 5);
+
+        } while (opcion != 6);
 
         System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
     }

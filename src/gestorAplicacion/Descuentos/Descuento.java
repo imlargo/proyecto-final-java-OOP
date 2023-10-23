@@ -32,6 +32,7 @@ import gestorAplicacion.Aerolinea.*;
 
 
 public abstract class Descuento {
+
     protected int millasNecesarias;
     protected double porcentajeDescuento;
 
@@ -44,7 +45,6 @@ public abstract class Descuento {
         this.millasNecesarias = millasNecesarias;
     }
     
-
     public double getPorcentajeDescuento() {
         return this.porcentajeDescuento;
     }
@@ -54,5 +54,8 @@ public abstract class Descuento {
     }
 
     public abstract int aplicarDescuento(Usuario usuario);
+
+
+    
 
 }
