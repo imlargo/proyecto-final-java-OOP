@@ -80,7 +80,7 @@ public class App {
 
                         continuar();
                         break;
-                        
+
                     case 2:
                         System.out.println(colorTexto("Saliendo del programa. ¡Adios!", "morado"));
                         separadorGrande();
@@ -322,9 +322,7 @@ public class App {
                 salto();
             }
         } else {
-            salto();
-            System.out.println(colorTexto("Compra cancelada.", "rojo"));
-            salto();
+            promptError("Compra cancelada.");
         }
 
     }
@@ -602,8 +600,8 @@ public class App {
                     separadorGrande();
                     System.out.println(user.getInfo());
                     separadorGrande();
-
                     continuar();
+                    salto();
                     break;
 
                 case 2:
@@ -618,7 +616,7 @@ public class App {
                     for (int i = 0; i < historial.size(); i++) {
                         Boleto boleto = historial.get(i);
                         // Mostrar información de cada boleto en la lista
-                        identacion(i + ". " + boleto.getInfo(), 2);
+                        identacion(i + ". " + boleto.getInfo());
                     }
 
                     salto();
@@ -701,7 +699,7 @@ public class App {
 
         System.out.println(colorTexto("Vuelo seleccionado, información detallada:", "morado"));
         salto();
-        identacion(boleto.getInfo(), 2);
+        identacion(boleto.getInfo());
 
         salto();
         continuar();
@@ -887,8 +885,8 @@ public class App {
                     break;
 
                 case 4:
-                    promptIn("Desea contratar un asistencia para pasajero con necesidades especiales? (1. Si 2. No)");
-                    promptOut("Este servicio no tiene ningun costo");
+                    promptOut("Desea contratar un asistencia para pasajero con necesidades especiales?");
+                    promptOut("Este servicio no tiene ningun costo (1/0)");
                     int respuesta = inputI();
 
                     if (respuesta == 1) {
@@ -896,9 +894,12 @@ public class App {
                         serviciosContratados.add(ServiciosEspeciales.ASISTENCIA_NECESIDADES_ESPECIALES);
                         // anade la lista de servicios al boleto
                         boleto.anadirServiciosEspeciales(serviciosContratados);
-                        System.out.println(colorTexto("Compra realizada con exito", "verde"));
                         // limpia la lista de servicios para evitar duplicados al asignarse al boleto
                         serviciosContratados.clear();
+
+                        salto();
+                        System.out.println(colorTexto("Asignado con exito", "verde"));
+
                     }
                     break;
 
@@ -941,8 +942,7 @@ public class App {
                 servicios.add(ServiciosEspeciales.COMIDA_A_LA_CARTA);
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.COMIDA_A_LA_CARTA.getPrecio());
-                
-                separador();
+
                 printNegrita(colorTexto("Compra realizada con exito!", "verde"));
                 salto();
                 continuar();
@@ -975,7 +975,7 @@ public class App {
 
             aviso(colorTexto("El peso excede el máximo permitido de 50 kg, no es posible.", "rojo"));
             continuar();
-            
+
         } else {
 
             promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
@@ -992,7 +992,7 @@ public class App {
                             servicios.add(ServiciosEspeciales.MASCOTA_EN_CABINA);
                             // realiza el pago del servicio
                             boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio());
-                            
+
                             printNegrita(colorTexto("Compra realizada con exito!", "verde"));
                             salto();
                             continuar();
@@ -1016,7 +1016,7 @@ public class App {
                             servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
                             // realiza el pago del servicio
                             boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
-                            
+
                             printNegrita(colorTexto("Compra realizada con exito!", "verde"));
                             salto();
                             continuar();
@@ -1076,10 +1076,8 @@ public class App {
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio());
 
-                
-                
                 separador();
-                printNegrita(colorTexto("Asignado realizada con exito ✔", "verde"));
+                printNegrita(colorTexto("Asignado con exito ✔", "verde"));
                 salto();
                 continuar();
                 break;
@@ -1107,8 +1105,7 @@ public class App {
                 servicios.add(ServiciosEspeciales.TRANSPORTE_TERRESTRE);
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio());
-                
-                
+
                 separador();
                 printNegrita(colorTexto("Compra realizada con exito!", "verde"));
                 salto();
@@ -1135,14 +1132,14 @@ public class App {
             salto();
 
             for (ServiciosEspeciales servicio : boleto.getServiciosContratados()) {
-                identacion("Servicio: " + servicio.getServicio() + " por un valor de: $"
+                identacion(negrita("Servicio: ") + servicio.getServicio() + " por un valor de: $"
                         + colorTexto("" + servicio.getPrecio(), "verde"));
             }
 
             continuar();
         } else {
             System.out.println(colorTexto("No tiene servicios contratados", "morado"));
-            
+
             continuar();
         }
     }
@@ -1225,11 +1222,12 @@ public class App {
         salto();
         identacion("En este momento usted posee " + colorTexto("" + user.getMillas(), "morado") + " millas");
         salto();
-        promptOut("Escoja en lo que desea canjear sus millas");
-        salto();
         int opcion;
 
         do {
+
+            promptOut("Escoja en lo que desea canjear sus millas");
+            salto();
 
             // System.out.println("Menu");
             identacion("1. Mejora de silla");
@@ -1270,7 +1268,8 @@ public class App {
                     break;
 
                 case 5:
-                    aviso(colorTexto("Saliendo del programa", "rojo"));
+                    aviso(colorTexto("Volviendo al menu", "rojo"));
+                    separador();
                     break;
 
                 default:
@@ -1278,6 +1277,8 @@ public class App {
                     break;
             }
 
+            separador();
+            
         } while (opcion != 5);
 
         System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
