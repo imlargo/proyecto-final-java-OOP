@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.*;
 import gestorAplicacion.Alimentos.*;
 
+import static uiMain.Estetica.*;
+
 import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Cuenta.*;
 
@@ -108,8 +110,10 @@ public class Boleto implements Serializable {
     }
 
     public String getInfo() {
-        return "Precio: " + this.valor + ", Tipo: " + this.tipo + ", Numero de asiento: " + this.asiento.getN_silla()
-                + ", Estado: " + this.status;
+        return negrita("Precio: ") + colorTexto("$" + this.valor, "verde") +
+        negrita("Tipo: ") + this.tipo + 
+        negrita("Numero de asiento: ") + this.asiento.getN_silla() +
+        negrita("Estado: ") + this.status;
     }
 
     // ...Metodos get y set...
