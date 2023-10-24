@@ -48,7 +48,7 @@ public class Maleta implements Serializable, RestriccionesMaleta {
         float pesoFloat = (float) this.peso;
         float precio = dimensionesSuma * 0.2f * pesoFloat * 0.2f; // Fórmula corregida
         // Valor fijo de $5
-        return ((int) (precio * 0.5))  + 5; // Convertimos el resultado final a int
+        return ((int) (precio * 0.5)) + 5; // Convertimos el resultado final a int
     }
 
     public void asignarBoleto(Boleto boleto) {
