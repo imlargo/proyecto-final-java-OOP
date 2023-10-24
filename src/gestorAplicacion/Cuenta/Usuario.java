@@ -36,9 +36,15 @@ public class Usuario implements Serializable {
 		boleto.setStatus("Comprado");
 	}
 
+	public void comprarBoletoReasig(Boleto boleto) {
+		this.dinero -= boleto.getValor();
+		this.millas += boleto.getValor() * 0.1;
+		boleto.setStatus("Comprado");
+	}
+
 	public void reasignarBoleto(Boleto boleto) {
-		this.dinero += (boleto.getValor() * 0.9);
-		this.millas -= (boleto.getValor() * 0.1);
+		this.dinero += (int) (((float) boleto.getValor()) * 0.9f);
+		this.millas -= (int) ((float) boleto.getValor() * 0.1f);
 	}
 
 	public void cancelarBoleto(Boleto boleto) {

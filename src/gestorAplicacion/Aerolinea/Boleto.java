@@ -89,9 +89,21 @@ public class Boleto implements Serializable {
         for (Maleta maleta : equipaje) {
             temp += maleta.calcularPrecio();
         }
+
         this.valorEquipaje = temp;
         this.valor = this.valorInicial + temp;
 
+        prevAsiento.desasignarBoleto();
+        newAsiento.asignarBoleto(this);
+    }
+
+
+    public void upgradeAsientoMillas(Asiento prevAsiento, Asiento newAsiento) {
+        this.asiento = newAsiento;
+        this.valorInicial = prevAsiento.getValor();
+        this.valor = valorInicial;
+        this.tipo = newAsiento.getTipo();
+        this.valor = this.valorInicial + this.valorEquipaje;
         prevAsiento.desasignarBoleto();
         newAsiento.asignarBoleto(this);
     }
@@ -118,7 +130,7 @@ public class Boleto implements Serializable {
     }
 
     public void resetEquipaje() {
-        this.equipaje = null;
+        this.equipaje = new ArrayList<>();;
     }
 
     public String getOrigenDestino() {
@@ -131,13 +143,25 @@ public class Boleto implements Serializable {
     }
 
     public String getInfo() {
+        if (this.equipaje == null) {
         return negrita("Precio: ") + colorTexto("$" + this.valor, "verde") +
+                negrita(", Tipo: ") + this.tipo +
+                negrita(", Origen-Destino: ") + this.getOrigenDestino() +
+                negrita(", Numero de asiento: ") + this.asiento.getN_silla() +
+                negrita(", Estado: ") + this.status +
+                negrita(", N. Maletas: ") + 0 +
+                negrita(", Servicios contratados: ") + this.serviciosContratados.size();
+            
+        } else {
+            return negrita("Precio: ") + colorTexto("$" + this.valor, "verde") +
                 negrita(", Tipo: ") + this.tipo +
                 negrita(", Origen-Destino: ") + this.getOrigenDestino() +
                 negrita(", Numero de asiento: ") + this.asiento.getN_silla() +
                 negrita(", Estado: ") + this.status +
                 negrita(", N. Maletas: ") + this.equipaje.size() +
                 negrita(", Servicios contratados: ") + this.serviciosContratados.size();
+            
+        }
     }
 
     // ...Metodos get y set...

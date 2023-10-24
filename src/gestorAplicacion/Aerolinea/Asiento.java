@@ -32,7 +32,7 @@ public class Asiento implements Serializable {
     public void desasignarBoleto() {
         this.boleto = null;
         this.pasajero = null;
-        this.disponible = false;
+        this.disponible = true;
         this.status = "Disponible";
     }
 

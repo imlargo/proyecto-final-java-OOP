@@ -249,13 +249,14 @@ public class App {
         promptIn("¿Desea añadir equipaje? Tiene derecho a llevar maximo 5 maletas. (1 si / 0 no)");
         int opcion = inputI();
 
+        int cMaletas = 0;
+
         if (opcion == 1) {
             // Cada vez q se agrega un equipaje se va mostrando una previsualizacion del
             // precio..
             // Segun la cantidad de equipaje y los precios de cada uni
             int exit = 1;
             int c = 0;
-            int cMaletas = 0;
 
             do {
                 c += 1;
@@ -459,14 +460,14 @@ public class App {
             promptIn("¿Desea añadir equipaje? Tiene derecho a llevar maximo 5 maletas. (1 si / 0 no)");
             int opcion = inputI();
 
+            int cMaletas = 0;
+
             if (opcion == 1) {
                 // Cada vez q se agrega un equipaje se va mostrando una previsualizacion del
                 // precio..
                 // Segun la cantidad de equipaje y los precios de cada uni
                 int exit = 1;
                 int c = 0;
-                int cMaletas = 0;
-
                 do {
                     c += 1;
                     separador();
@@ -509,7 +510,7 @@ public class App {
             }
 
             salto();
-            printNegrita("Maletas agregadas con exito, cantidad de maletas: " + (boletoSelec.getEquipaje()).size());
+            printNegrita("Maletas agregadas con exito, cantidad de maletas: " + cMaletas);
             continuar();
             // !!! Error !!! Error !!! Error !!!
 
@@ -530,7 +531,7 @@ public class App {
                 // Comprobar si el usuario tiene suficiente dinero y, si es así, realizar la
                 // compra.
                 if (user.getDinero() - boletoSelec.getValor() >= 0) {
-                    user.comprarBoleto(boletoSelec);
+                    user.comprarBoletoReasig(boletoSelec);
                     boletoSelec.setStatus("Reasignado");
                     boletoSelec.asignarAsiento(asiento);
                     System.out.println(negrita(colorTexto("Boleto comprado con éxito. Detalles:", "morado")));
@@ -1503,7 +1504,7 @@ public class App {
 
             // ... Cambiar y reasignar todo
             Asiento newAsiento = asientos.get(indexAsiento - 1);
-            boleto.upgradeAsiento(asiento, newAsiento);
+            boleto.upgradeAsientoMillas(asiento, newAsiento);
             descuento.aplicarDescuento(boleto);
 
             separador();
