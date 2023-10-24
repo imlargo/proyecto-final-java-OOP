@@ -2,7 +2,6 @@ package uiMain;
 
 import static uiMain.Estetica.*;
 import gestorAplicacion.Aerolinea.*;
-import gestorAplicacion.Alimentos.Comida;
 import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Descuentos.*;
 import gestorAplicacion.Mascotas.*;

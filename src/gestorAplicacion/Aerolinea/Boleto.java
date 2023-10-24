@@ -2,7 +2,6 @@ package gestorAplicacion.Aerolinea;
 
 import java.io.Serializable;
 import java.util.*;
-import gestorAplicacion.Alimentos.*;
 
 import static uiMain.Estetica.*;
 
