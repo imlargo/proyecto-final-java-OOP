@@ -9,7 +9,7 @@ import static uiMain.Estetica.*;
 public class descuentoVuelo extends Descuento implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public static int costoMillas = 1;
+    public static int costoMillas = 20;
     public static int descuento = 20;
 
     public descuentoVuelo(Usuario user) {
@@ -19,10 +19,11 @@ public class descuentoVuelo extends Descuento implements Serializable {
 
     public void aplicarDescuento(Boleto boleto) {
         this.boleto = boleto;
-        double retorno = descuento / 100;
-        float valorVuelo = boleto.getValorEquipaje();
-        boleto.setValorInicial((float) (valorVuelo * (1 - retorno)));
+        float retorno = 0.2f;
+        float valorVuelo = (float) boleto.getValorInicial();
+        boleto.setValorInicial((float) (valorVuelo * 0.8));
         this.user.depositarDinero((int) (valorVuelo * (retorno)));
+        boleto.updateValorBase();
         this.usar();
     }
 
