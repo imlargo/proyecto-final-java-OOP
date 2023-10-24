@@ -261,16 +261,16 @@ public class App {
                 separador();
                 // Solicitar información sobre el equipaje a agregar.
 
-                promptIn("Peso de la maleta: ");
+                promptIn("Peso de la maleta (max 22Kg): ");
                 int peso = inputI();
 
-                promptIn("Ancho de la maleta: ");
+                promptIn("Ancho de la maleta (max 35cm): ");
                 int ancho = inputI();
 
-                promptIn("Largo de la maleta: ");
+                promptIn("Largo de la maleta (max 65cm): ");
                 int largo = inputI();
 
-                promptIn("Alto de la maleta: ");
+                promptIn("Alto de la maleta (max 75cm): ");
                 int alto = inputI();
 
                 // Agregar una maleta al boleto y mostrar el nuevo valor del boleto.
