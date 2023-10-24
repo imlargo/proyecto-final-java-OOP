@@ -94,7 +94,7 @@ public class Boleto implements Serializable {
 
     public void reasignarAsiento(Asiento asiento) {
         this.asiento = asiento;
-        this.valorInicial = asiento.getValor() * (float) (asiento.getValor() * 0.1);
+        this.valorInicial = asiento.getValor() * (float) (1.1);
         this.valor = valorInicial;
         this.tipo = asiento.getTipo();
     }

@@ -427,7 +427,7 @@ public class App {
 
         // Solicitar al usuario que seleccione un número de asiento.
         salto();
-        promptIn("Por favor, seleccione el número del asiento deseado: ");
+        promptIn("Por favor, seleccione el número del asiento deseado, a este valor se le agregara un sobrecargo del 10%: ");
         int indexAsiento = inputI();
         Asiento asiento = asientos.get(indexAsiento - 1);
         boletoSelec.reasignarAsiento(asiento);
@@ -772,6 +772,7 @@ public class App {
         } else {
             separador();
             System.out.println(colorTexto("Usted ya realizo el Check-in para este vuelo", "rojo"));
+            continuar();
         }
     }
 
@@ -867,7 +868,7 @@ public class App {
                     break;
 
                 case 3:
-                    contratarAcompañante(boleto, user);
+                    contratarAcompanante(boleto, user);
                     break;
 
                 case 4:
@@ -1072,15 +1073,15 @@ public class App {
 
     }
 
-    private static void contratarAcompañante(Boleto boleto, Usuario user) {
+    private static void contratarAcompanante(Boleto boleto, Usuario user) {
         promptOut("Desea contratar un acompañante para el pasajero menor de edad? Esto tiene un costo de $15");
 
-        switch (confirmarTransaccion(user, ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio())) {
+        switch (confirmarTransaccion(user, ServiciosEspeciales.ACOMPANANTE_PARA_MENOR.getPrecio())) {
             case 1:
                 // anade a el servicio a la lista del boleto
-                boleto.anadirServiciosEspeciales(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
+                boleto.anadirServiciosEspeciales(ServiciosEspeciales.ACOMPANANTE_PARA_MENOR);
                 // realiza el pago del servicio
-                boleto.getUser().realizarPago(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio());
+                boleto.getUser().realizarPago(ServiciosEspeciales.ACOMPANANTE_PARA_MENOR.getPrecio());
 
                 separador();
                 printNegrita(colorTexto("Asignado con exito ✔", "verde"));
