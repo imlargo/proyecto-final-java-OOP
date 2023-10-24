@@ -3,7 +3,6 @@ package gestorAplicacion.Descuentos;
 import java.io.Serializable;
 import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Aerolinea.*;
-
 import static uiMain.Estetica.*;
 
 public class descuentoMaleta extends Descuento implements Serializable {
