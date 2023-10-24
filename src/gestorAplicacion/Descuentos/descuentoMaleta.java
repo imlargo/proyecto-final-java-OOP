@@ -10,6 +10,7 @@ public class descuentoMaleta extends Descuento implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public static int costoMillas = 1;
+    public static int descuento = 20;
 
     public descuentoMaleta(Usuario user) {
         this.init(user);
@@ -18,7 +19,7 @@ public class descuentoMaleta extends Descuento implements Serializable {
 
     public void aplicarDescuento(Boleto boleto) {
         this.boleto = boleto;
-        double retorno = 0.2;
+        double retorno = descuento / 10;
         float valorEquipaje = boleto.getValorEquipaje();
         boleto.setValorEquipaje( (float)(valorEquipaje * (1 - retorno)) );
         this.user.depositarDinero( (int)(valorEquipaje * (retorno)) );

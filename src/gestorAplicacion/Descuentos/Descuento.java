@@ -50,6 +50,11 @@ public abstract class Descuento {
         return this.usado;
     }
 
+
+    public String getTipo() {
+        return this.tipo;
+    }
+
     public void guardar() {
         this.user.addDescuento(this);
     }

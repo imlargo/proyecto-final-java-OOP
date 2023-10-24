@@ -863,7 +863,7 @@ public class App {
                     break;
 
                 case 2:
-                	viajarConMascota(boleto, user);
+                    viajarConMascota(boleto, user);
                     break;
 
                 case 3:
@@ -879,8 +879,8 @@ public class App {
                         boleto.anadirServiciosEspeciales(ServiciosEspeciales.ASISTENCIA_NECESIDADES_ESPECIALES);
                         salto();
                         printNegrita(colorTexto("Compra realizada con exito!", "verde"));
-                    }else {
-                    	promptError("Cancelado");
+                    } else {
+                        promptError("Cancelado");
                     }
                     break;
 
@@ -913,7 +913,7 @@ public class App {
 
         switch (confirmarTransaccion(user, ServiciosEspeciales.COMIDA_A_LA_CARTA.getPrecio())) {
             case 1:
-            	// anade a el servicio a la lista del boleto
+                // anade a el servicio a la lista del boleto
                 boleto.anadirServiciosEspeciales(ServiciosEspeciales.COMIDA_A_LA_CARTA);
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.COMIDA_A_LA_CARTA.getPrecio());
@@ -937,7 +937,7 @@ public class App {
     }
 
     private static void viajarConMascota(Boleto boleto, Usuario user) {
-    	Animal mascota;
+        Animal mascota;
 
         // Se pregunta si la mascota es perro o gato
         promptIn("Desea viajar con un perro o un gato? ( 1. Perro 2. Gato)");
@@ -960,27 +960,29 @@ public class App {
         promptIn("Por favor ingrese el peso de la mascota");
         double peso = inputD();
         salto();
-        
-        if(op == 1) {
-        	// Se crea una instancia de perro
-        	mascota = new Perro(nombre, raza, tamano, peso);
-        }else{
-        	// Se crea una instancia de gato
-        	mascota = new Gato(nombre, raza, tamano, peso);
-        } 
-        
-     // Verifica que la mascota si pueda viajar en cabina o bodega y que no sobrepase el limite de 1 en cabina y 2 en bodega
-        if((mascota.puedeViajarEnCabina() && boleto.getMascotasEnCabina() < 1) || (mascota.puedeViajarEnBodega() && boleto.getMascotasEnBodega() < 2)) {
-        	// Pregunta si desea llevarla en cabina
-        	promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
-        	int opcion = inputI();
+
+        if (op == 1) {
+            // Se crea una instancia de perro
+            mascota = new Perro(nombre, raza, tamano, peso);
+        } else {
+            // Se crea una instancia de gato
+            mascota = new Gato(nombre, raza, tamano, peso);
+        }
+
+        // Verifica que la mascota si pueda viajar en cabina o bodega y que no sobrepase
+        // el limite de 1 en cabina y 2 en bodega
+        if ((mascota.puedeViajarEnCabina() && boleto.getMascotasEnCabina() < 1)
+                || (mascota.puedeViajarEnBodega() && boleto.getMascotasEnBodega() < 2)) {
+            // Pregunta si desea llevarla en cabina
+            promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
+            int opcion = inputI();
             salto();
-            
-         // Si desea viajar en cabina
+
+            // Si desea viajar en cabina
             if (opcion == 1) {
-            	// Verifica que si sea posible viajar en cabina
-            	if (mascota.puedeViajarEnCabina() && boleto.getMascotasEnCabina() < 1) {
-            		// Confirma la transaccion
+                // Verifica que si sea posible viajar en cabina
+                if (mascota.puedeViajarEnCabina() && boleto.getMascotasEnCabina() < 1) {
+                    // Confirma la transaccion
                     switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio())) {
                         case 1:
                             // anade a el servicio a la lista del boleto
@@ -1003,38 +1005,40 @@ public class App {
                         default:
                             break;
                     }
-            	}else if(boleto.getMascotasEnBodega() < 2) {
-            		// Si no puede viajar en cabina se indica que va a aviajar en bodega
-                    promptOut("La mascota no cumple las restricciones de la aerolinea para viajar en cabina o ya se cumplio el limite permitido.");
+                } else if (boleto.getMascotasEnBodega() < 2) {
+                    // Si no puede viajar en cabina se indica que va a aviajar en bodega
+                    promptOut(
+                            "La mascota no cumple las restricciones de la aerolinea para viajar en cabina o ya se cumplio el limite permitido.");
                     promptOut(" Puede viajar en bodega. Esto tiene un costo de $30");
                     // Se confirma la transaccion
                     switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
-                    case 1:
-                    	// anade a el servicio a la lista del boleto
-                        boleto.anadirServiciosEspeciales(ServiciosEspeciales.MASCOTA_EN_BODEGA);
-                        // Anade la mascota a la lista del boleto
-                        boleto.anadirServiciosMascota(mascota);
-                        break;
-                    case 0:
-                        promptError("Cancelado");
-                        break;
-                    case -1:
-                        promptError("Dinero insuficiente, compra cancelada");
-                        break;
-                    default:
-                        break;
+                        case 1:
+                            // anade a el servicio a la lista del boleto
+                            boleto.anadirServiciosEspeciales(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+                            // Anade la mascota a la lista del boleto
+                            boleto.anadirServiciosMascota(mascota);
+                            break;
+                        case 0:
+                            promptError("Cancelado");
+                            break;
+                        case -1:
+                            promptError("Dinero insuficiente, compra cancelada");
+                            break;
+                        default:
+                            break;
                     }
-            	}else {
-                	aviso(colorTexto("No es posible viajar con la mascota en bodega ya se alcanzo el limite permitido", "rojo"));
+                } else {
+                    aviso(colorTexto("No es posible viajar con la mascota en bodega ya se alcanzo el limite permitido",
+                            "rojo"));
                     continuar();
                 }
-            	// Si desea viajar en bodega
-            }else if(boleto.getMascotasEnBodega() < 2){
-            	promptOut("El viaje en bodega tiene un costo de $30");
-            	// Se confirma la transaccion
+                // Si desea viajar en bodega
+            } else if (boleto.getMascotasEnBodega() < 2) {
+                promptOut("El viaje en bodega tiene un costo de $30");
+                // Se confirma la transaccion
                 switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
                     case 1:
-                    	// anade a el servicio a la lista del boleto
+                        // anade a el servicio a la lista del boleto
                         boleto.anadirServiciosEspeciales(ServiciosEspeciales.MASCOTA_EN_BODEGA);
                         // Anade la mascota a la lista del boleto
                         boleto.anadirServiciosMascota(mascota);
@@ -1054,17 +1058,18 @@ public class App {
                     default:
                         break;
                 }
-            }else {
-            	aviso(colorTexto("No es posible viajar con la mascota en bodega ya se alcanzo el limite permitido", "rojo"));
-            	continuar();
+            } else {
+                aviso(colorTexto("No es posible viajar con la mascota en bodega ya se alcanzo el limite permitido",
+                        "rojo"));
+                continuar();
             }
             // Si no se puede viajar de ninguna forma
-        }else {
-        	aviso(colorTexto("La mascota no cumple con las restricciones de la aerolinea ", "rojo"));
-        	aviso(colorTexto("o ya se cumplio el limite permitido por lo tanto no puede viajar", "rojo"));
-        	continuar();
+        } else {
+            aviso(colorTexto("La mascota no cumple con las restricciones de la aerolinea ", "rojo"));
+            aviso(colorTexto("o ya se cumplio el limite permitido por lo tanto no puede viajar", "rojo"));
+            continuar();
         }
-   
+
     }
 
     private static void contratarAcompañante(Boleto boleto, Usuario user) {
@@ -1072,7 +1077,7 @@ public class App {
 
         switch (confirmarTransaccion(user, ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio())) {
             case 1:
-            	// anade a el servicio a la lista del boleto
+                // anade a el servicio a la lista del boleto
                 boleto.anadirServiciosEspeciales(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio());
@@ -1101,7 +1106,7 @@ public class App {
 
         switch (confirmarTransaccion(user, ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio())) {
             case 1:
-            	// anade a el servicio a la lista del boleto
+                // anade a el servicio a la lista del boleto
                 boleto.anadirServiciosEspeciales(ServiciosEspeciales.TRANSPORTE_TERRESTRE);
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio());
@@ -1133,8 +1138,9 @@ public class App {
             for (ServiciosEspeciales servicio : boleto.getServiciosContratados()) {
                 identacion(negrita("Servicio: ") + servicio.getServicio() + " por un valor de: $"
                         + colorTexto("" + servicio.getPrecio(), "verde"));
-                if(servicio == ServiciosEspeciales.MASCOTA_EN_CABINA || servicio == ServiciosEspeciales.MASCOTA_EN_BODEGA ) {
-                	System.out.println("	-" + boleto.getMascotas().get(index));
+                if (servicio == ServiciosEspeciales.MASCOTA_EN_CABINA
+                        || servicio == ServiciosEspeciales.MASCOTA_EN_BODEGA) {
+                    System.out.println("	-" + boleto.getMascotas().get(index));
                 }
             }
 
@@ -1250,7 +1256,8 @@ public class App {
                             int aplicar = inputI();
 
                             if (aplicar == 1) {
-                                millasAsiento(user);
+                                Descuento descuento = new upgradeAsiento(user);
+                                millasAsiento(user, descuento);
                             } else {
                                 Descuento descuento = new upgradeAsiento(user);
                                 descuento.guardar();
@@ -1366,14 +1373,9 @@ public class App {
                             int aplicar = inputI();
 
                             if (aplicar == 1) {
-                                Boleto boleto = selecBoleto(user);
+
                                 Descuento descuento = new descuentoMaleta(user);
-                                descuento.aplicarDescuento(boleto);
-
-                                // Listo, su costo de maleta ha sdo reducido en un % y se ha regresado el dinero
-                                promptOut(
-                                        "El coste de equipaje de su vuelo se ha reducido en un m% y se ha regresado el dinero");
-
+                                millasMaleta(user, descuento);
                             } else {
                                 Descuento descuento = new descuentoMaleta(user);
                                 descuento.guardar();
@@ -1397,6 +1399,28 @@ public class App {
 
                 case 5:
                     // Aplicar descuento
+
+                    ArrayList<Descuento> descuentos = verDescuentos(user, 1);
+
+                    separador();
+
+                    // Solicitar al usuario que seleccione un vuelo y se selecciona.
+                    promptIn("Por favor, seleccione el número del descuento deseado: ");
+                    int index = inputI();
+                    Descuento descuento = descuentos.get(index);
+
+                    switch (descuento.getTipo()) {
+                        case "Mejora de asiento":
+                            millasAsiento(user, descuento);
+                            break;
+
+                        case "Descuento de maleta":
+                            millasMaleta(user, descuento);
+                            break;
+
+                        default:
+                            break;
+                    }
 
                     break;
 
@@ -1427,7 +1451,7 @@ public class App {
         continuar();
     }
 
-    private static void millasAsiento(Usuario user) {
+    private static void millasAsiento(Usuario user, Descuento descuento) {
 
         Boleto boleto = selecBoleto(user);
         Asiento asiento = boleto.getAsiento();
@@ -1466,12 +1490,10 @@ public class App {
             identacion((boleto.getAsiento()).getInfo());
             continuar();
 
-            Descuento descuento = new upgradeAsiento(user);
             descuento.aplicarDescuento(boleto);
 
         } else {
 
-            Descuento descuento = new upgradeAsiento(user);
             descuento.guardar();
 
             separador();
@@ -1492,7 +1514,7 @@ public class App {
 
     }
 
-    private static void verDescuentos(Usuario user, int op) {
+    private static ArrayList<Descuento> verDescuentos(Usuario user, int op) {
 
         separador();
 
@@ -1519,6 +1541,8 @@ public class App {
                 identacion(i + ". " + descuento.getInfo());
             }
         }
+
+        return descuentos;
     }
 
     public static Boleto selecBoleto(Usuario user) {
@@ -1569,6 +1593,17 @@ public class App {
         } else {
             return 0;
         }
+    }
+
+    private static void millasMaleta(Usuario user, Descuento descuento) {
+        Boleto boleto = selecBoleto(user);
+        descuento.aplicarDescuento(boleto);
+
+        // Listo, su costo de maleta ha sdo reducido en un % y se ha regresado el dinero
+        promptOut("Se ha aplicado un " +
+                descuentoMaleta.descuento + "% de descuento en el costo de su equipaje, ahorro de: $"
+                + colorTexto(("" + ((int) (boleto.getValorEquipaje() * (descuentoMaleta.descuento)))), "verde"));
+
     }
 
 }
