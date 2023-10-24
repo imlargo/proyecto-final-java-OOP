@@ -15,71 +15,71 @@ public class App {
     public static GestionUsuario gestionUsuario = new GestionUsuario();
 
     public static void main(String[] args) {
-        Usuario user = null;  // Variable para almacenar instancia del usuario
-        int opcion = 0;  // Variable para almacenar la opción seleccionada
-    
+        Usuario user = null; // Variable para almacenar instancia del usuario
+        int opcion = 0; // Variable para almacenar la opción seleccionada
+
         // Función que imprime un separador visual en la consola
         separador();
-        
+
         // Función que muestra un mensaje de bienvenida en color morado y negrita
         aviso(negrita(colorTexto("Bienvenido al programa", "morado")));
-        
+
         // Otro separador
         separador();
-    
+
         // Bucle principal del programa
         do {
-            user = gestionUsuario.getUser();  // Obtiene la información del usuario
-    
+            user = gestionUsuario.getUser(); // Obtiene la información del usuario
+
             if (user == null) {
                 // Si no hay un usuario registrado
-    
+
                 // Muestra un mensaje de aviso
                 aviso("¡No hay sesión iniciada!");
-    
+
                 // Salto de línea
                 salto();
-    
+
                 // Ofrece dos opciones al usuario: Iniciar Sesión o Salir
                 identacion("1. Iniciar Sesión.");
                 identacion("2. Salir.");
-    
+
                 // Salto de línea
                 salto();
-    
+
                 // Pide al usuario que ingrese una opción
                 promptIn("Opcion:");
                 opcion = inputI();
-    
+
                 // Separador grande
                 separadorGrande();
-    
+
                 switch (opcion) {
-    
+
                     case 1:
                         // Iniciar Sesión
-    
-                        int intentos = 0;  // Variable para contar los intentos
-    
+
+                        int intentos = 0; // Variable para contar los intentos
+
                         do {
                             // Muestra un mensaje de inicio de sesión en color morado
                             identacion(negrita(colorTexto("Iniciar sesión", "morado")), 4);
                             salto();
-    
+
                             // Pide al usuario que ingrese su correo
                             printNegrita("Mail:");
                             String mail = inputS();
-    
+
                             // Pide al usuario que ingrese su contraseña
                             printNegrita("Contraseña:");
                             String contrasena = inputS();
-    
+
                             // Separador grande
                             separadorGrande();
-    
+
                             // Intenta iniciar sesión con el correo y la contraseña proporcionados
                             user = gestionUsuario.iniciarSesion(mail, contrasena);
-    
+
                             if (user == null) {
                                 // Si la sesión no se inicia con éxito, muestra un mensaje de error
                                 salto();
@@ -87,13 +87,13 @@ public class App {
                                 salto();
                                 intentos++;
                             }
-    
+
                         } while (user == null && intentos < 3);
-    
+
                         if (intentos >= 3) {
                             break;
                         }
-    
+
                         salto();
                         // Muestra un mensaje de sesión iniciada con éxito en color verde
                         aviso(colorTexto("Sesión iniciada con éxito", "verde"));
@@ -101,16 +101,16 @@ public class App {
                         // Muestra un mensaje de bienvenida personalizado
                         titulo(colorTexto(("Bienvenido " + user.getNombre() + " :)"), "morado"));
                         salto();
-    
+
                         continuar();
                         break;
-    
+
                     case 2:
                         // Si el usuario selecciona la opción 2, se sale del programa
                         System.out.println(colorTexto("Saliendo del programa. ¡Adios!", "morado"));
                         separadorGrande();
                         System.exit(0);
-    
+
                     default:
                         // Si la opción ingresada no es válida, se establece user a null
                         user = null;
@@ -118,13 +118,14 @@ public class App {
                         break;
                 }
             }
-    
+
             while (opcion != 6 && user != null) {
-                // Bucle que se ejecuta mientras la opción no sea 6 (Salir) y haya un usuario registrado
-    
+                // Bucle que se ejecuta mientras la opción no sea 6 (Salir) y haya un usuario
+                // registrado
+
                 // Separador grande
                 separadorGrande();
-    
+
                 // Muestra un menú en color morado
                 identacion(negrita(colorTexto("> - Menú - <", "morado")), 4);
                 salto();
@@ -135,85 +136,85 @@ public class App {
                 identacion("5. Check in");
                 identacion("6. Salir");
                 separador();
-    
+
                 // Pide al usuario que seleccione una opción
                 promptIn("Seleccione una opción (1-5): ");
                 opcion = inputI();
                 salto();
-    
+
                 switch (opcion) {
                     case 1:
                         // Opción 1: Comprar vuelo
-    
+
                         salto();
                         seleccionado("Comprar vuelo");
                         separadorGrande();
-    
+
                         // Llama a la función comprarVuelo pasando el objeto de usuario como argumento
                         comprarVuelo(user);
                         separadorGrande();
                         break;
-    
+
                     case 2:
                         // Opción 2: Reasignar vuelo
-    
+
                         salto();
                         seleccionado("Reasignar vuelo");
                         separadorGrande();
-    
+
                         // Llama a la función reasignarVuelo pasando el objeto de usuario como argumento
                         reasignarVuelo(user);
                         separadorGrande();
                         break;
-    
+
                     case 3:
                         // Opción 3: Cancelar vuelo
-    
+
                         seleccionado("Cancelar vuelo");
                         separadorGrande();
-    
+
                         // Llama a la función cancelarVuelo pasando el objeto de usuario como argumento
                         cancelarVuelo(user);
                         separadorGrande();
                         break;
-    
+
                     case 4:
                         // Opción 4: Gestion de cuenta
-    
+
                         seleccionado("Gestion de cuenta");
                         separadorGrande();
-    
+
                         // Llama a la función gestionCuenta pasando el objeto de usuario como argumento
                         gestionCuenta(user);
-    
+
                         // Actualiza el objeto de usuario después de la gestión de la cuenta
                         user = gestionUsuario.getUser();
                         separadorGrande();
                         break;
-    
+
                     case 5:
                         // Opción 5: Check in
-    
+
                         seleccionado("Check in");
-    
+
                         // Actualiza el objeto de usuario después de realizar el check-in
                         user = gestionUsuario.getUser();
                         separadorGrande();
-    
+
                         // Llama a la función checkin pasando el objeto de usuario como argumento
                         checkin(user);
                         separadorGrande();
                         user = gestionUsuario.getUser();
                         break;
-    
+
                     case 6:
                         // Opción 6: Salir
-    
+
                         separadorGrande();
                         // Muestra un mensaje de despedida en color morado y sale del programa
                         System.out.println(negrita(colorTexto("Saliendo del programa. ¡Adios!", "morado")));
                         System.exit(0);
-    
+
                     default:
                         // Si la opción no es válida, muestra un mensaje de error en rojo
                         System.out.println(
@@ -221,9 +222,8 @@ public class App {
                         break;
                 }
             }
-        } while (true);  // El programa se ejecuta en un bucle infinito
+        } while (true); // El programa se ejecuta en un bucle infinito
     }
-    
 
     private static void comprarVuelo(Usuario user) {
 
@@ -652,11 +652,11 @@ public class App {
                 // Informar al usuario sobre la cancelación exitosa
                 System.out.println(colorTexto("La cancelación se ha realizado con éxito.", "verde"));
             } else {
-            	 separador();
-                 System.out.println(colorTexto("Proceso cancelado", "rojo"));
-                 continuar();
+                separador();
+                System.out.println(colorTexto("Proceso cancelado", "rojo"));
+                continuar();
             }
-        }else {
+        } else {
             separador();
             System.out.println(colorTexto("Este vuelo ya fue cancelado", "rojo"));
             continuar();
@@ -664,19 +664,15 @@ public class App {
     }
 
     private static void gestionCuenta(Usuario user) {
-        ArrayList<Boleto> historial = user.getHistorial();
+        ArrayList<Boleto> historial = user.getHistorial(); // Obtiene el historial de boletos del usuario
 
         int opcion;
         do {
-
-            // Ver cuenta.
+            // Muestra un menú para gestionar la cuenta del usuario
             separadorGrande();
-
             promptOut("¿Qué desea hacer?");
             salto();
-
-            // System.out.println("Menu");
-            identacion("1. Ver informacion de la cuenta");
+            identacion("1. Ver información de la cuenta");
             identacion("2. Ver historial de vuelos");
             identacion("3. Depositar dinero");
             identacion("4. Canjear millas");
@@ -684,88 +680,94 @@ public class App {
             identacion("6. Volver al menú anterior");
             salto();
 
+            // Pide al usuario que seleccione una opción
             promptIn("> Seleccione una opción (1-6):");
             opcion = inputI();
             salto();
 
-            // Imprimir las opciones
-
             switch (opcion) {
                 case 1:
-                    // Ver informacion general de la cuenta
+                    // Opción 1: Ver información general de la cuenta
+
+                    // Muestra el estado de la cuenta en color morado
                     separador();
                     identacion(negrita(colorTexto("Estado de la cuenta", "morado")), 4);
                     separadorGrande();
-                    System.out.println(user.getInfo());
+                    System.out.println(user.getInfo()); // Imprime la información de la cuenta
                     separadorGrande();
                     continuar();
                     salto();
                     break;
 
                 case 2:
-                    separador();
-                    // Ver historial de vuelos y visualizar informacion (Casi Listo)
-                    salto();
+                    // Opción 2: Ver historial de vuelos
 
+                    separador();
+
+                    // Muestra información de los vuelos en color morado
+                    salto();
                     System.out.println(negrita(colorTexto("Información de los vuelos:", "morado")));
                     salto();
 
-                    // Iterar a través del historial de boletos
+                    // Itera a través del historial de boletos del usuario
                     for (int i = 0; i < historial.size(); i++) {
-                        Boleto boleto = historial.get(i);
-                        // Mostrar información de cada boleto en la lista
+                        Boleto boleto = historial.get(i); // Obtiene un boleto del historial
+                        // Muestra información de cada boleto en la lista
                         identacion(i + ". " + boleto.getInfo());
                     }
 
                     salto();
                     continuar();
                     salto();
-
                     break;
 
                 case 3:
-                    // Depositar dinero
+                    // Opción 3: Depositar dinero
+
+                    // Pide al usuario que ingrese la cantidad de dinero que desea depositar
                     promptOut("Ingrese el valor que desea depositar: ");
                     int valor = inputI();
-                    user.depositarDinero(valor);
+                    user.depositarDinero(valor); // Llama a la función para depositar dinero en la cuenta
 
                     salto();
-                    System.out.println(colorTexto("Transaccion realizada con exito", "verde"));
-
+                    System.out.println(colorTexto("Transacción realizada con éxito", "verde")); // Muestra un mensaje de
+                                                                                                // éxito
                     separador();
                     break;
 
                 case 4:
-                    // Canjear millas
+                    // Opción 4: Canjear millas
+
+                    // Llama a la función canjearMillas pasando el objeto de usuario como argumento
                     canjearMillas(user);
 
                     salto();
                     break;
 
                 case 5:
-                    // Cerrar sesion (Listo)
-                    aviso(colorTexto("Cerrando sesión", "rojo"));
+                    // Opción 5: Cerrar sesión
+
+                    aviso(colorTexto("Cerrando sesión", "rojo")); // Muestra un mensaje de cierre de sesión en rojo
                     salto();
-                    user = gestionUsuario.cerrarSesion(user);
-                    opcion = 6;
+                    user = gestionUsuario.cerrarSesion(user); // Llama a la función para cerrar la sesión del usuario
+                    opcion = 6; // Establece la opción en 6 para volver al menú anterior
                     salto();
                     break;
 
                 case 6:
-                    // Volver al menu (Listo)
+                    // Opción 6: Volver al menú
+
                     salto();
-                    aviso(colorTexto("¡Volviendo al menu!", "verde"));
+                    aviso(colorTexto("¡Volviendo al menú!", "verde")); // Muestra un mensaje de regreso al menú en verde
                     salto();
                     break;
 
                 default:
-                    aviso(colorTexto("Opción incorrecta", "rojo"));
+                    aviso(colorTexto("Opción incorrecta", "rojo")); // Muestra un mensaje de opción incorrecta en rojo
                     salto();
-
                     break;
             }
-
-        } while (opcion != 6);
+        } while (opcion != 6); // Continúa el bucle hasta que la opción seleccionada sea 6
     }
 
     private static void checkin(Usuario user) {
@@ -1680,4 +1682,3 @@ public class App {
     }
 
 }
-
