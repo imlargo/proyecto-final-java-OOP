@@ -925,6 +925,7 @@ public class App {
                 default:
 
                     aviso(colorTexto("Opción incorrecta", "rojo"));
+                    continuar();
                     break;
             }
 
@@ -948,10 +949,12 @@ public class App {
 
             case -1:
                 promptError("Dinero insuficiente, compra cancelada");
+                continuar();
                 break;
 
             case 0:
                 promptError("Cancelado");
+                continuar();
                 break;
 
             default:
@@ -1021,9 +1024,11 @@ public class App {
                             break;
                         case 0:
                             promptError("Cancelado");
+                            continuar();
                             break;
                         case -1:
                             promptError("Dinero insuficiente, compra cancelada");
+                            continuar();
                             break;
                         default:
                             break;
@@ -1043,9 +1048,11 @@ public class App {
                             break;
                         case 0:
                             promptError("Cancelado");
+                            continuar();
                             break;
                         case -1:
                             promptError("Dinero insuficiente, compra cancelada");
+                            continuar();
                             break;
                         default:
                             break;
@@ -1074,9 +1081,11 @@ public class App {
                         break;
                     case 0:
                         promptError("Cancelado");
+                        continuar();
                         break;
                     case -1:
                         promptError("Dinero insuficiente, compra cancelada");
+                        continuar();
                         break;
                     default:
                         break;
@@ -1113,10 +1122,12 @@ public class App {
 
             case -1:
                 promptError("Dinero insuficiente, compra cancelada");
+                continuar();
                 break;
 
             case 0:
                 promptError("Cancelado");
+                continuar();
                 break;
 
             default:
@@ -1142,10 +1153,12 @@ public class App {
 
             case -1:
                 promptError("Dinero insuficiente, compra cancelada");
+                continuar();
                 break;
 
             case 0:
                 promptError("Cancelado");
+                continuar();
                 break;
 
             default:
@@ -1164,6 +1177,7 @@ public class App {
                 if (servicio == ServiciosEspeciales.MASCOTA_EN_CABINA
                         || servicio == ServiciosEspeciales.MASCOTA_EN_BODEGA) {
                     System.out.println("	-" + boleto.getMascotas().get(index));
+                    index++;
                 }
             }
 
