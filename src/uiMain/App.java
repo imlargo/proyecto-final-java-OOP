@@ -837,8 +837,6 @@ public class App {
 
     private static void comprarServiciosEspeciales(Boleto boleto, Usuario user) {
 
-        ArrayList<ServiciosEspeciales> serviciosContratados = new ArrayList<>();
-
         int opcion;
         do {
             separador();
@@ -861,30 +859,15 @@ public class App {
 
             switch (opcion) {
                 case 1:
-                    // anade el servicio a la lista del bloque
-                    serviciosContratados.addAll(comprarComidaCarta(boleto, user));
-                    // anade la lista de servicios al boleto
-                    boleto.anadirServiciosEspeciales(serviciosContratados);
-                    // limpia la lista de servicios para evitar duplicados al asignarse al boleto
-                    serviciosContratados.clear();
+                    comprarComidaCarta(boleto, user);
                     break;
 
                 case 2:
-                    // anade el servicio a la lista del bloque
-                    serviciosContratados.addAll(viajarConMascota(boleto, user));
-                    // anade la lista de servicios al boleto
-                    boleto.anadirServiciosEspeciales(serviciosContratados);
-                    // limpia la lista de servicios para evitar duplicados al asignarse al boleto
-                    serviciosContratados.clear();
+                	viajarConMascota(boleto, user);
                     break;
 
                 case 3:
-                    // anade el servicio a la lista del bloque
-                    serviciosContratados.addAll(contratarAcompañante(boleto, user));
-                    // anade la lista de servicios al boleto
-                    boleto.anadirServiciosEspeciales(serviciosContratados);
-                    // limpia la lista de servicios para evitar duplicados al asignarse al boleto
-                    serviciosContratados.clear();
+                    contratarAcompañante(boleto, user);
                     break;
 
                 case 4:
@@ -893,26 +876,16 @@ public class App {
                     int respuesta = inputI();
 
                     if (respuesta == 1) {
-                        // anade el servicio a la lista del bloque
-                        serviciosContratados.add(ServiciosEspeciales.ASISTENCIA_NECESIDADES_ESPECIALES);
-                        // anade la lista de servicios al boleto
-                        boleto.anadirServiciosEspeciales(serviciosContratados);
-                        // limpia la lista de servicios para evitar duplicados al asignarse al boleto
-                        serviciosContratados.clear();
-
+                        boleto.anadirServiciosEspeciales(ServiciosEspeciales.ASISTENCIA_NECESIDADES_ESPECIALES);
                         salto();
-                        System.out.println(colorTexto("Asignado con exito", "verde"));
-
+                        printNegrita(colorTexto("Compra realizada con exito!", "verde"));
+                    }else {
+                    	promptError("Cancelado");
                     }
                     break;
 
                 case 5:
-                    // anade el servicio a la lista del bloque
-                    serviciosContratados.addAll(contratarTrasporteTerrestre(boleto, user));
-                    // anade la lista de servicios al boleto
-                    boleto.anadirServiciosEspeciales(serviciosContratados);
-                    // limpia la lista de servicios para evitar duplicados al asignarse al boleto
-                    serviciosContratados.clear();
+                    contratarTrasporteTerrestre(boleto, user);
                     break;
 
                 case 6:
@@ -935,14 +908,13 @@ public class App {
         } while (opcion != 7);
     }
 
-    private static ArrayList<ServiciosEspeciales> comprarComidaCarta(Boleto boleto, Usuario user) {
-        ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
+    private static void comprarComidaCarta(Boleto boleto, Usuario user) {
         promptOut("Desea comprar el servicio de comida a la acarta durante el vuelo? Esto tiene un costo de $40");
 
         switch (confirmarTransaccion(user, ServiciosEspeciales.COMIDA_A_LA_CARTA.getPrecio())) {
             case 1:
-                // anade a el servicio a la lista
-                servicios.add(ServiciosEspeciales.COMIDA_A_LA_CARTA);
+            	// anade a el servicio a la lista del boleto
+                boleto.anadirServiciosEspeciales(ServiciosEspeciales.COMIDA_A_LA_CARTA);
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.COMIDA_A_LA_CARTA.getPrecio());
 
@@ -962,16 +934,13 @@ public class App {
             default:
                 break;
         }
-
-        return servicios;
     }
 
-    private static ArrayList<ServiciosEspeciales> viajarConMascota(Boleto boleto, Usuario user) {
-        ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
-        Animal mascota;
+    private static void viajarConMascota(Boleto boleto, Usuario user) {
+    	Animal mascota;
 
         // Se pregunta si la mascota es perro o gato
-        promptIn("Desea viajar con un perro o un gato? ( 1. Perro 2. Gato");
+        promptIn("Desea viajar con un perro o un gato? ( 1. Perro 2. Gato)");
         int op = inputI();
         salto();
 
@@ -991,37 +960,33 @@ public class App {
         promptIn("Por favor ingrese el peso de la mascota");
         double peso = inputD();
         salto();
-
-        // Se crea una instancia de perro
-        if (op == 1) {
-            mascota = new Perro(nombre, raza, tamano, peso);
-        } else if (op == 2) {
-            // Se crea una instancia de gato
-            mascota = new Gato(nombre, raza, tamano, peso);
-        } else {
-            // Si no es perro ni gato se avisa que no es posible llevar una diferente a
-            // estasy se retorno para salir del metodo
-            aviso(colorTexto("No es posible viajar con una mascota diferente a perros o gatos.", "rojo"));
-            continuar();
-            return servicios;
-        }
-
-        // Verifica que la mascota si pueda viajar en cabina o bodega
-        if (mascota.puedeViajarEnCabina() || mascota.puedeViajarEnBodega()) {
-            // Pregunta si desea llevarla en cabina
-            promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
-            int opcion = inputI();
+        
+        if(op == 1) {
+        	// Se crea una instancia de perro
+        	mascota = new Perro(nombre, raza, tamano, peso);
+        }else{
+        	// Se crea una instancia de gato
+        	mascota = new Gato(nombre, raza, tamano, peso);
+        } 
+        
+     // Verifica que la mascota si pueda viajar en cabina o bodega y que no sobrepase el limite de 1 en cabina y 2 en bodega
+        if((mascota.puedeViajarEnCabina() && boleto.getMascotasEnCabina() < 1) || (mascota.puedeViajarEnBodega() && boleto.getMascotasEnBodega() < 2)) {
+        	// Pregunta si desea llevarla en cabina
+        	promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
+        	int opcion = inputI();
             salto();
-
-            // Si desea viajar en cabina
+            
+         // Si desea viajar en cabina
             if (opcion == 1) {
-                // Verifica que si sea posible viajar en cabina
-                if (mascota.puedeViajarEnCabina()) {
-                    // Confirma la transaccion
+            	// Verifica que si sea posible viajar en cabina
+            	if (mascota.puedeViajarEnCabina() && boleto.getMascotasEnCabina() < 1) {
+            		// Confirma la transaccion
                     switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio())) {
                         case 1:
-                            // anade a el servicio a la lista
-                            servicios.add(ServiciosEspeciales.MASCOTA_EN_CABINA);
+                            // anade a el servicio a la lista del boleto
+                            boleto.anadirServiciosEspeciales(ServiciosEspeciales.MASCOTA_EN_CABINA);
+                            // Anade la mascota a la lista del boleto
+                            boleto.anadirServiciosMascota(mascota);
                             // realiza el pago del servicio
                             boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio());
 
@@ -1038,41 +1003,41 @@ public class App {
                         default:
                             break;
                     }
-                } else {
-                    // Si no puede viajar en cabina se indica que va a aviajar en bodega
-                    promptOut(
-                            "La mascota no cumple las restricciones de la aerolinea para viajar en cabina pero puede viajar en bodega. Esto tiene un costo de $30");
-
+            	}else if(boleto.getMascotasEnBodega() < 2) {
+            		// Si no puede viajar en cabina se indica que va a aviajar en bodega
+                    promptOut("La mascota no cumple las restricciones de la aerolinea para viajar en cabina o ya se cumplio el limite permitido.");
+                    promptOut(" Puede viajar en bodega. Esto tiene un costo de $30");
                     // Se confirma la transaccion
                     switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
-                        case 1:
-                            // anade a el servicio a la lista
-                            servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
-                            // realiza el pago del servicio
-                            boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
-
-                            printNegrita(colorTexto("Compra realizada con exito!", "verde"));
-                            salto();
-                            continuar();
-                            break;
-                        case 0:
-                            promptError("Cancelado");
-                            break;
-                        case -1:
-                            promptError("Dinero insuficiente, compra cancelada");
-                            break;
-                        default:
-                            break;
+                    case 1:
+                    	// anade a el servicio a la lista del boleto
+                        boleto.anadirServiciosEspeciales(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+                        // Anade la mascota a la lista del boleto
+                        boleto.anadirServiciosMascota(mascota);
+                        break;
+                    case 0:
+                        promptError("Cancelado");
+                        break;
+                    case -1:
+                        promptError("Dinero insuficiente, compra cancelada");
+                        break;
+                    default:
+                        break;
                     }
+            	}else {
+                	aviso(colorTexto("No es posible viajar con la mascota en bodega ya se alcanzo el limite permitido", "rojo"));
+                    continuar();
                 }
-                // Si desea viajar en bodega
-            } else {
-                promptOut("El viaje en bodega tiene un costo de $30");
-                // Se confirma la transaccion
+            	// Si desea viajar en bodega
+            }else if(boleto.getMascotasEnBodega() < 2){
+            	promptOut("El viaje en bodega tiene un costo de $30");
+            	// Se confirma la transaccion
                 switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
                     case 1:
-                        // anade a el servicio a la lista
-                        servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+                    	// anade a el servicio a la lista del boleto
+                        boleto.anadirServiciosEspeciales(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+                        // Anade la mascota a la lista del boleto
+                        boleto.anadirServiciosMascota(mascota);
                         // realiza el pago del servicio
                         boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
 
@@ -1089,25 +1054,26 @@ public class App {
                     default:
                         break;
                 }
+            }else {
+            	aviso(colorTexto("No es posible viajar con la mascota en bodega ya se alcanzo el limite permitido", "rojo"));
+            	continuar();
             }
             // Si no se puede viajar de ninguna forma
-        } else {
-            aviso(colorTexto("La mascota no cumple con las restricciones de la aerolinea por o tanto no puede viajar",
-                    "rojo"));
-            continuar();
+        }else {
+        	aviso(colorTexto("La mascota no cumple con las restricciones de la aerolinea ", "rojo"));
+        	aviso(colorTexto("o ya se cumplio el limite permitido por lo tanto no puede viajar", "rojo"));
+        	continuar();
         }
-
-        return servicios;
+   
     }
 
-    private static ArrayList<ServiciosEspeciales> contratarAcompañante(Boleto boleto, Usuario user) {
-        ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
+    private static void contratarAcompañante(Boleto boleto, Usuario user) {
         promptOut("Desea contratar un acompañante para el pasajero menor de edad? Esto tiene un costo de $15");
 
         switch (confirmarTransaccion(user, ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio())) {
             case 1:
-                // anade a el servicio a la lista
-                servicios.add(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
+            	// anade a el servicio a la lista del boleto
+                boleto.anadirServiciosEspeciales(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR);
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.ACOMPAÑANTE_PARA_MENOR.getPrecio());
 
@@ -1128,16 +1094,15 @@ public class App {
             default:
                 break;
         }
-        return servicios;
     }
 
-    private static ArrayList<ServiciosEspeciales> contratarTrasporteTerrestre(Boleto boleto, Usuario user) {
-        ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
+    private static void contratarTrasporteTerrestre(Boleto boleto, Usuario user) {
         promptOut("Desea contratar el servicio de transporte terrestre? Esto tiene un costo de $70");
 
         switch (confirmarTransaccion(user, ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio())) {
             case 1:
-                servicios.add(ServiciosEspeciales.TRANSPORTE_TERRESTRE);
+            	// anade a el servicio a la lista del boleto
+                boleto.anadirServiciosEspeciales(ServiciosEspeciales.TRANSPORTE_TERRESTRE);
                 // realiza el pago del servicio
                 boleto.getUser().realizarPago(ServiciosEspeciales.TRANSPORTE_TERRESTRE.getPrecio());
 
@@ -1158,7 +1123,6 @@ public class App {
             default:
                 break;
         }
-        return servicios;
     }
 
     private static void verServiciosContratados(Boleto boleto) {

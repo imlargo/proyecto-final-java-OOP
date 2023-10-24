@@ -67,4 +67,8 @@ public class Gato extends Animal implements Serializable {
         }
         return false;
     }
+    
+    public String toString() {
+		return "nombre: " + this.getNombre() + ", raza: " + this.getRaza() + ", especie: Gato";
+	}
 }
