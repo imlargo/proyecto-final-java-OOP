@@ -19,7 +19,6 @@ public class upgradeAsiento extends Descuento implements Serializable {
 
     public void aplicarDescuento(Boleto boleto) {
         this.boleto = boleto;
-
         this.estado = "Usado";
         this.usar();
     }

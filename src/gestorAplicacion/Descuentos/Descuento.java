@@ -43,8 +43,10 @@ public abstract class Descuento {
     protected Boolean guardado;
 
     public void usar() {
+        this.estado = "Usado";
         this.usado = true;
         this.user.addDescuento(this);
+        this.guardado = true;
     }
 
     public Boolean isUsado() {

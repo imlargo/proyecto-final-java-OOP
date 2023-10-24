@@ -1294,8 +1294,9 @@ public class App {
                             int aplicar = inputI();
 
                             if (aplicar == 1) {
+                                Descuento descuento = new descuentoComida(user);
 
-                                millasComida(user);
+                                millasComida(user, descuento);
 
                             } else {
                                 Descuento descuento = new descuentoComida(user);
@@ -1333,8 +1334,8 @@ public class App {
                             int aplicar = inputI();
 
                             if (aplicar == 1) {
-
-                                millasVuelo(user);
+                                Descuento descuento = new descuentoVuelo(user);
+                                millasVuelo(user, descuento);
                             } else {
                                 Descuento descuento = new descuentoVuelo(user);
                                 descuento.guardar();
@@ -1412,6 +1413,14 @@ public class App {
                     switch (descuento.getTipo()) {
                         case "Mejora de asiento":
                             millasAsiento(user, descuento);
+                            break;
+
+                        case "Descuento de comida":
+                            millasComida(user, descuento);
+                            break;
+
+                        case "Descuento Vuelo":
+                            millasVuelo(user, descuento);
                             break;
 
                         case "Descuento de maleta":
@@ -1504,11 +1513,18 @@ public class App {
 
     }
 
-    private static void millasComida(Usuario user) {
+    private static void millasComida(Usuario user, Descuento descuento) {
 
     }
 
-    private static void millasVuelo(Usuario user) {
+    private static void millasVuelo(Usuario user, Descuento descuento) {
+        Boleto boleto = selecBoleto(user);
+        descuento.aplicarDescuento(boleto);
+
+        // Listo, su costo de maleta ha sdo reducido en un % y se ha regresado el dinero
+        promptOut("Se ha aplicado un " +
+                descuentoVuelo.descuento + "% de descuento en el valor de su vuelo, ahorro de: $"
+                + colorTexto(("" + ((int) (boleto.getValorInicial() * (descuentoVuelo.descuento)))), "verde"));
 
     }
 
