@@ -49,7 +49,8 @@ public class Usuario implements Serializable {
 	public String getInfo() {
 		return "Usuario: " + this.nombre + "   ID -" + this.id +
 				"\nBalance: " + this.dinero + "\nMillas: " + this.millas +
-				"\nVuelos comprados: " + this.historial.size();
+				"\nVuelos comprados: " + this.historial.size() +
+				"\nDescuentos canjeados: " + this.descuentos.size();
 	}
 
 	public Boolean verificarContrasena(String contrasena) {

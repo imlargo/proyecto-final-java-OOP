@@ -130,7 +130,9 @@ public class Boleto implements Serializable {
         return negrita("Precio: ") + colorTexto("$" + this.valor, "verde") +
                 negrita(", Tipo: ") + this.tipo +
                 negrita(", Numero de asiento: ") + this.asiento.getN_silla() +
-                negrita(", Estado: ") + this.status;
+                negrita(", Estado: ") + this.status + 
+                negrita(", Cantidad Maletas: ") + this.equipaje.size() +
+                negrita(", Servicios contratados: ") + this.serviciosContratados.size();
     }
 
     // ...Metodos get y set...
