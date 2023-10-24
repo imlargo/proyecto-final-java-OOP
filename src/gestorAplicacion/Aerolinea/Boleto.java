@@ -113,9 +113,9 @@ public class Boleto implements Serializable {
 
     public String getInfo() {
         return negrita("Precio: ") + colorTexto("$" + this.valor, "verde") +
-        negrita("Tipo: ") + this.tipo + 
-        negrita("Numero de asiento: ") + this.asiento.getN_silla() +
-        negrita("Estado: ") + this.status;
+        negrita(", Tipo: ") + this.tipo + 
+        negrita(", Numero de asiento: ") + this.asiento.getN_silla() +
+        negrita(", Estado: ") + this.status;
     }
 
     // ...Metodos get y set...

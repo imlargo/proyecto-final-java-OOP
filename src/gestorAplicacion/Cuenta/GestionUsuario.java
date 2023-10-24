@@ -3,6 +3,8 @@ package gestorAplicacion.Cuenta;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+import static uiMain.Estetica.*;
 import gestorAplicacion.Aerolinea.*;
 
 public class GestionUsuario {

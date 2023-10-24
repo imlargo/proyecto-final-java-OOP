@@ -1,20 +1,24 @@
 package gestorAplicacion.Descuentos;
 import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Aerolinea.*;
+import static uiMain.Estetica.*;
 
 public class descuentoComida extends Descuento {
 
     public static int costoMillas = 1;
-
-    public descuentoComida(Usuario user, Boleto boleto) {
+    
+    public descuentoComida(Usuario user) {
         this.user = user;
-        this.boleto = boleto;
-
-        
+        this.tipo = "";
     }
 
-    public int aplicarDescuento(){
-        return 0;
+    public void aplicarDescuento(Boleto boleto) {
+        this.boleto = boleto;
+        this.usar();
+    }
+
+    public String getInfo() {
+        return negrita("Tipo: ") + this.tipo + negrita(", Estado: ") + "Disponible";
     }
     
 }

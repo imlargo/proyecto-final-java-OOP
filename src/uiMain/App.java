@@ -1295,6 +1295,23 @@ public class App {
                     switch (verificarMillas(user, upgradeAsiento.costoMillas)) {
                         case 1:
 
+                            user.descontarMillas(upgradeAsiento.costoMillas);
+                            printNegrita(colorTexto("Canjeado con exito", "verde"));
+                            separador();
+                            promptIn("Desea aplicar el descuendo de una vez? (1 si / 0 no)");
+                            int aplicar = inputI();
+
+                            if (aplicar == 1) {
+                                millasAsiento(user);
+                            } else {
+                                Descuento descuento = new upgradeAsiento(user);
+                                descuento.guardar();
+                                separador();
+                                System.out.println(colorTexto("Se guardo el descuento en su cuenta", "verde"));
+                                continuar();
+                                separador();
+                            }
+
                             break;
 
                         case -1:
@@ -1315,6 +1332,26 @@ public class App {
                     // Se puede aplicar directamente aqui o al llamar el check in
                     switch (verificarMillas(user, descuentoComida.costoMillas)) {
                         case 1:
+
+                            user.descontarMillas(descuentoComida.costoMillas);
+                            printNegrita(colorTexto("Canjeado con exito", "verde"));
+                            separador();
+                            promptIn("Desea aplicar el descuendo de una vez? (1 si / 0 no)");
+                            int aplicar = inputI();
+
+                            if (aplicar == 1) {
+
+                                millasComida(user);
+
+                            } else {
+                                Descuento descuento = new descuentoComida(user);
+                                descuento.guardar();
+                                separador();
+                                System.out.println(colorTexto("Se guardo el descuento en su cuenta", "verde"));
+                                continuar();
+                                separador();
+                            }
+
                             break;
 
                         case -1:
@@ -1334,6 +1371,25 @@ public class App {
                     // al llamar el check in
                     switch (verificarMillas(user, descuentoVuelo.costoMillas)) {
                         case 1:
+
+                            user.descontarMillas(descuentoVuelo.costoMillas);
+                            printNegrita(colorTexto("Canjeado con exito", "verde"));
+                            separador();
+                            promptIn("Desea aplicar el descuendo de una vez? (1 si / 0 no)");
+                            int aplicar = inputI();
+
+                            if (aplicar == 1) {
+
+                                millasVuelo(user);
+                            } else {
+                                Descuento descuento = new descuentoVuelo(user);
+                                descuento.guardar();
+                                separador();
+                                System.out.println(colorTexto("Se guardo el descuento en su cuenta", "verde"));
+                                continuar();
+                                separador();
+                            }
+
                             break;
 
                         case -1:
@@ -1355,6 +1411,24 @@ public class App {
                     // al llamar el check in
                     switch (verificarMillas(user, descuentoMaleta.costoMillas)) {
                         case 1:
+
+                            user.descontarMillas(descuentoMaleta.costoMillas);
+                            printNegrita(colorTexto("Canjeado con exito", "verde"));
+                            separador();
+                            promptIn("Desea aplicar el descuendo de una vez? (1 si / 0 no)");
+                            int aplicar = inputI();
+
+                            if (aplicar == 1) {
+                                millasVuelo(user);
+                            } else {
+                                Descuento descuento = new descuentoMaleta(user);
+                                descuento.guardar();
+                                separador();
+                                System.out.println(colorTexto("Se guardo el descuento en su cuenta", "verde"));
+                                continuar();
+                                separador();
+                            }
+
                             break;
 
                         case -1:
@@ -1391,7 +1465,6 @@ public class App {
     }
 
     private static void millasAsiento(Usuario user) {
-
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
 
@@ -1421,11 +1494,57 @@ public class App {
         salto();
         continuar();
 
-        user.descontarMillas(upgradeAsiento.costoMillas);
-        printNegrita(colorTexto("Canjeado con exito", "verde"));
+        Asiento asiento = boleto.getAsiento();
+        // se verifica que el asiento sea economico
+        // si es vip ya no se puede mejorar
 
-        Descuento descuento = new upgradeAsiento(user, boleto);
-        descuento.aplicarDescuento();
+        if (asiento.getTipo() == "Economico") {
+
+            // Hacer asiento vip
+            ArrayList<Asiento> asientos = (boleto.getVuelo()).getAsientos();
+
+            printNegrita(colorTexto("Asientos disponibles", "morado"));
+            salto();
+            for (Asiento asientoTemp : asientos) {
+                if (asientoTemp.getTipo().equals("Vip")) {
+                    identacion(asientoTemp.getInfo(), 2);
+                }
+            }
+
+            salto();
+            promptIn("Por favor, seleccione el número del asiento deseado: ");
+            int indexAsiento = inputI();
+
+            // ... Cambiar y reasignar todo
+            Asiento newAsiento = asientos.get(indexAsiento - 1);
+
+            boleto.upgradeAsiento(asiento, newAsiento);
+
+            separador();
+            printNegrita(colorTexto("Mejora de asiento realizado con exito", "verde"));
+            salto();
+
+            printNegrita(colorTexto("Detalles del nuevo asiento:", "morado"));
+            salto();
+
+            identacion((boleto.getAsiento()).getInfo());
+            continuar();
+
+            Descuento descuento = new upgradeAsiento(user);
+            descuento.aplicarDescuento(boleto);
+
+        } else {
+
+            Descuento descuento = new upgradeAsiento(user);
+            descuento.guardar();
+
+            separador();
+            System.out.println(colorTexto(
+                    "Su asiento ya es VIP, se guardo el descuento en su cuenta", "verde"));
+            continuar();
+            separador();
+
+        }
 
     }
 
@@ -1438,7 +1557,36 @@ public class App {
     }
 
     private static void millasMaleta(Usuario user) {
+    }
 
+    private static void verDescuentos(Usuario user, int op) {
+
+        separador();
+
+        ArrayList<Descuento> descuentos = user.getDescuentos();
+        System.out.println(colorTexto("Descuentos disponibles:", "morado"));
+        salto();
+
+        if (op == 0) {
+            // Iterar a través del historial de boletos
+            for (int i = 0; i < descuentos.size(); i++) {
+                Descuento descuento = descuentos.get(i);
+
+                if (descuento.isUsado() == false) {
+                    // Mostrar información de cada boleto en la lista
+                    identacion(i + ". " + descuento.getInfo());
+
+                }
+            }
+
+        } else {
+            // Iterar a través del historial de boletos
+            for (int i = 0; i < descuentos.size(); i++) {
+                Descuento descuento = descuentos.get(i);
+                // Mostrar información de cada boleto en la lista
+                identacion(i + ". " + descuento.getInfo());
+            }
+        }
     }
 
     private static int verificarMillas(Usuario user, int valor) {
@@ -1457,6 +1605,8 @@ public class App {
             return 0;
         }
     }
+
+
 
 }
 

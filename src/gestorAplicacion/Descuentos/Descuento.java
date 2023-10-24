@@ -2,6 +2,8 @@ package gestorAplicacion.Descuentos;
 import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Aerolinea.*;
 
+import static uiMain.Estetica.*;
+
  /*
          * Requerimientos (Backend).
          * CLases para la comida (inferfaz de clase)
@@ -35,7 +37,24 @@ public abstract class Descuento {
 
     protected Boleto boleto;
     protected Usuario user;
-    protected boolean aplicado;
+    protected boolean usado;
+    protected String tipo;
     
-    public abstract int aplicarDescuento();
+    public void usar() {
+        this.usado = true;
+        this.user.addDescuento(this);
+    }
+
+    public Boolean isUsado() {
+        return this.usado;
+    }
+
+    public void guardar() {
+        this.user.addDescuento(this);
+    }
+
+    public abstract void aplicarDescuento(Boleto boleto);
+    public abstract String getInfo();
+
+    
 }

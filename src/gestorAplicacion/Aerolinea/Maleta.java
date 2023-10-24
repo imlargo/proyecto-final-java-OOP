@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import gestorAplicacion.Cuenta.*;
 
+import static uiMain.Estetica.*;
+
 public class Maleta implements Serializable {
 
     private final static long serialVersionUID = 0;
