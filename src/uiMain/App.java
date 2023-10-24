@@ -718,7 +718,7 @@ public class App {
         int opcion;
         // verifica si ya se realizo el checkin para el vuelo
         // en caso de que ya se realizo el check in no dejaria entrar a este menu
-        if (!boleto.getCheckInRealizado()) {
+        if (!boleto.getCheckInRealizado() && boleto.getStatus() != "Cancelado") {
             do {
                 separadorGrande();
 
@@ -779,9 +779,15 @@ public class App {
 
             } while (opcion != 4 && !boleto.getCheckInRealizado());
         } else {
-            separador();
-            System.out.println(colorTexto("Usted ya realizo el Check-in para este vuelo", "rojo"));
-            continuar();
+        	if(boleto.getStatus() == "Cancelado") {
+        		separador();
+                System.out.println(colorTexto("No es posible realizar el checkIn ya que el vuelo fue cancelado", "rojo"));
+                continuar();
+        	}else {
+        		separador();
+                System.out.println(colorTexto("Usted ya realizo el Check-in para este vuelo", "rojo"));
+                continuar();
+        	} 
         }
     }
 
