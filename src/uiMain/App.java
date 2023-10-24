@@ -357,9 +357,9 @@ public class App {
         identacion(boletoSelec.getInfo());
 
         separador();
-        
+
         if (!boletoSelec.getCheckInRealizado()) {
-        	promptIn("Está seguro de reasignar el vuelo? (Escriba 1 para Confirmar, 0 para Cancelar):");
+            promptIn("Está seguro de reasignar el vuelo? (Escriba 1 para Confirmar, 0 para Cancelar):");
             int confirmacionTemp = inputI();
 
             if (confirmacionTemp == 1) {
@@ -428,7 +428,8 @@ public class App {
 
             // Solicitar al usuario que seleccione un número de asiento.
             salto();
-            promptIn("Por favor, seleccione el número del asiento deseado, a este valor se le agregara un sobrecargo del 10%: ");
+            promptIn(
+                    "Por favor, seleccione el número del asiento deseado, a este valor se le agregara un sobrecargo del 10%: ");
             int indexAsiento = inputI();
             Asiento asiento = asientos.get(indexAsiento - 1);
             boletoSelec.reasignarAsiento(asiento);
@@ -515,13 +516,13 @@ public class App {
             } else {
                 System.out.println(colorTexto("Compra cancelada.", "rojo"));
             }
-        }else {
-        	separador();
-            System.out.println(colorTexto("Usted ya realizo el Check-in para este vuelo por lo tanto no es posible reasignar el vuelo", "rojo"));
+        } else {
+            separador();
+            System.out.println(colorTexto(
+                    "Usted ya realizo el Check-in para este vuelo por lo tanto no es posible reasignar el vuelo",
+                    "rojo"));
             continuar();
         }
-
-        
 
     }
 
@@ -1235,15 +1236,14 @@ public class App {
             salto();
 
             // System.out.println("Menu");
-            identacion("1. Mejora de silla" + "( " + upgradeAsiento.costoMillas + " )");
-            identacion("2. Cupón para comida" + "( " + descuentoComida.costoMillas + " )");
-            identacion("3. Descuento vuelo" + "( " + descuentoVuelo.costoMillas + " )");
-            identacion("4. Descuento maleta" + "( " + descuentoMaleta.costoMillas + " )");
-            identacion("5. Aplicar descuentos");
-            identacion("6. Ver descuentos del usuario");
-            identacion("7. Volver al menú anterior");
+            identacion("1. Mejora de silla" + " (" + upgradeAsiento.costoMillas + " )");
+            identacion("2. Descuento vuelo" + " (" + descuentoVuelo.costoMillas + " )");
+            identacion("3. Descuento maleta" + " (" + descuentoMaleta.costoMillas + " )");
+            identacion("4. Aplicar descuentos");
+            identacion("5. Ver descuentos del usuario");
+            identacion("6. Volver al menú anterior");
             salto();
-            promptIn("> Seleccione una opción (1-7): ");
+            promptIn("> Seleccione una opción (1-6): ");
             opcion = inputI();
 
             separador();
@@ -1252,12 +1252,8 @@ public class App {
 
             switch (opcion) {
                 case 1:
-                    // Con este descuento se tiene derecho a una mejora TOTAL de silla instantanea
-                    // Se puede aplicar directamente aqui o al llamar el check in
-
                     switch (verificarMillas(user, upgradeAsiento.costoMillas)) {
                         case 1:
-
                             user.descontarMillas(upgradeAsiento.costoMillas);
                             printNegrita(colorTexto("Canjeado con exito", "verde"));
                             separador();
@@ -1290,50 +1286,9 @@ public class App {
                     break;
 
                 case 2:
-                    // Con este descuento se tiene derecho a un alimento en especifico de una lista
-                    // de seleccionables
-                    // Se puede aplicar directamente aqui o al llamar el check in
-                    switch (verificarMillas(user, descuentoComida.costoMillas)) {
-                        case 1:
 
-                            user.descontarMillas(descuentoComida.costoMillas);
-                            printNegrita(colorTexto("Canjeado con exito", "verde"));
-                            separador();
-                            promptIn("Desea aplicar el descuendo de una vez? (1 si / 0 no)");
-                            int aplicar = inputI();
-
-                            if (aplicar == 1) {
-                                Descuento descuento = new descuentoComida(user);
-
-                                millasComida(user, descuento);
-
-                            } else {
-                                Descuento descuento = new descuentoComida(user);
-                                descuento.guardar();
-                                separador();
-                                System.out.println(colorTexto("Se guardo el descuento en su cuenta", "verde"));
-                                continuar();
-                                separador();
-                            }
-
-                            break;
-
-                        case -1:
-                            promptError("Millas insuficientes!");
-                            break;
-                        case 0:
-                            promptError("Operacion cancelada");
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-
-                case 3:
-                    // Con este cupon se tiene derecho a un % de descuento al pagar un vuelo
-                    // Se puede aplicar directamente aqui (seleccionando un vuelo y recibiendo %) o
-                    // al llamar el check in
                     switch (verificarMillas(user, descuentoVuelo.costoMillas)) {
+
                         case 1:
 
                             user.descontarMillas(descuentoVuelo.costoMillas);
@@ -1368,7 +1323,7 @@ public class App {
                     }
                     break;
 
-                case 4:
+                case 3:
                     // Con este cupon se tiene derecho a un % de descuento al del precio TOTAL de
                     // maletas en un vuelo
                     // Se puede aplicar directamente aqui (seleccionando un vuelo y recibiendo %) o
@@ -1407,7 +1362,7 @@ public class App {
                     }
                     break;
 
-                case 5:
+                case 4:
                     // Aplicar descuento
 
                     ArrayList<Descuento> descuentos = verDescuentos(user, 1);
@@ -1424,10 +1379,6 @@ public class App {
                             millasAsiento(user, descuento);
                             break;
 
-                        case "Descuento de comida":
-                            millasComida(user, descuento);
-                            break;
-
                         case "Descuento Vuelo":
                             millasVuelo(user, descuento);
                             break;
@@ -1442,7 +1393,7 @@ public class App {
 
                     break;
 
-                case 6:
+                case 5:
                     // Ver descuento
                     promptIn("Desea ver solo los descuentos disponibles/canjeados o los aplicados tambien (1 / 0)");
                     int op = inputI();
@@ -1451,7 +1402,7 @@ public class App {
                     continuar();
                     break;
 
-                case 7:
+                case 6:
                     aviso(colorTexto("Volviendo al menu", "rojo"));
                     separador();
                     break;
@@ -1463,7 +1414,7 @@ public class App {
 
             separador();
 
-        } while (opcion != 7);
+        } while (opcion != 6);
 
         separadorGrande();
         printNegrita("Canjeado con éxito, millas restantes: " + colorTexto("" + user.getMillas(), "morado"));
@@ -1521,10 +1472,6 @@ public class App {
             separador();
 
         }
-
-    }
-
-    private static void millasComida(Usuario user, Descuento descuento) {
 
     }
 
