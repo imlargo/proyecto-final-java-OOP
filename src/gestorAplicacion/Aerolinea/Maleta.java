@@ -7,11 +7,13 @@ import gestorAplicacion.Cuenta.*;
 
 import static uiMain.Estetica.*;
 
-public class Maleta implements Serializable {
+public class Maleta implements Serializable,RestriccionesMaleta {
 
     private static final long serialVersionUID = 1L;
+    
+    private static final double precioMaleta=10.0;
+    private static double excedente;
     private int id;
-
     private int peso;
     private int largo;
     private int ancho;
@@ -28,8 +30,24 @@ public class Maleta implements Serializable {
         this.largo = largo;
         this.ancho = ancho;
         this.alto = alto;
+        Maleta.excedente=0.0;
+    }
+    public boolean verificarRestricciones(){
+        if (this.peso <= RestriccionesMaleta.peso && this.ancho <= RestriccionesMaleta.ancho && this.alto <= RestriccionesMaleta.alto && this.largo <= RestriccionesMaleta.largo){
+            return true;
+        } else{
+            return false;
+        }
     }
 
+    public double calcularPrecio(Maleta maleta){
+        if (verificarRestricciones() == true){
+            return precioMaleta;
+        } else {
+            setExcedente(precioMaleta+20.0);
+            return getExcedente();
+        }
+    }
     public int calcularPrecio() {
         return ((this.peso + ((this.alto * this.ancho * this.largo) / 5)) / 2) + 5; // Crear formula para calcular el
                                                                                     // valor total con respecto al peso,
@@ -44,6 +62,12 @@ public class Maleta implements Serializable {
 
     // ...Metodos get y set...
 
+    public static double getExcedente(){
+        return precioMaleta;
+    }
+    public static void setExcedente(double excedentes){
+        excedente = excedentes;
+    }
     public int getId() {
         return this.id;
     }
@@ -115,5 +139,5 @@ public class Maleta implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    
 }
