@@ -579,11 +579,11 @@ public class App {
     private static void gestionCuenta(Usuario user) {
         ArrayList<Boleto> historial = user.getHistorial();
 
-        // Ver cuenta.
-        separadorGrande();
-
         int opcion;
         do {
+
+            // Ver cuenta.
+            separadorGrande();
 
             promptOut("¿Qué desea hacer?");
             salto();
@@ -718,7 +718,7 @@ public class App {
         int opcion;
         // verifica si ya se realizo el checkin para el vuelo
         // en caso de que ya se realizo el check in no dejaria entrar a este menu
-        if (!boleto.getCheckInRealizado() && boleto.getStatus() != "Cancelado") {
+        if (!boleto.getCheckInRealizado()) {
             do {
                 separadorGrande();
 
@@ -779,15 +779,9 @@ public class App {
 
             } while (opcion != 4 && !boleto.getCheckInRealizado());
         } else {
-        	if(boleto.getStatus() == "Cancelado") {
-        		separador();
-                System.out.println(colorTexto("No es posible realizar el checkIn ya que el vuelo fue cancelado", "rojo"));
-                continuar();
-        	}else {
-        		separador();
-                System.out.println(colorTexto("Usted ya realizo el Check-in para este vuelo", "rojo"));
-                continuar();
-        	} 
+            separador();
+            System.out.println(colorTexto("Usted ya realizo el Check-in para este vuelo", "rojo"));
+            continuar();
         }
     }
 
@@ -1227,24 +1221,25 @@ public class App {
          * del check in)
          */
 
-        System.out.println(" - - - > Ha seleccionado la opción Canjear millas < - - -");
+        seleccionado("Canjear millas");
         separadorGrande();
         identacion("Hola " + colorTexto(user.getNombre(), "verde"), 3);
         salto();
 
-        identacion("En este momento usted posee " + colorTexto("" + user.getMillas(), "morado") + " millas");
-        salto();
         int opcion;
 
         do {
 
-            promptOut("Escoja en lo que desea canjear sus millas");
+            identacion("En este momento usted posee " + colorTexto("" + user.getMillas(), "morado") + " millas");
+            salto();
+
+            promptOut("Escoja en que desea canjear sus millas");
             salto();
 
             // System.out.println("Menu");
-            identacion("1. Mejora de silla" + " (" + upgradeAsiento.costoMillas + " )");
-            identacion("2. Descuento vuelo" + " (" + descuentoVuelo.costoMillas + " )");
-            identacion("3. Descuento maleta" + " (" + descuentoMaleta.costoMillas + " )");
+            identacion("1. Mejora de silla" + " (" + upgradeAsiento.costoMillas + ")");
+            identacion("2. Descuento vuelo" + " (" + descuentoVuelo.costoMillas + ")");
+            identacion("3. Descuento maleta" + " (" + descuentoMaleta.costoMillas + ")");
             identacion("4. Aplicar descuentos");
             identacion("5. Ver descuentos del usuario");
             identacion("6. Volver al menú anterior");
@@ -1261,7 +1256,9 @@ public class App {
                     switch (verificarMillas(user, upgradeAsiento.costoMillas)) {
                         case 1:
                             user.descontarMillas(upgradeAsiento.costoMillas);
-                            printNegrita(colorTexto("Canjeado con exito", "verde"));
+
+                            printNegrita("Canjeado con éxito, millas restantes: "
+                                    + colorTexto("" + user.getMillas(), "verde"));
                             separador();
                             promptIn("Desea aplicar el descuendo de una vez? (1 si / 0 no)");
                             int aplicar = inputI();
@@ -1273,7 +1270,10 @@ public class App {
                                 Descuento descuento = new upgradeAsiento(user);
                                 descuento.guardar();
                                 separador();
-                                System.out.println(colorTexto("Se guardo el descuento en su cuenta", "verde"));
+                                printNegrita(colorTexto(
+                                        "Se guardo el descuento en su cuenta, puedes aplicarlo cuando desees",
+                                        "verde"));
+                                salto();
                                 continuar();
                                 separador();
                             }
@@ -1298,7 +1298,9 @@ public class App {
                         case 1:
 
                             user.descontarMillas(descuentoVuelo.costoMillas);
-                            printNegrita(colorTexto("Canjeado con exito", "verde"));
+
+                            printNegrita("Canjeado con éxito, millas restantes: "
+                                    + colorTexto("" + user.getMillas(), "verde"));
                             separador();
                             promptIn("Desea aplicar el descuendo de una vez? (1 si / 0 no)");
                             int aplicar = inputI();
@@ -1310,7 +1312,10 @@ public class App {
                                 Descuento descuento = new descuentoVuelo(user);
                                 descuento.guardar();
                                 separador();
-                                System.out.println(colorTexto("Se guardo el descuento en su cuenta", "verde"));
+                                printNegrita(colorTexto(
+                                        "Se guardo el descuento en su cuenta, puedes aplicarlo cuando desees",
+                                        "verde"));
+                                salto();
                                 continuar();
                                 separador();
                             }
@@ -1338,7 +1343,8 @@ public class App {
                         case 1:
 
                             user.descontarMillas(descuentoMaleta.costoMillas);
-                            printNegrita(colorTexto("Canjeado con exito", "verde"));
+                            printNegrita("Canjeado con éxito, millas restantes: "
+                                    + colorTexto("" + user.getMillas(), "verde"));
                             separador();
                             promptIn("Desea aplicar el descuendo de una vez? (1 si / 0 no)");
                             int aplicar = inputI();
@@ -1351,7 +1357,10 @@ public class App {
                                 Descuento descuento = new descuentoMaleta(user);
                                 descuento.guardar();
                                 separador();
-                                System.out.println(colorTexto("Se guardo el descuento en su cuenta", "verde"));
+                                printNegrita(colorTexto(
+                                        "Se guardo el descuento en su cuenta, puedes aplicarlo cuando desees",
+                                        "verde"));
+                                salto();
                                 continuar();
                                 separador();
                             }
@@ -1418,14 +1427,9 @@ public class App {
                     break;
             }
 
-            separador();
+            separadorGrande();
 
         } while (opcion != 6);
-
-        separadorGrande();
-        printNegrita("Canjeado con éxito, millas restantes: " + colorTexto("" + user.getMillas(), "morado"));
-        salto();
-        continuar();
     }
 
     private static void millasAsiento(Usuario user, Descuento descuento) {
@@ -1463,8 +1467,8 @@ public class App {
 
             printNegrita(colorTexto("Detalles del nuevo asiento:", "morado"));
             salto();
-
             identacion((boleto.getAsiento()).getInfo());
+            salto();
             continuar();
 
         } else {
@@ -1472,8 +1476,9 @@ public class App {
             descuento.guardar();
 
             separador();
-            System.out.println(colorTexto(
+            printNegrita(colorTexto(
                     "Su asiento ya es VIP, se guardo el descuento en su cuenta", "verde"));
+            salto();
             continuar();
             separador();
 
@@ -1486,10 +1491,12 @@ public class App {
         descuento.aplicarDescuento(boleto);
 
         // Listo, su costo de maleta ha sdo reducido en un % y se ha regresado el dinero
-        promptOut("Se ha aplicado un " +
-                descuentoVuelo.descuento + "% de descuento en el valor de su vuelo, ahorro de: $"
-                + colorTexto(("" + ((int) (boleto.getValorInicial() * (descuentoVuelo.descuento / 100)))), "verde"));
+        printNegrita(colorTexto("Se ha aplicado un " +
+                descuentoVuelo.descuento + "% de descuento en el valor de su vuelo, ahorro de: "
+                + ("$" + ((int) (boleto.getValorInicial() * (descuentoVuelo.descuento / 100)))), "verde"));
 
+        salto();
+        continuar();
     }
 
     private static ArrayList<Descuento> verDescuentos(Usuario user, int op) {
@@ -1497,7 +1504,7 @@ public class App {
         separador();
 
         ArrayList<Descuento> descuentos = user.getDescuentos();
-        identacion(colorTexto("Descuentos disponibles:", "morado"), 4);
+        identacion(negrita(colorTexto("Descuentos disponibles:", "morado")), 4);
         salto();
 
         if (op == 1) {
@@ -1526,8 +1533,8 @@ public class App {
     public static Boleto selecBoleto(Usuario user) {
         // Obtener el historial de boletos del usuario
         ArrayList<Boleto> historial = user.getHistorial();
-
-        System.out.println(colorTexto("Información de los vuelos:", "morado"));
+        salto();
+        printNegrita(colorTexto("Información de los vuelos:", "morado"));
         salto();
 
         // Iterar a través del historial de boletos
@@ -1552,7 +1559,7 @@ public class App {
 
         salto();
         continuar();
-
+        salto();
         return boleto;
     }
 
@@ -1578,10 +1585,12 @@ public class App {
         descuento.aplicarDescuento(boleto);
 
         // Listo, su costo de maleta ha sdo reducido en un % y se ha regresado el dinero
-        promptOut("Se ha aplicado un " +
+        printNegrita(colorTexto("Se ha aplicado un " +
                 descuentoMaleta.descuento + "% de descuento en el costo de su equipaje, ahorro de: $"
-                + colorTexto(("" + ((int) (boleto.getValorEquipaje() * (descuentoMaleta.descuento / 100)))), "verde"));
+                + ("" + ((int) (boleto.getValorEquipaje() * (descuentoMaleta.descuento / 100)))), "verde"));
 
+        salto();
+        continuar();
     }
 
 }
