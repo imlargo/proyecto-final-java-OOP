@@ -1493,7 +1493,7 @@ public class App {
         // Listo, su costo de maleta ha sdo reducido en un % y se ha regresado el dinero
         printNegrita(colorTexto("Se ha aplicado un " +
                 descuentoVuelo.descuento + "% de descuento en el valor de su vuelo, ahorro de: "
-                + ("$" + ((int) (boleto.getValorInicial() * (descuentoVuelo.descuento / 100)))), "verde"));
+                + ("$" + ((int) (boleto.getValorInicial() * (0.2)))), "verde"));
 
         salto();
         continuar();
@@ -1587,7 +1587,7 @@ public class App {
         // Listo, su costo de maleta ha sdo reducido en un % y se ha regresado el dinero
         printNegrita(colorTexto("Se ha aplicado un " +
                 descuentoMaleta.descuento + "% de descuento en el costo de su equipaje, ahorro de: $"
-                + ("" + ((int) (boleto.getValorEquipaje() * (descuentoMaleta.descuento / 100)))), "verde"));
+                + ("" + ((int) (boleto.getValorInicial() * 0.2))), "verde"));
 
         salto();
         continuar();

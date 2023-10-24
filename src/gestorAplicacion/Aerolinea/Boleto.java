@@ -64,6 +64,10 @@ public class Boleto implements Serializable {
         this.valor = this.valorInicial + temp;
     }
 
+    public void updateValorBase() {
+        this.valor = this.valorInicial + this.valorEquipaje;
+    }
+
     public void asignarAsiento(Asiento asiento) {
         asiento.asignarBoleto(this);
     }

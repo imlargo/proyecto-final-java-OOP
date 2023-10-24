@@ -10,7 +10,7 @@ public class upgradeAsiento extends Descuento implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static int costoMillas = 1;
+    public static int costoMillas = 20;
 
     public upgradeAsiento(Usuario user) {
         this.init(user);
