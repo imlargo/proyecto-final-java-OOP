@@ -7,7 +7,7 @@ import static uiMain.Estetica.*;
 
 import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Cuenta.*;
-import gestorAplicacion.Descuentos.Descuento;
+import gestorAplicacion.Descuentos;
 import gestorAplicacion.Mascotas.*;
 
 /**

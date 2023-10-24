@@ -1,7 +1,7 @@
 package gestorAplicacion.Aerolinea;
 
 import java.io.Serializable;
-import gestorAplicacion.Aerolinea.Pasajero;
+import gestorAplicacion.Aerolinea.*;
 import static uiMain.Estetica.*;
 
 /**

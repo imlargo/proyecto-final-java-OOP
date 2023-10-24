@@ -6,9 +6,6 @@ import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Descuentos.*;
 import gestorAplicacion.Mascotas.*;
 
-
-
-
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -317,7 +314,7 @@ public class App {
                 separador();
                 // Solicitar información sobre el equipaje a agregar.
 
-                promptIn("Peso de la maleta (max 250Kg): ");
+                promptIn("Peso de la maleta (max 60Kg): ");
                 int peso = inputI();
 
                 promptIn("Ancho de la maleta (max 250cm): ");
@@ -527,7 +524,7 @@ public class App {
                     separador();
                     // Solicitar información sobre el equipaje a agregar.
 
-                    promptIn("Peso de la maleta (max 250Kg): ");
+                    promptIn("Peso de la maleta (max 60Kg): ");
                     int peso = inputI();
 
                     promptIn("Ancho de la maleta (max 250cm): ");
