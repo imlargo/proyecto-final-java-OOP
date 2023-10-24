@@ -1477,8 +1477,8 @@ public class App {
 
             // ... Cambiar y reasignar todo
             Asiento newAsiento = asientos.get(indexAsiento - 1);
-
             boleto.upgradeAsiento(asiento, newAsiento);
+            descuento.aplicarDescuento(boleto);
 
             separador();
             printNegrita(colorTexto("Mejora de asiento realizado con exito", "verde"));
@@ -1489,8 +1489,6 @@ public class App {
 
             identacion((boleto.getAsiento()).getInfo());
             continuar();
-
-            descuento.aplicarDescuento(boleto);
 
         } else {
 

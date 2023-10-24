@@ -40,6 +40,7 @@ public abstract class Descuento {
     protected boolean usado;
     protected String tipo;
     protected String estado;
+    protected Boolean guardado;
 
     public void usar() {
         this.usado = true;
@@ -50,13 +51,15 @@ public abstract class Descuento {
         return this.usado;
     }
 
-
     public String getTipo() {
         return this.tipo;
     }
 
     public void guardar() {
-        this.user.addDescuento(this);
+        if (this.guardado == false) {
+            this.user.addDescuento(this);
+            this.guardado = true;
+        }
     }
 
     public void init(Usuario user) {
