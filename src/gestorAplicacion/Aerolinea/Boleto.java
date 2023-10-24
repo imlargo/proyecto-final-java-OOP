@@ -9,6 +9,7 @@ import static uiMain.Estetica.*;
 import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Descuentos.Descuento;
+import gestorAplicacion.Mascotas.*;
 
 public class Boleto implements Serializable {
 
@@ -25,6 +26,9 @@ public class Boleto implements Serializable {
     private String destino;
     private boolean checkInRealizado = false;
     private ArrayList<ServiciosEspeciales> serviciosContratados = new ArrayList<>();
+    private ArrayList<Animal> mascotas = new ArrayList<>();
+    private int cantidadMascotasCabina = 0;
+    private int cantidadMascotasBodega = 0;
 
     private float valor;
 
@@ -95,8 +99,18 @@ public class Boleto implements Serializable {
         this.tipo = asiento.getTipo();
     }
 
-    public void anadirServiciosEspeciales(ArrayList<ServiciosEspeciales> serviciosContratados) {
-        this.serviciosContratados.addAll(serviciosContratados);
+    public void anadirServiciosEspeciales(ServiciosEspeciales servicio) {
+        if(servicio == ServiciosEspeciales.MASCOTA_EN_CABINA) {
+        	this.cantidadMascotasCabina++;
+        }
+        if(servicio == ServiciosEspeciales.MASCOTA_EN_BODEGA) {
+        	this.cantidadMascotasBodega++;
+        }
+    	this.serviciosContratados.add(servicio);
+    }
+    
+    public void anadirServiciosMascota(Animal mascota) {
+    	this.mascotas.add(mascota);
     }
 
     public void resetEquipaje() {
@@ -235,5 +249,17 @@ public class Boleto implements Serializable {
 
     public void setServiciosContratados(ArrayList<ServiciosEspeciales> serviciosContratados) {
         this.serviciosContratados = serviciosContratados;
+    }
+    
+    public int getMascotasEnCabina() {
+    	return this.cantidadMascotasCabina;
+    }
+    
+    public int getMascotasEnBodega() {
+    	return this.cantidadMascotasBodega;
+    }
+    
+    public ArrayList<Animal> getMascotas(){
+    	return this.mascotas;
     }
 }

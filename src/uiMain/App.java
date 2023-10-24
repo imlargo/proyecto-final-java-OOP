@@ -1129,10 +1129,13 @@ public class App {
         if (boleto.getServiciosContratados().size() != 0) {
             System.out.println(colorTexto(("Usted tiene los siguientes servicios contratados"), "morado"));
             salto();
-
+            int index = 0;
             for (ServiciosEspeciales servicio : boleto.getServiciosContratados()) {
                 identacion(negrita("Servicio: ") + servicio.getServicio() + " por un valor de: $"
                         + colorTexto("" + servicio.getPrecio(), "verde"));
+                if(servicio == ServiciosEspeciales.MASCOTA_EN_CABINA || servicio == ServiciosEspeciales.MASCOTA_EN_BODEGA ) {
+                	System.out.println("	-" + boleto.getMascotas().get(index));
+                }
             }
 
             continuar();
