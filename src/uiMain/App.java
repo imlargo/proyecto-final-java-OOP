@@ -1438,6 +1438,8 @@ public class App {
                     promptIn("Desea ver solo los descuentos disponibles/canjeados o los aplicados tambien (1 / 0)");
                     int op = inputI();
                     verDescuentos(user, op);
+                    salto();
+                    continuar();
                     break;
 
                 case 7:

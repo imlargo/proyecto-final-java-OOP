@@ -37,10 +37,10 @@ public abstract class Descuento {
 
     protected Boleto boleto;
     protected Usuario user;
-    protected boolean usado;
+    protected boolean usado = false;
     protected String tipo;
     protected String estado;
-    protected Boolean guardado;
+    protected Boolean guardado = false;
 
     public void usar() {
         this.estado = "Usado";
