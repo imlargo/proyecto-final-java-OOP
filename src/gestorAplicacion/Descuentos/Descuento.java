@@ -41,6 +41,7 @@ public abstract class Descuento {
     protected String tipo;
     protected String estado;
     protected Boolean guardado = false;
+    protected abstract int costoMillas;
 
     public void usar() {
         this.estado = "Usado";
