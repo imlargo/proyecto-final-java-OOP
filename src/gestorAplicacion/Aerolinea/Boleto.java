@@ -11,7 +11,7 @@ import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Descuentos.Descuento;
 
 public class Boleto implements Serializable {
-    private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 1L;
 
     private static int cont = 0;
     private int id;

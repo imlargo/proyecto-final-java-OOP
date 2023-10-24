@@ -7,7 +7,7 @@ import static uiMain.Estetica.*;
 
 public class descuentoMaleta extends Descuento implements  Serializable{
 
-    //private static final long serialVersionUID;
+    private static final long serialVersionUID = 1L;
     
     public static int costoMillas = 1;
 

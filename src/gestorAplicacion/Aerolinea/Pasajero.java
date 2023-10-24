@@ -12,7 +12,7 @@ import static uiMain.Estetica.*;
 
 public class Pasajero implements Serializable {
 
-    private static final long serialVersionUID = 0;
+    private static final long serialVersionUID = 1L;
 
     private String nombre;
     private Usuario user;

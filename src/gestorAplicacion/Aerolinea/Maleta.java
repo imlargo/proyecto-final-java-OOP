@@ -9,7 +9,7 @@ import static uiMain.Estetica.*;
 
 public class Maleta implements Serializable {
 
-    private final static long serialVersionUID = 0;
+    private final static long serialVersionUID = 1L;
 
     private int id;
 
