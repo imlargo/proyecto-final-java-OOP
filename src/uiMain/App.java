@@ -225,6 +225,7 @@ public class App {
         } while (true); // El programa se ejecuta en un bucle infinito
     }
 
+    
     private static void comprarVuelo(Usuario user) {
 
         // Solicitar al usuario el origen del vuelo.
@@ -663,6 +664,8 @@ public class App {
         }
     }
 
+
+
     private static void gestionCuenta(Usuario user) {
         ArrayList<Boleto> historial = user.getHistorial(); // Obtiene el historial de boletos del usuario
 
@@ -941,6 +944,8 @@ public class App {
         }
     }
 
+
+    
     private static void comprarServiciosEspeciales(Boleto boleto, Usuario user) {
 
         int opcion;
@@ -1192,6 +1197,7 @@ public class App {
 
     }
 
+
     private static void contratarAcompanante(Boleto boleto, Usuario user) {
         promptOut("Desea contratar un acompañante para el pasajero menor de edad? Esto tiene un costo de $15");
 
@@ -1293,6 +1299,8 @@ public class App {
             return 0;
         }
     }
+
+
 
     private static void canjearMillas(Usuario user) {
 
@@ -1586,6 +1594,9 @@ public class App {
         salto();
         continuar();
     }
+
+
+
 
     private static ArrayList<Descuento> verDescuentos(Usuario user, int op) {
 
