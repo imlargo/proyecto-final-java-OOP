@@ -2,6 +2,8 @@ package gestorAplicacion.Aerolinea;
 
 import gestorAplicacion.Aerolinea.Pasajero;
 
+import static uiMain.Estetica.*;
+
 public class Asiento {
 
     private String tipo;

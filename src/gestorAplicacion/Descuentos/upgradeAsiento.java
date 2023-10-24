@@ -2,15 +2,22 @@ package gestorAplicacion.Descuentos;
 import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Aerolinea.*;
 
+import static uiMain.Estetica.*;
+
 public class upgradeAsiento extends Descuento {
     public static int costoMillas = 1;
 
-    public upgradeAsiento(Usuario user, Boleto boleto) {
+    public upgradeAsiento(Usuario user) {
         this.user = user;
-        this.boleto = boleto;
+        this.tipo = "";
     }
 
-    public int aplicarDescuento() {
-        return 0;
+    public void aplicarDescuento(Boleto boleto) {
+        this.boleto = boleto;
+        this.usar();
+    }
+
+    public String getInfo() {
+        return "";
     }
 }

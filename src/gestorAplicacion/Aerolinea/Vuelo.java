@@ -3,6 +3,8 @@ package gestorAplicacion.Aerolinea;
 import java.io.Serializable;// clase para serializar
 import java.util.ArrayList;
 
+import static uiMain.Estetica.*;
+
 public class Vuelo implements Serializable { // se crea la clase e implementa serializacion
 
 	private static final long serialVersionUID = 0; // atributo con el codigo de serializacion

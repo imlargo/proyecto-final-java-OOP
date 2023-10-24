@@ -3,6 +3,7 @@ package gestorAplicacion.Cuenta;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static uiMain.Estetica.*;
 import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Descuentos.Descuento;
 
@@ -67,6 +68,12 @@ public class Usuario {
 		this.dinero -= valor;
 	}
 
+	public void addDescuento(Descuento descuento) {
+		this.descuentos.add(descuento);
+	}
+
+	
+
 	public void descontarMillas(int valor) {
 		this.millas -= valor;
 	}
@@ -106,6 +113,11 @@ public class Usuario {
 
 	public ArrayList<Boleto> getHistorial() {
 		return this.historial;
+	}
+
+
+	public ArrayList<Descuento> getDescuentos() {
+		return this.descuentos;
 	}
 
 	public void setHistorial(ArrayList<Boleto> historial) {

@@ -7,6 +7,9 @@ import gestorAplicacion.Cuenta.*;
 
 import java.util.ArrayList;
 
+
+import static uiMain.Estetica.*;
+
 public class Pasajero {
     private static final long serialVersionUID = 0;
 
