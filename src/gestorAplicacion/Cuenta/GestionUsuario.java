@@ -15,9 +15,9 @@ public class GestionUsuario implements Serializable {
     public ArrayList<Maleta> inventarioMaletas = new ArrayList<>();
 
     public GestionUsuario() {
-        Usuario user = new Usuario("imlargod", "admin", "123", 0);
-        user.setDinero(1000);
-        user.setMillas(120);
+        Usuario user = new Usuario("Jaime A. Guzman", "usuario@gmail.com", "123", 0);
+        user.setDinero(2000);
+        user.setMillas(150);
         Usuarios.add(user);
     }
 
