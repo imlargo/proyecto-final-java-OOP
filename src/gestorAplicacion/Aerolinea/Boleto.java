@@ -104,17 +104,17 @@ public class Boleto implements Serializable {
     }
 
     public void anadirServiciosEspeciales(ServiciosEspeciales servicio) {
-        if(servicio == ServiciosEspeciales.MASCOTA_EN_CABINA) {
-        	this.cantidadMascotasCabina++;
+        if (servicio == ServiciosEspeciales.MASCOTA_EN_CABINA) {
+            this.cantidadMascotasCabina++;
         }
-        if(servicio == ServiciosEspeciales.MASCOTA_EN_BODEGA) {
-        	this.cantidadMascotasBodega++;
+        if (servicio == ServiciosEspeciales.MASCOTA_EN_BODEGA) {
+            this.cantidadMascotasBodega++;
         }
-    	this.serviciosContratados.add(servicio);
+        this.serviciosContratados.add(servicio);
     }
-    
+
     public void anadirServiciosMascota(Animal mascota) {
-    	this.mascotas.add(mascota);
+        this.mascotas.add(mascota);
     }
 
     public void resetEquipaje() {
@@ -135,7 +135,7 @@ public class Boleto implements Serializable {
                 negrita(", Tipo: ") + this.tipo +
                 negrita(", Origen-Destino: ") + this.getOrigenDestino() +
                 negrita(", Numero de asiento: ") + this.asiento.getN_silla() +
-                negrita(", Estado: ") + this.status + 
+                negrita(", Estado: ") + this.status +
                 negrita(", N. Maletas: ") + this.equipaje.size() +
                 negrita(", Servicios contratados: ") + this.serviciosContratados.size();
     }
@@ -257,16 +257,16 @@ public class Boleto implements Serializable {
     public void setServiciosContratados(ArrayList<ServiciosEspeciales> serviciosContratados) {
         this.serviciosContratados = serviciosContratados;
     }
-    
+
     public int getMascotasEnCabina() {
-    	return this.cantidadMascotasCabina;
+        return this.cantidadMascotasCabina;
     }
-    
+
     public int getMascotasEnBodega() {
-    	return this.cantidadMascotasBodega;
+        return this.cantidadMascotasBodega;
     }
-    
-    public ArrayList<Animal> getMascotas(){
-    	return this.mascotas;
+
+    public ArrayList<Animal> getMascotas() {
+        return this.mascotas;
     }
 }

@@ -246,7 +246,7 @@ public class App {
         separador();
 
         // Preguntar al usuario si desea añadir equipaje.
-        promptIn("¿Desea añadir equipaje? (Escriba 1 para Sí, 0 para No)");
+        promptIn("¿Desea añadir equipaje? Tiene derecho a llevar maximo 5 maletas. (1 si / 0 no)");
         int opcion = inputI();
 
         if (opcion == 1) {
@@ -255,39 +255,52 @@ public class App {
             // Segun la cantidad de equipaje y los precios de cada uni
             int exit = 1;
             int c = 0;
+            int cMaletas = 0;
 
             do {
                 c += 1;
                 separador();
                 // Solicitar información sobre el equipaje a agregar.
 
-                promptIn("Peso de la maleta (max 22Kg): ");
+                promptIn("Peso de la maleta (max 250Kg): ");
                 int peso = inputI();
 
-                promptIn("Ancho de la maleta (max 35cm): ");
+                promptIn("Ancho de la maleta (max 250cm): ");
                 int ancho = inputI();
 
-                promptIn("Largo de la maleta (max 65cm): ");
+                promptIn("Largo de la maleta (max 250cm): ");
                 int largo = inputI();
 
-                promptIn("Alto de la maleta (max 75cm): ");
+                promptIn("Alto de la maleta (max 250cm): ");
                 int alto = inputI();
 
                 // Agregar una maleta al boleto y mostrar el nuevo valor del boleto.
                 Maleta maleta = new Maleta(c, peso, largo, ancho, alto);
-                maleta.asignarBoleto(boleto);
-                boleto.addEquipaje(maleta);
+                if (maleta.verificarRestricciones()) {
 
-                separador();
+                    maleta.asignarBoleto(boleto);
+                    boleto.addEquipaje(maleta);
+                    cMaletas += 1;
 
-                System.out.println(negrita(colorTexto("Nuevo valor del boleto:", "morado")));
-                System.out.println((colorTexto("-> $" + boleto.getValor(), "verde")));
-                salto();
-                promptIn("¿Desea agregar otro equipaje o continuar? (1 para Sí, 0 para No)");
-                exit = inputI();
+                    separador();
+                    System.out.println(negrita(colorTexto("Nuevo valor del boleto:", "morado")));
+                    System.out.println((colorTexto("-> $" + boleto.getValor(), "verde")));
+                    salto();
+                    promptIn("¿Desea agregar otro equipaje o continuar? (1 para Sí, 0 para No)");
+                    exit = inputI();
 
-            } while (exit == 1);
+                } else {
+                    salto();
+                    promptError("La maleta excede las especificaciones maximas, intente nuevamente");
+                    salto();
+                }
+
+            } while (exit == 1 && cMaletas != 5);
         }
+
+        salto();
+        printNegrita("Maletas agregadas con exito, cantidad de maletas: " + (boleto.getEquipaje()).size());
+        continuar();
 
         // Mostrar los detalles de la compra y solicitar confirmación.
         separadorGrande();
