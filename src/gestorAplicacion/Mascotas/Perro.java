@@ -2,11 +2,11 @@ package gestorAplicacion.Mascotas;
 
 import java.util.ArrayList;
 import java.util.ArrayList;
-
+import java.io.Serializable;
 
 public class Perro extends Animal implements Serializable {
 
-    private static final long serialVersionUID;
+    //private static final long serialVersionUID;
 
 	private double tamano;
     private double peso;

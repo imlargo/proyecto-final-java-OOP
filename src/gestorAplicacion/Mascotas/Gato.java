@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Gato extends Animal implements  Serializable {
 
-    private static final long serialVersionUID;
+    //private static final long serialVersionUID;
 
 	private double tamano;
     private double peso;
