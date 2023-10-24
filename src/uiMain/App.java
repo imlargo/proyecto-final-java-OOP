@@ -601,10 +601,14 @@ public class App {
                 // Informar al usuario sobre la cancelación exitosa
                 System.out.println(colorTexto("La cancelación se ha realizado con éxito.", "verde"));
             } else {
-                separador();
-                System.out.println(colorTexto("Este vuelo ya fue cancelado", "rojo"));
-                continuar();
+            	 separador();
+                 System.out.println(colorTexto("Porceso cancelado", "rojo"));
+                 continuar();
             }
+        }else {
+            separador();
+            System.out.println(colorTexto("Este vuelo ya fue cancelado", "rojo"));
+            continuar();
         }
     }
 
