@@ -122,7 +122,7 @@ public class Boleto implements Serializable {
     }
 
     public String getOrigenDestino() {
-        return this.origen + " - " + this.destino;
+        return this.origen + "-" + this.destino;
     }
 
     public void addEquipaje(Maleta maleta) {
@@ -133,9 +133,10 @@ public class Boleto implements Serializable {
     public String getInfo() {
         return negrita("Precio: ") + colorTexto("$" + this.valor, "verde") +
                 negrita(", Tipo: ") + this.tipo +
+                negrita(", Origen-Destino: ") + this.getOrigenDestino() +
                 negrita(", Numero de asiento: ") + this.asiento.getN_silla() +
                 negrita(", Estado: ") + this.status + 
-                negrita(", Cantidad Maletas: ") + this.equipaje.size() +
+                negrita(", N. Maletas: ") + this.equipaje.size() +
                 negrita(", Servicios contratados: ") + this.serviciosContratados.size();
     }
 

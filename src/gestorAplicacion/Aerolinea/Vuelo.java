@@ -1,7 +1,10 @@
 package gestorAplicacion.Aerolinea;
 
+import java.util.Random;
+
 import java.io.Serializable;// clase para serializar
 import java.util.ArrayList;
+import java.util.Random;
 
 import static uiMain.Estetica.*;
 
@@ -34,13 +37,31 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		for (int i = 0; i < cantidad; i++) {
 			// Generar vuelos y meterlos al array, devueve al array y puede mostrarse
 			// Generar aleatoriamente
-			String aerolinea = "Latam";
+			String aerolinea = "Nn";
 			String id = Integer.toString(i);
-			String hSalida = "69:69";
-			String hLlegada = "";
+			String hSalida = generarHora();
+			String hLlegada = "Nn";
 			vuelos.add(new Vuelo(origen, destino, aerolinea, id, hSalida, hLlegada));
 		}
 		return vuelos;
+	}
+
+	public static String generarHora() {
+		String[] horas = {
+				"08:00 AM",
+				"09:15 AM",
+				"10:30 AM",
+				"11:45 AM",
+				"12:00 PM",
+				"01:15 PM",
+				"02:30 PM",
+				"03:45 PM",
+				"04:00 PM",
+				"05:15 PM"
+		};
+
+		Random rand = new Random();
+		return horas[rand.nextInt(horas.length)];
 	}
 
 	public void generarAsientos(int economicos, int premium, float base) {
@@ -65,7 +86,7 @@ public class Vuelo implements Serializable { // se crea la clase e implementa se
 		/*
 		 * Regresa como string la informacion de origen - destino
 		 */
-		String info = "Id: " + this.ID + ", Origen: " + this.ORIGEN + ", Destino: " + this.DESTINO;
+		String info = "Id: " + this.ID + ", Origen: " + this.ORIGEN + ", Destino: " + this.DESTINO + ", Hora salida: " + this.horarioSalida;
 		return info;
 	}
 
