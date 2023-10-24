@@ -1,27 +1,43 @@
 package gestorAplicacion.Aerolinea;
 
+import java.io.Serializable;
 import gestorAplicacion.Aerolinea.Pasajero;
 import static uiMain.Estetica.*;
-import java.io.Serializable;
+
+/**
+ * Clase que representa un asiento en una aerolínea que esta contenido en un vuelo.
+ */
 
 public class Asiento implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String tipo;
-    private Boolean vip;
-    private Pasajero pasajero;
-    private int n_silla;
-    private boolean disponible = true;
-    private String status = "Disponible";
-    private Boleto boleto;
-    private final float valor;
+    private String tipo; // Tipo de asiento (ejemplo: "Económico", "Primera Clase")
+    private Boolean vip; // Indica si es un asiento VIP o no
+    private Pasajero pasajero; // Pasajero asignado al asiento
+    private int n_silla; // Número de silla del asiento
+    private boolean disponible = true; // Indica si el asiento está disponible o no
+    private String status = "Disponible"; // Estado del asiento (ejemplo: "Disponible", "Asignado")
+    private Boleto boleto; // Boleto asociado al asiento
+    private final float valor; // Valor base del asiento
 
+    /**
+     * Constructor de la clase Asiento.
+     *
+     * @param tipo  Tipo de asiento.
+     * @param n_silla  Número de silla.
+     * @param valor  Valor del asiento.
+     */
     public Asiento(String tipo, int n_silla, float valor) {
         this.tipo = tipo;
         this.n_silla = n_silla;
         this.valor = valor;
     }
 
+    /**
+     * Asigna un boleto al asiento, marcándolo como "Asignado" y asociando un pasajero.
+     *
+     * @param boleto  Boleto a asignar.
+     */
     public void asignarBoleto(Boleto boleto) {
         this.boleto = boleto;
         this.pasajero = boleto.getPasajero();
@@ -29,6 +45,9 @@ public class Asiento implements Serializable {
         this.status = "Asignado";
     }
 
+    /**
+     * Desasigna el boleto del asiento, marcándolo como "Disponible" y desvinculando al pasajero.
+     */
     public void desasignarBoleto() {
         this.boleto = null;
         this.pasajero = null;
@@ -36,11 +55,16 @@ public class Asiento implements Serializable {
         this.status = "Disponible";
     }
 
+    /**
+     * Obtiene la información del asiento.
+     *
+     * @return  Información del asiento en formato de cadena.
+     */
     public String getInfo() {
-        return n_silla + ". Tipo: " + tipo + ", Valor: $" + valor; // Muestra la info del asiento
+        return n_silla + ". Tipo: " + tipo + ", Valor: $" + valor;
     }
 
-    // ...Metodos get y set...
+    // Métodos de acceso (Getters y Setters)
 
     public String getTipo() {
         return this.tipo;
@@ -97,5 +121,4 @@ public class Asiento implements Serializable {
     public float getValor() {
         return this.valor;
     }
-
 }

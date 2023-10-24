@@ -11,6 +11,17 @@ import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Descuentos.Descuento;
 import gestorAplicacion.Mascotas.*;
 
+/**
+ * La clase Boleto representa un boleto de una aerolínea que un usuario ha
+ * adquirido
+ * para un vuelo específico. Contiene información sobre el origen, destino,
+ * pasajero,
+ * asiento, equipaje, servicios contratados y otros detalles relacionados con el
+ * boleto.
+ * Además, permite realizar operaciones como la asignación de asientos, la
+ * adición de
+ * equipaje, y la actualización del valor del boleto.
+ */
 public class Boleto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,6 +56,15 @@ public class Boleto implements Serializable {
     private ArrayList<Descuento> descuentos = new ArrayList<>();
     private Vuelo vuelo;
 
+    /**
+     * Constructor de la clase Boleto que crea un nuevo boleto para un vuelo con
+     * el origen y destino especificados.
+     *
+     * @param origen      El origen del vuelo.
+     * @param destino     El destino del vuelo.
+     * @param propietario El usuario que compra el boleto.
+     * @param vuelo       El vuelo al que está asociado el boleto.
+     */
     public Boleto(String origen, String destino, Usuario propietario, Vuelo vuelo) {
         cont++;
         this.origen = origen;
@@ -55,6 +75,9 @@ public class Boleto implements Serializable {
         this.id = cont;
     }
 
+    /**
+     * Actualiza el valor del boleto tomando en cuenta el precio del equipaje.
+     */
     public void updateValor() {
         int temp = 0;
         for (Maleta maleta : equipaje) {
@@ -64,6 +87,7 @@ public class Boleto implements Serializable {
         this.valor = this.valorInicial + temp;
     }
 
+    // Actualiza el valor, va en relacion con la funcionalidad reasignar asiento
     public void updateValorBase() {
         this.valor = this.valorInicial + this.valorEquipaje;
     }
@@ -72,6 +96,8 @@ public class Boleto implements Serializable {
         asiento.asignarBoleto(this);
     }
 
+    // Asigna un asiento al boleto, pero no se ejecuta el proceso de comprar hasta q
+    // se llame el metodo
     public void setAsiento(Asiento asiento) {
         this.asiento = asiento;
         this.valorInicial = asiento.getValor();
@@ -79,6 +105,8 @@ public class Boleto implements Serializable {
         this.tipo = asiento.getTipo();
     }
 
+    // Actualiza un asiento asignado a un boleto a otro asiento, va de la mano con
+    // la funcionalidad reasignar asiento
     public void upgradeAsiento(Asiento prevAsiento, Asiento newAsiento) {
         this.asiento = newAsiento;
         this.valorInicial = newAsiento.getValor();
@@ -97,6 +125,8 @@ public class Boleto implements Serializable {
         newAsiento.asignarBoleto(this);
     }
 
+    // Actualiza el asiento a vip segun lo que seleccione el usuario, va de la mano
+    // con la funcionalidad canjear millas
     public void upgradeAsientoMillas(Asiento prevAsiento, Asiento newAsiento) {
         this.asiento = newAsiento;
         this.valorInicial = prevAsiento.getValor();
