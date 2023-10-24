@@ -1045,6 +1045,11 @@ public class App {
                             boleto.anadirServiciosEspeciales(ServiciosEspeciales.MASCOTA_EN_BODEGA);
                             // Anade la mascota a la lista del boleto
                             boleto.anadirServiciosMascota(mascota);
+                            // realiza el pago del servicio
+                            boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
+                            printNegrita(colorTexto("Compra realizada con exito!", "verde"));
+                            salto();
+                            continuar();
                             break;
                         case 0:
                             promptError("Cancelado");
