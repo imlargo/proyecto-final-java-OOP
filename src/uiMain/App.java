@@ -1199,24 +1199,15 @@ public class App {
          * Saludar al usuario
          * Le dices q tiene n millas
          * - Descuentos
-         * - Mejoras de silla (upgrates)
          * - Comida, cupon para x comidas
-         */
 
-        /*
          * Requerimientos (Backend).
          * CLases para la comida (inferfaz de clase)
-         * Asignar los descuentos al usuario (arraylist)
-         * Cupones de cierto tipo, para cada cosa, descuentos, mejoras de sulla,
          * comida,comida en si (derecho a un almuerzo)
          * Todo eso se asigna tambien al boleto y a la silla y debe ir de la mano con la
          * funcionalidad checkin
-         * Cada descuento puede ser una sublclasse de un descuento, quye al momento de
-         * ejecutar el metodo sobreescrito aplicar descuento, dependiendo del tiepo
-         * Se haga x o y procedimien.
-         */
-
-        /*
+        
+       
          * Por hacer: (No lo se, estoy esperando opiniones)
          * crear diferentes tipos de descuentos en una clase abstracta q implementen
          * diferentes metodos "".aplicar()"???
@@ -1224,23 +1215,17 @@ public class App {
          * Descuentos al momento de comprar
          * Descuento al momento de pagar comida
          * Comida en si, por ejemplo un cupon para un almuerzo
-         */
-
-        /*
+         
          * Implementar clase abstracta o interfaz para comidas y como integrarlo con el
          * usuario
-         */
-
-        /*
+         
          * Estructura propuesta:
          * - El usuario selecciona un vuelo como en la opcion de check in
          * - Una vez q tiene un vuelo seleccionado (boleto asociado) se muestra las
          * opciones con las q puede canjear millas
          * - El usuario elige lo q desea, se genera el cupon y con confirmaciones y etc
          * se aplica el descuento respectivo
-         */
-
-        /*
+         
          * Estructuras de control:
          * Se reclama, ok, se descuentan las imllas
          * Se crea la instancia de descuento
