@@ -969,11 +969,13 @@ public class App {
     private static ArrayList<ServiciosEspeciales> viajarConMascota(Boleto boleto, Usuario user) {
         ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
         Animal mascota;
-
+        
+        // Se pregunta si la mascota es perro o gato
         promptIn("Desea viajar con un perro o un gato? ( 1. Perro 2. Gato");
         int op = inputI();
         salto();
         
+     // Se obtienen los datos de la mascota
         promptIn("Por favor ingrese el nombre de la mascota");
         String nombre = inputS();
         salto();
@@ -990,118 +992,108 @@ public class App {
         double peso = inputD();
         salto();
         
+        // Se crea una instancia de perro
         if(op == 1) {
         	mascota = new Perro(nombre, raza, tamano, peso);
         }else if(op == 2){
+        	// Se crea una instancia de gato
         	mascota = new Gato(nombre, raza, tamano, peso);
         }else {
+        	// Si no es perro ni gato se avisa que no es posible llevar una diferente a estasy se retorno para salir del metodo
         	aviso(colorTexto("No es posible viajar con una mascota diferente a perros o gatos.", "rojo"));
             continuar();
         	return servicios;
         } 
         
-        promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
-        int opcion = inputI();
-
-        if (opcion == 1) {
-        	if (mascota.puedeViajarEnCabina()) {
-                switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio())) {
-                    case 1:
-                        // anade a el servicio a la lista
-                        servicios.add(ServiciosEspeciales.MASCOTA_EN_CABINA);
-                        // realiza el pago del servicio
-                        boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio());
-
-                        printNegrita(colorTexto("Compra realizada con exito!", "verde"));
-                        salto();
-                        continuar();
-                        break;
-                    case 0:
-                        promptError("Cancelado");
-                        break;
-                    case -1:
-                        promptError("Dinero insuficiente, compra cancelada");
-                        break;
-                    default:
-                        break;
-                }
-            } else if(mascota.puedeViajarEnBodega()){
-                promptOut("La mascota no cumple las restricciones de la erolinea para viajar en cabina pero puede viajar en bodega. Esto tiene un costo de $30");
-
-                switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
-                    case 1:
-                        // anade a el servicio a la lista
-                        servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
-                        // realiza el pago del servicio
-                        boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
-
-                        printNegrita(colorTexto("Compra realizada con exito!", "verde"));
-                        salto();
-                        continuar();
-                        break;
-                    case 0:
-                        promptError("Cancelado");
-                        break;
-                    case -1:
-                        promptError("Dinero insuficiente, compra cancelada");
-                        break;
-                    default:
-                        break;
-                }
-                // verifica que tenga suficiente dinero en la cuenta
-
-            }
-        	
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        // verifica que el peso no exceda el maximo permitido para volar de 50kg
-        if (peso > 50) {
-
-            aviso(colorTexto("El peso excede el máximo permitido de 50 kg, no es posible.", "rojo"));
-            continuar();
-
-        } else {
-
-
+        // Verifica que la mascota si pueda viajar en cabina o bodega
+        if(mascota.puedeViajarEnCabina() || mascota.puedeViajarEnBodega()) {
+        	// Pregunta si desea llevarla en cabina
+        	promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
+            int opcion = inputI();
+            salto();
+            
+            // Si desea viajar en cabina
             if (opcion == 1) {
-                // verifica que el peso no exceda el peso maximo para volar en cabina de 10kg
-                
-            } else {
+            	// Verifica que si sea posible viajar en cabina
+            	if (mascota.puedeViajarEnCabina()) {
+            		// Confirma la transaccion
+                    switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio())) {
+                        case 1:
+                            // anade a el servicio a la lista
+                            servicios.add(ServiciosEspeciales.MASCOTA_EN_CABINA);
+                            // realiza el pago del servicio
+                            boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio());
 
-                switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
-                    case 1:
-                        // anade a el servicio a la lista
-                        servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
-                        // realiza el pago del servicio
-                        boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
+                            printNegrita(colorTexto("Compra realizada con exito!", "verde"));
+                            salto();
+                            continuar();
+                            break;
+                        case 0:
+                            promptError("Cancelado");
+                            break;
+                        case -1:
+                            promptError("Dinero insuficiente, compra cancelada");
+                            break;
+                        default:
+                            break;
+                    }
+                } else {
+                	// Si no puede viajar en cabina se indica que va a aviajar en bodega
+                    promptOut("La mascota no cumple las restricciones de la aerolinea para viajar en cabina pero puede viajar en bodega. Esto tiene un costo de $30");
+                    
+                    // Se confirma la transaccion
+                    switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
+                        case 1:
+                            // anade a el servicio a la lista
+                            servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+                            // realiza el pago del servicio
+                            boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
 
-                        printNegrita(colorTexto("Compra realizada con exito!", "verde"));
-                        salto();
-                        continuar();
-                        break;
-
-                    case 0:
-                        promptError("Cancelado");
-                        break;
-
-                    case -1:
-                        promptError("Dinero insuficiente, compra cancelada");
-                        break;
-
-                    default:
-                        break;
+                            printNegrita(colorTexto("Compra realizada con exito!", "verde"));
+                            salto();
+                            continuar();
+                            break;
+                        case 0:
+                            promptError("Cancelado");
+                            break;
+                        case -1:
+                            promptError("Dinero insuficiente, compra cancelada");
+                            break;
+                        default:
+                            break;
+                    }  
                 }
+            	// Si desea viajar en bodega
+                }else {
+                	promptOut("El viaje en bodega tiene un costo de $30");
+                	// Se confirma la transaccion
+                    switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
+                        case 1:
+                            // anade a el servicio a la lista
+                            servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+                            // realiza el pago del servicio
+                            boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
 
+                            printNegrita(colorTexto("Compra realizada con exito!", "verde"));
+                            salto();
+                            continuar();
+                            break;
+                        case 0:
+                            promptError("Cancelado");
+                            break;
+                        case -1:
+                            promptError("Dinero insuficiente, compra cancelada");
+                            break;
+                        default:
+                            break;
+                    }
             }
+        // Si no se puede viajar de ninguna forma
+        }else {
+        	aviso(colorTexto("La mascota no cumple con las restricciones de la aerolinea por o tanto no puede viajar", "rojo"));
+            continuar();
         }
-
+        
         return servicios;
     }
 
