@@ -1,12 +1,12 @@
 package gestorAplicacion.Aerolinea;
 
 import gestorAplicacion.Aerolinea.Pasajero;
-
 import static uiMain.Estetica.*;
+import java.io.Serializable;
 
 public class Asiento implements Serializable {
 
-    private  static  final long serialVersionUID;
+    //private  static  final long serialVersionUID;
 
     private String tipo;
     private Boolean vip;
