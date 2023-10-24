@@ -1,3 +1,32 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/Q_uKBniY)
-# practica-1-grupo-2-equipo-7
-practica-1-grupo-2-equipo-7 created by GitHub Classroom.
+# Proyecto final Programacion Orientada a Objetos
+
+> _Proyecto final desarrolado para la materia Programacion Orientada a Objetos_
+
+Se trata de una aplicación CLI escrita en **Java** con el objetivo de simular un sistema de reserva y gestión de vuelos. El proyecto implementa diversas funcionalidades, incluyendo:
+
+- Compra de boletos de avión.
+- Reasignación de boletos y asientos.
+- Cancelación de boletos.
+- Check-in en línea.
+- Adición de servicios adicionales durante la reserva.
+- Canjeo de millas por descuentos.
+
+---
+
+Clonar el repositorio
+```
+git clone https://github.com/imlargo/Proyecto-Final-POO
+```
+
+Ejecutar
+```
+java -jar Proyecto-Final-POO.jar
+```
+
+***
+
+### Tools used
+
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=java,git,github,vscode&theme=dark" />
+</a>
