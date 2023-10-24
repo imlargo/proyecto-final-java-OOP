@@ -7,13 +7,10 @@ import gestorAplicacion.Cuenta.*;
 
 import java.util.ArrayList;
 
-
 import static uiMain.Estetica.*;
 
 public class Pasajero implements Serializable {
-
     private static final long serialVersionUID = 1L;
-
     private String nombre;
     private Usuario user;
     private Boleto boleto;

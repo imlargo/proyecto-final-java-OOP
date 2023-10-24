@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import static uiMain.Estetica.*;
 
 public class Vuelo implements Serializable { // se crea la clase e implementa serializacion
-
-	private static final long serialVersionUID = 1L; // atributo con el codigo de serializacion
+	private static final long serialVersionUID = 1L;
 
 	ArrayList<Asiento> asientos = new ArrayList<>();
 	private final String AEROLINEA;

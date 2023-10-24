@@ -969,54 +969,55 @@ public class App {
     private static ArrayList<ServiciosEspeciales> viajarConMascota(Boleto boleto, Usuario user) {
         ArrayList<ServiciosEspeciales> servicios = new ArrayList<>();
         Animal mascota;
-        
+
         // Se pregunta si la mascota es perro o gato
         promptIn("Desea viajar con un perro o un gato? ( 1. Perro 2. Gato");
         int op = inputI();
         salto();
-        
-     // Se obtienen los datos de la mascota
+
+        // Se obtienen los datos de la mascota
         promptIn("Por favor ingrese el nombre de la mascota");
         String nombre = inputS();
         salto();
-        
+
         promptIn("Por favor ingrese la raza de la mascota");
         String raza = inputS();
         salto();
-        
+
         promptIn("Por favor ingrese el tamano de la mascota");
         double tamano = inputD();
         salto();
-        
+
         promptIn("Por favor ingrese el peso de la mascota");
         double peso = inputD();
         salto();
-        
+
         // Se crea una instancia de perro
-        if(op == 1) {
-        	mascota = new Perro(nombre, raza, tamano, peso);
-        }else if(op == 2){
-        	// Se crea una instancia de gato
-        	mascota = new Gato(nombre, raza, tamano, peso);
-        }else {
-        	// Si no es perro ni gato se avisa que no es posible llevar una diferente a estasy se retorno para salir del metodo
-        	aviso(colorTexto("No es posible viajar con una mascota diferente a perros o gatos.", "rojo"));
+        if (op == 1) {
+            mascota = new Perro(nombre, raza, tamano, peso);
+        } else if (op == 2) {
+            // Se crea una instancia de gato
+            mascota = new Gato(nombre, raza, tamano, peso);
+        } else {
+            // Si no es perro ni gato se avisa que no es posible llevar una diferente a
+            // estasy se retorno para salir del metodo
+            aviso(colorTexto("No es posible viajar con una mascota diferente a perros o gatos.", "rojo"));
             continuar();
-        	return servicios;
-        } 
-        
+            return servicios;
+        }
+
         // Verifica que la mascota si pueda viajar en cabina o bodega
-        if(mascota.puedeViajarEnCabina() || mascota.puedeViajarEnBodega()) {
-        	// Pregunta si desea llevarla en cabina
-        	promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
+        if (mascota.puedeViajarEnCabina() || mascota.puedeViajarEnBodega()) {
+            // Pregunta si desea llevarla en cabina
+            promptIn("Desea llevar la mascota en cabina? (1 Si, 0 No) Esto tiene un costo de $40");
             int opcion = inputI();
             salto();
-            
+
             // Si desea viajar en cabina
             if (opcion == 1) {
-            	// Verifica que si sea posible viajar en cabina
-            	if (mascota.puedeViajarEnCabina()) {
-            		// Confirma la transaccion
+                // Verifica que si sea posible viajar en cabina
+                if (mascota.puedeViajarEnCabina()) {
+                    // Confirma la transaccion
                     switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_CABINA.getPrecio())) {
                         case 1:
                             // anade a el servicio a la lista
@@ -1038,9 +1039,10 @@ public class App {
                             break;
                     }
                 } else {
-                	// Si no puede viajar en cabina se indica que va a aviajar en bodega
-                    promptOut("La mascota no cumple las restricciones de la aerolinea para viajar en cabina pero puede viajar en bodega. Esto tiene un costo de $30");
-                    
+                    // Si no puede viajar en cabina se indica que va a aviajar en bodega
+                    promptOut(
+                            "La mascota no cumple las restricciones de la aerolinea para viajar en cabina pero puede viajar en bodega. Esto tiene un costo de $30");
+
                     // Se confirma la transaccion
                     switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
                         case 1:
@@ -1061,39 +1063,40 @@ public class App {
                             break;
                         default:
                             break;
-                    }  
-                }
-            	// Si desea viajar en bodega
-                }else {
-                	promptOut("El viaje en bodega tiene un costo de $30");
-                	// Se confirma la transaccion
-                    switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
-                        case 1:
-                            // anade a el servicio a la lista
-                            servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
-                            // realiza el pago del servicio
-                            boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
-
-                            printNegrita(colorTexto("Compra realizada con exito!", "verde"));
-                            salto();
-                            continuar();
-                            break;
-                        case 0:
-                            promptError("Cancelado");
-                            break;
-                        case -1:
-                            promptError("Dinero insuficiente, compra cancelada");
-                            break;
-                        default:
-                            break;
                     }
+                }
+                // Si desea viajar en bodega
+            } else {
+                promptOut("El viaje en bodega tiene un costo de $30");
+                // Se confirma la transaccion
+                switch (confirmarTransaccion(user, ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio())) {
+                    case 1:
+                        // anade a el servicio a la lista
+                        servicios.add(ServiciosEspeciales.MASCOTA_EN_BODEGA);
+                        // realiza el pago del servicio
+                        boleto.getUser().realizarPago(ServiciosEspeciales.MASCOTA_EN_BODEGA.getPrecio());
+
+                        printNegrita(colorTexto("Compra realizada con exito!", "verde"));
+                        salto();
+                        continuar();
+                        break;
+                    case 0:
+                        promptError("Cancelado");
+                        break;
+                    case -1:
+                        promptError("Dinero insuficiente, compra cancelada");
+                        break;
+                    default:
+                        break;
+                }
             }
-        // Si no se puede viajar de ninguna forma
-        }else {
-        	aviso(colorTexto("La mascota no cumple con las restricciones de la aerolinea por o tanto no puede viajar", "rojo"));
+            // Si no se puede viajar de ninguna forma
+        } else {
+            aviso(colorTexto("La mascota no cumple con las restricciones de la aerolinea por o tanto no puede viajar",
+                    "rojo"));
             continuar();
         }
-        
+
         return servicios;
     }
 
@@ -1200,14 +1203,14 @@ public class App {
          * Le dices q tiene n millas
          * - Descuentos
          * - Comida, cupon para x comidas
-
+         * 
          * Requerimientos (Backend).
          * CLases para la comida (inferfaz de clase)
          * comida,comida en si (derecho a un almuerzo)
          * Todo eso se asigna tambien al boleto y a la silla y debe ir de la mano con la
          * funcionalidad checkin
-        
-       
+         * 
+         * 
          * Por hacer: (No lo se, estoy esperando opiniones)
          * crear diferentes tipos de descuentos en una clase abstracta q implementen
          * diferentes metodos "".aplicar()"???
@@ -1215,17 +1218,17 @@ public class App {
          * Descuentos al momento de comprar
          * Descuento al momento de pagar comida
          * Comida en si, por ejemplo un cupon para un almuerzo
-         
+         * 
          * Implementar clase abstracta o interfaz para comidas y como integrarlo con el
          * usuario
-         
+         * 
          * Estructura propuesta:
          * - El usuario selecciona un vuelo como en la opcion de check in
          * - Una vez q tiene un vuelo seleccionado (boleto asociado) se muestra las
          * opciones con las q puede canjear millas
          * - El usuario elige lo q desea, se genera el cupon y con confirmaciones y etc
          * se aplica el descuento respectivo
-         
+         * 
          * Estructuras de control:
          * Se reclama, ok, se descuentan las imllas
          * Se crea la instancia de descuento
@@ -1254,10 +1257,11 @@ public class App {
             identacion("2. Cupón para comida" + "( " + descuentoComida.costoMillas + " )");
             identacion("3. Descuento vuelo" + "( " + descuentoVuelo.costoMillas + " )");
             identacion("4. Descuento maleta" + "( " + descuentoMaleta.costoMillas + " )");
-            identacion("5. > Aplicar descuentos ??? ");
-            identacion("6. Volver al menú anterior");
+            identacion("5. Aplicar descuentos");
+            identacion("6. Ver descuentos del usuario");
+            identacion("7. Volver al menú anterior");
             salto();
-            promptIn("> Seleccione una opción (1-6): ");
+            promptIn("> Seleccione una opción (1-7): ");
             opcion = inputI();
 
             separador();
@@ -1425,6 +1429,15 @@ public class App {
                     break;
 
                 case 6:
+                    // Ver descuento
+                    promptIn("Desea ver solo los descuentos disponibles/canjeados o los aplicados tambien (1 / 0)");
+                    int op = inputI();
+
+                    verDescuentos(user, op);
+
+                    break;
+
+                case 7:
                     aviso(colorTexto("Volviendo al menu", "rojo"));
                     separador();
                     break;
@@ -1436,7 +1449,7 @@ public class App {
 
             separador();
 
-        } while (opcion != 6);
+        } while (opcion != 7);
 
         System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
     }
@@ -1541,7 +1554,7 @@ public class App {
         separador();
 
         ArrayList<Descuento> descuentos = user.getDescuentos();
-        System.out.println(colorTexto("Descuentos disponibles:", "morado"));
+        identacion(colorTexto("Descuentos disponibles:", "morado"), 4);
         salto();
 
         if (op == 0) {
@@ -1582,8 +1595,6 @@ public class App {
             return 0;
         }
     }
-
-
 
 }
 

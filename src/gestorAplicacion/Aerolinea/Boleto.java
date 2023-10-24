@@ -11,12 +11,13 @@ import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Descuentos.Descuento;
 
 public class Boleto implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     private static int cont = 0;
     private int id;
-    
-    // Atributos 
+
+    // Atributos
     private String tipo;
     private Usuario user;
     private String status = "Pendiente";
@@ -113,9 +114,9 @@ public class Boleto implements Serializable {
 
     public String getInfo() {
         return negrita("Precio: ") + colorTexto("$" + this.valor, "verde") +
-        negrita(", Tipo: ") + this.tipo + 
-        negrita(", Numero de asiento: ") + this.asiento.getN_silla() +
-        negrita(", Estado: ") + this.status;
+                negrita(", Tipo: ") + this.tipo +
+                negrita(", Numero de asiento: ") + this.asiento.getN_silla() +
+                negrita(", Estado: ") + this.status;
     }
 
     // ...Metodos get y set...

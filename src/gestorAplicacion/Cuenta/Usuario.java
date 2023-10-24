@@ -7,8 +7,8 @@ import static uiMain.Estetica.*;
 import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Descuentos.Descuento;
 
+public class Usuario implements Serializable {
 
-public class Usuario implements  Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int dinero;
@@ -52,7 +52,6 @@ public class Usuario implements  Serializable {
 				"\nVuelos comprados: " + this.historial.size();
 	}
 
-
 	public Boolean verificarContrasena(String contrasena) {
 		if (this.contrasena.equals(contrasena)) {
 			return true;
@@ -72,8 +71,6 @@ public class Usuario implements  Serializable {
 	public void addDescuento(Descuento descuento) {
 		this.descuentos.add(descuento);
 	}
-
-	
 
 	public void descontarMillas(int valor) {
 		this.millas -= valor;
@@ -115,7 +112,6 @@ public class Usuario implements  Serializable {
 	public ArrayList<Boleto> getHistorial() {
 		return this.historial;
 	}
-
 
 	public ArrayList<Descuento> getDescuentos() {
 		return this.descuentos;
