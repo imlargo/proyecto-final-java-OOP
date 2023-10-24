@@ -602,7 +602,7 @@ public class App {
                 System.out.println(colorTexto("La cancelación se ha realizado con éxito.", "verde"));
             } else {
             	 separador();
-                 System.out.println(colorTexto("Porceso cancelado", "rojo"));
+                 System.out.println(colorTexto("Proceso cancelado", "rojo"));
                  continuar();
             }
         }else {
