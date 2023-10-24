@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 import static uiMain.Estetica.*;
 
-public class Pasajero {
+public class Pasajero implements Serializable {
+
     private static final long serialVersionUID = 0;
 
     private String nombre;

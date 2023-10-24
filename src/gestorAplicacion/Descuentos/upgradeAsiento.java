@@ -1,10 +1,13 @@
 package gestorAplicacion.Descuentos;
+import java.io.Serializable;
 import gestorAplicacion.Cuenta.*;
 import gestorAplicacion.Aerolinea.*;
 
 import static uiMain.Estetica.*;
 
-public class upgradeAsiento extends Descuento {
+public class upgradeAsiento extends Descuento implements  Serializable {
+
+    private static final long serialVersionUID;
     public static int costoMillas = 1;
 
     public upgradeAsiento(Usuario user) {

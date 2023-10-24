@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import static uiMain.Estetica.*;
 import gestorAplicacion.Aerolinea.*;
 
-public class GestionUsuario {
+public class GestionUsuario implements  Serializable {
+
+    private static final long serialVersionUID;
 
     public ArrayList<Usuario> Usuarios = new ArrayList<>();
     public Usuario user = null;

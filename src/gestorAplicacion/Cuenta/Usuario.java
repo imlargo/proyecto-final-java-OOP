@@ -8,7 +8,8 @@ import gestorAplicacion.Aerolinea.*;
 import gestorAplicacion.Descuentos.Descuento;
 
 
-public class Usuario {
+public class Usuario implements  Serializable {
+	private static final long serialVersionUID;
 
 	private int dinero;
 	private int id;

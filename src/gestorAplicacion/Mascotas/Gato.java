@@ -1,8 +1,12 @@
 package gestorAplicacion.Mascotas;
 
-import java.util.ArrayList;;
 
-public class Gato extends Animal {
+import java.util.ArrayList;
+import java.io.Serializable;
+
+public class Gato extends Animal implements  Serializable {
+
+    private static final long serialVersionUID;
 
 	private double tamano;
     private double peso;
