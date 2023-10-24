@@ -18,7 +18,7 @@ Clonar el repositorio
 git clone https://github.com/imlargo/Proyecto-Final-POO
 ```
 
-Ejecutar
+Ejecutar :p
 ```
 java -jar Proyecto-Final-POO.jar
 ```
