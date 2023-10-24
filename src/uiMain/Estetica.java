@@ -104,6 +104,14 @@ public class Estetica {
         // scanner.close();
         return n;
     }
+    
+    public static double inputD() {
+        System.out.print("  > ");
+        Scanner scanner = new Scanner(System.in);
+        double n = scanner.nextDouble();
+        // scanner.close();
+        return n;
+    }
 
     public static void continuar() {
         promptOut("Presione enter para continuar");
