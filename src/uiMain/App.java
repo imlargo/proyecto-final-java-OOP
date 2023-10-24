@@ -586,8 +586,8 @@ public class App {
 
         separadorGrande();
 
-        if(boleto.getStatus() != "Cancelado") {
-        	promptIn("Confirmar la cancelación (Escriba 1 para Confirmar, 0 para Cancelar):");
+        if (boleto.getStatus() != "Cancelado") {
+            promptIn("Confirmar la cancelación (Escriba 1 para Confirmar, 0 para Cancelar):");
             int confirmacion = inputI();
 
             separadorGrande();
@@ -600,10 +600,10 @@ public class App {
                 asiento.desasignarBoleto();
                 // Informar al usuario sobre la cancelación exitosa
                 System.out.println(colorTexto("La cancelación se ha realizado con éxito.", "verde"));
-            }else {
-            	separador();
+            } else {
+                separador();
                 System.out.println(colorTexto("Este vuelo ya fue cancelado", "rojo"));
-                continuar(); 
+                continuar();
             }
         }
     }
@@ -811,15 +811,16 @@ public class App {
 
             } while (opcion != 4 && !boleto.getCheckInRealizado());
         } else {
-        	if(boleto.getStatus() == "Cancelado") {
-        		separador();
-                System.out.println(colorTexto("No es posible realizar el checkIn ya que el vuelo fue cancelado", "rojo"));
+            if (boleto.getStatus() == "Cancelado") {
+                separador();
+                System.out
+                        .println(colorTexto("No es posible realizar el checkIn ya que el vuelo fue cancelado", "rojo"));
                 continuar();
-        	}else {
-        		separador();
+            } else {
+                separador();
                 System.out.println(colorTexto("Usted ya realizo el Check-in para este vuelo", "rojo"));
                 continuar();
-        	} 
+            }
         }
     }
 
@@ -1239,45 +1240,18 @@ public class App {
     private static void canjearMillas(Usuario user) {
 
         /*
-         * Saludar al usuario
-         * Le dices q tiene n millas
-         * - Descuentos
-         * - Comida, cupon para x comidas
+         * Permite al usuario canjear millas por ciertos descuentos
          * 
-         * Requerimientos (Backend).
-         * CLases para la comida (inferfaz de clase)
-         * comida,comida en si (derecho a un almuerzo)
-         * Todo eso se asigna tambien al boleto y a la silla y debe ir de la mano con la
-         * funcionalidad checkin
-         * 
-         * 
-         * Por hacer: (No lo se, estoy esperando opiniones)
-         * crear diferentes tipos de descuentos en una clase abstracta q implementen
-         * diferentes metodos "".aplicar()"???
-         * Descuentos en upgrade de asiento
-         * Descuentos al momento de comprar
-         * Descuento al momento de pagar comida
-         * Comida en si, por ejemplo un cupon para un almuerzo
-         * 
-         * Implementar clase abstracta o interfaz para comidas y como integrarlo con el
-         * usuario
-         * 
-         * Estructura propuesta:
-         * - El usuario selecciona un vuelo como en la opcion de check in
-         * - Una vez q tiene un vuelo seleccionado (boleto asociado) se muestra las
-         * opciones con las q puede canjear millas
-         * - El usuario elige lo q desea, se genera el cupon y con confirmaciones y etc
-         * se aplica el descuento respectivo
-         * 
-         * Estructuras de control:
-         * Se reclama, ok, se descuentan las imllas
-         * Se crea la instancia de descuento
-         * Se Pregunta al usuario si lo quiere aplicar de una, si si, se hace, sino se
-         * asigna al usuario
-         * Luego, tambien esta la opcion de canjear los q ya se tienen (debe ser antes
-         * del check in)
+         * Estructura y proceso:
+         * Se le da a el usuario las opciones disponibles para canjear sus millas
+         * Selecciona la opcion y se pide confirmacion, al confirmar, se descuentan las
+         * millas, se instancia el tipo de descuento
+         * Si el usuario decide aplicar el descuendo instantaneamente se procede a hacer
+         * el proceso
+         * Si no, se guarda el boleto en una lista de descuentos asociada al usuario,
+         * posteriormente el usuario puede aplicar el descuento
+         * usando la opcion 4. Aplicar descuentos
          */
-
         seleccionado("Canjear millas");
         separadorGrande();
         identacion("Hola " + colorTexto(user.getNombre(), "verde"), 3);
@@ -1652,10 +1626,3 @@ public class App {
 
 }
 
-// SI el usuario ya hizo check in no puede reasignar, solo cancelar y se pierde
-
-/*
- * Canejar millas por mejorar tipo de sillas y descuento en la maleta y comida
- * alimenacion, con una clase abstracta y un menu q se le asigna una cantidad x
- * de alimentos
- */
