@@ -18,9 +18,12 @@ public class descuentoMaleta extends Descuento implements Serializable {
 
     public void aplicarDescuento(Boleto boleto) {
         this.boleto = boleto;
+        double retorno = 0.2;
+        float valorEquipaje = boleto.getValorEquipaje();
+        boleto.setValorEquipaje( (float)(valorEquipaje * (1 - retorno)) );
+        this.user.depositarDinero( (int)(valorEquipaje * (retorno)) );
 
         this.estado = "Usado";
         this.usar();
     }
-
 }

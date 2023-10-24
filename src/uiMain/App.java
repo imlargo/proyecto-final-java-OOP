@@ -1292,7 +1292,6 @@ public class App {
                                 continuar();
                                 separador();
                             }
-
                             break;
 
                         case -1:
@@ -1400,7 +1399,14 @@ public class App {
                             int aplicar = inputI();
 
                             if (aplicar == 1) {
-                                millasVuelo(user);
+                                Boleto boleto = selecBoleto(user);
+                                Descuento descuento = new descuentoMaleta(user);
+                                descuento.aplicarDescuento(boleto);
+
+                                // Listo, su costo de maleta ha sdo reducido en un % y se ha regresado el dinero
+                                promptOut(
+                                        "El coste de equipaje de su vuelo se ha reducido en un m% y se ha regresado el dinero");
+
                             } else {
                                 Descuento descuento = new descuentoMaleta(user);
                                 descuento.guardar();
@@ -1409,7 +1415,6 @@ public class App {
                                 continuar();
                                 separador();
                             }
-
                             break;
 
                         case -1:
@@ -1432,9 +1437,7 @@ public class App {
                     // Ver descuento
                     promptIn("Desea ver solo los descuentos disponibles/canjeados o los aplicados tambien (1 / 0)");
                     int op = inputI();
-
                     verDescuentos(user, op);
-
                     break;
 
                 case 7:
@@ -1451,39 +1454,15 @@ public class App {
 
         } while (opcion != 7);
 
-        System.out.println("Canjeado con éxito, n millas a m dinero, cuenta total: total");
+        separadorGrande();
+        printNegrita("Canjeado con éxito, millas restantes: " + colorTexto("" + user.getMillas(), "morado"));
+        salto();
+        continuar();
     }
 
     private static void millasAsiento(Usuario user) {
-        // Obtener el historial de boletos del usuario
-        ArrayList<Boleto> historial = user.getHistorial();
 
-        System.out.println(colorTexto("Información de los vuelos:", "morado"));
-        salto();
-
-        // Iterar a través del historial de boletos
-        for (int i = 0; i < historial.size(); i++) {
-            Boleto boleto = historial.get(i);
-            // Mostrar información de cada boleto en la lista
-            identacion(i + ". " + boleto.getInfo());
-        }
-        salto();
-
-        promptIn("Por favor, seleccione el número del vuelo deseado:");
-        int indexVuelo = inputI();
-
-        // Obtener el boleto seleccionado por el usuario
-        Boleto boleto = historial.get(indexVuelo);
-
-        separador();
-
-        System.out.println(colorTexto("Vuelo seleccionado, información detallada:", "morado"));
-        salto();
-        identacion(boleto.getInfo());
-
-        salto();
-        continuar();
-
+        Boleto boleto = selecBoleto(user);
         Asiento asiento = boleto.getAsiento();
         // se verifica que el asiento sea economico
         // si es vip ya no se puede mejorar
@@ -1546,9 +1525,6 @@ public class App {
 
     }
 
-    private static void millasMaleta(Usuario user) {
-    }
-
     private static void verDescuentos(Usuario user, int op) {
 
         separador();
@@ -1557,7 +1533,7 @@ public class App {
         identacion(colorTexto("Descuentos disponibles:", "morado"), 4);
         salto();
 
-        if (op == 0) {
+        if (op == 1) {
             // Iterar a través del historial de boletos
             for (int i = 0; i < descuentos.size(); i++) {
                 Descuento descuento = descuentos.get(i);
@@ -1568,7 +1544,6 @@ public class App {
 
                 }
             }
-
         } else {
             // Iterar a través del historial de boletos
             for (int i = 0; i < descuentos.size(); i++) {
@@ -1577,6 +1552,39 @@ public class App {
                 identacion(i + ". " + descuento.getInfo());
             }
         }
+    }
+
+    public static Boleto selecBoleto(Usuario user) {
+        // Obtener el historial de boletos del usuario
+        ArrayList<Boleto> historial = user.getHistorial();
+
+        System.out.println(colorTexto("Información de los vuelos:", "morado"));
+        salto();
+
+        // Iterar a través del historial de boletos
+        for (int i = 0; i < historial.size(); i++) {
+            Boleto boleto = historial.get(i);
+            // Mostrar información de cada boleto en la lista
+            identacion(i + ". " + boleto.getInfo());
+        }
+        salto();
+
+        promptIn("Por favor, seleccione el número del vuelo deseado:");
+        int indexVuelo = inputI();
+
+        // Obtener el boleto seleccionado por el usuario
+        Boleto boleto = historial.get(indexVuelo);
+
+        separador();
+
+        System.out.println(colorTexto("Vuelo seleccionado, información detallada:", "morado"));
+        salto();
+        identacion(boleto.getInfo());
+
+        salto();
+        continuar();
+
+        return boleto;
     }
 
     private static int verificarMillas(Usuario user, int valor) {
