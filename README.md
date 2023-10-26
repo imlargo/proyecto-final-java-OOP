@@ -15,7 +15,7 @@ Se trata de una aplicación CLI escrita en **Java** con el objetivo de simular u
 
 Clonar el repositorio
 ```
-git clone https://github.com/imlargo/Proyecto-Final-POO
+git clone https://github.com/imlargo/Proyecto-Final-OOP
 ```
 
 Ejecutar :p
